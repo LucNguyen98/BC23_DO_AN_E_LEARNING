@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
     node: true,
   },
   extends: [
@@ -28,6 +28,7 @@ module.exports = {
     radix: 'error',
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
+    // 'react/react-in-jsx-scope': 'off',
   },
   settings: {
     react: {
