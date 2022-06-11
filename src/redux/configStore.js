@@ -1,5 +1,10 @@
-import React from 'react';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from './reducers';
+import thunk from 'redux-thunk';
+const middleWare = [thunk];
 
-export default function configStore() {
-  return <div>configStore</div>;
-}
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleWare),
+});
