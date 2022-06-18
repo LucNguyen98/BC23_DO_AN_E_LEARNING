@@ -2,11 +2,19 @@
 BUTTONS STYLE
 ----------------=----*/
 @import '../../../assets/scss/index.scss';
+
+@mixin button-hover($bg-c: $theme-primary-color, $c: #fff) {
+  border-color: $bg-c;
+  color: $c;
+  background: $bg-c;
+}
+
 .btn {
   @include button(#fff, $theme-primary-color, 0);
   position: relative;
   text-transform: capitalize;
   transition: all 0.6s ease;
+
   &:focus {
     box-shadow: none !important;
   }
@@ -17,24 +25,23 @@ BUTTONS STYLE
 }
 
 .btn-main {
-  background: $theme-primary-color;
-  color: #fff;
-  border-color: $theme-primary-color;
-  &:hover {
-    border-color: $theme-secondary-color;
-    color: #fff;
-    background: $theme-secondary-color;
+  @include button-hover();
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover($theme-secondary-color);
+    }
   }
+
 }
 
 .btn-main-2 {
-  border-color: $theme-secondary-color;
-  color: #fff;
-  background: $theme-secondary-color;
-  &:hover {
-    background: $theme-primary-color;
-    color: #fff;
-    border-color: $theme-primary-color;
+  @include button-hover($theme-secondary-color);
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
   }
 }
 
@@ -42,21 +49,22 @@ BUTTONS STYLE
   background: transparent;
   color: $theme-primary-color;
   border-color: $theme-primary-color;
-  &:hover {
-    background: $theme-primary-color;
-    color: #fff;
-    border-color: $theme-primary-color;
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
   }
+
 }
 
 .btn-main2-outline {
   background: transparent;
   color: #fff;
   border-color: $theme-primary-color;
-  &:hover {
-    background: $theme-primary-color;
-    color: #fff;
-    border-color: $theme-primary-color;
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
   }
 }
 
@@ -64,42 +72,41 @@ BUTTONS STYLE
   background: #fff;
   border-color: #fff;
   color: $theme-primary-color;
-  &:hover {
-    border-color: --theme-primary-color;
-    color: #fff;
-    background: --theme-primary-color;
-  }
+
 }
 
 .btn-white-outline {
   background: transparent;
   border-color: #fff;
   color: #fff;
-  &:hover {
-    border-color: $theme-primary-color;
-    color: #fff;
-    background: $theme-primary-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
   }
+
+
 }
 
 .btn-grey {
   border-color: #ddd;
   color: #222;
   background: #ddd;
-  &:hover {
-    border-color: $theme-primary-color;
-    color: #fff;
-    background: $theme-primary-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
   }
 }
 
 .btn-grey-outline {
   border-color: #ddd;
   background: transparent;
+
   &:hover {
-    border-color: $theme-primary-color;
-    color: #fff;
-    background: $theme-primary-color;
+    @include button-hover();
   }
 }
 
