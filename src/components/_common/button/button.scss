@@ -1,6 +1,7 @@
 /*-------------------
 BUTTONS STYLE
 ----------------=----*/
+@import '../../../assets/scss/index.scss';
 .btn {
   @include button(#fff, $theme-primary-color, 0);
   position: relative;

@@ -1,3 +1,4 @@
+@import './variable';
 @mixin text($fs, $fw, $lh, $c) {
     font-family: $theme-heading-font;
     font-weight: $fw;
@@ -13,4 +14,5 @@
     font-size: $fs;
     border: $b;
     background-color: $bg;
+    cursor: pointer;
 }
