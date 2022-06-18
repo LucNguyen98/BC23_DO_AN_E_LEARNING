@@ -1,0 +1,111 @@
+/*-------------------
+BUTTONS STYLE
+----------------=----*/
+.btn {
+  @include button(#fff, $theme-primary-color, 0);
+  position: relative;
+  text-transform: capitalize;
+  transition: all 0.6s ease;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-radius {
+  border-radius: 35px;
+}
+
+.btn-main {
+  background: $theme-primary-color;
+  color: #fff;
+  border-color: $theme-primary-color;
+  &:hover {
+    border-color: $theme-secondary-color;
+    color: #fff;
+    background: $theme-secondary-color;
+  }
+}
+
+.btn-main-2 {
+  border-color: $theme-secondary-color;
+  color: #fff;
+  background: $theme-secondary-color;
+  &:hover {
+    background: $theme-primary-color;
+    color: #fff;
+    border-color: $theme-primary-color;
+  }
+}
+
+.btn-main-outline {
+  background: transparent;
+  color: $theme-primary-color;
+  border-color: $theme-primary-color;
+  &:hover {
+    background: $theme-primary-color;
+    color: #fff;
+    border-color: $theme-primary-color;
+  }
+}
+
+.btn-main2-outline {
+  background: transparent;
+  color: #fff;
+  border-color: $theme-primary-color;
+  &:hover {
+    background: $theme-primary-color;
+    color: #fff;
+    border-color: $theme-primary-color;
+  }
+}
+
+.btn-white {
+  background: #fff;
+  border-color: #fff;
+  color: $theme-primary-color;
+  &:hover {
+    border-color: --theme-primary-color;
+    color: #fff;
+    background: --theme-primary-color;
+  }
+}
+
+.btn-white-outline {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+  &:hover {
+    border-color: $theme-primary-color;
+    color: #fff;
+    background: $theme-primary-color;
+  }
+}
+
+.btn-grey {
+  border-color: #ddd;
+  color: #222;
+  background: #ddd;
+  &:hover {
+    border-color: $theme-primary-color;
+    color: #fff;
+    background: $theme-primary-color;
+  }
+}
+
+.btn-grey-outline {
+  border-color: #ddd;
+  background: transparent;
+  &:hover {
+    border-color: $theme-primary-color;
+    color: #fff;
+    background: $theme-primary-color;
+  }
+}
+
+.btn-sm {
+  padding: 8px 22px;
+}
+
+.btn-sm-2 {
+  padding: 6px 22px;
+}

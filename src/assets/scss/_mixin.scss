@@ -1,0 +1,16 @@
+@mixin text($fs, $fw, $lh, $c) {
+    font-family: $theme-heading-font;
+    font-weight: $fw;
+    line-height: $lh;
+    color: $c;
+    font-size: $fs;
+}
+
+@mixin button($c, $bg, $br, $fs: $fs-6, $fw: $fw-600, $p: 14px 30px, $b: 2px solid transparent) {
+    font-weight: $fw;
+    padding: $p;
+    border-radius: $br;
+    font-size: $fs;
+    border: $b;
+    background-color: $bg;
+}
