@@ -1,0 +1,180 @@
+/*-------------------
+BUTTONS STYLE
+----------------=----*/
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap");
+/*--------------------
+ COLORS
+-----------------*/
+/*--------------------
+ FONT FAMILLY
+-----------------*/
+/*--------------------
+ FONT SIZE
+-----------------*/
+/*--------------------
+ FONT WEIGHT
+-----------------*/
+/*=====================================
+SPACING
+===================================*/
+/*=====================================
+LINE HEIGHT
+===================================*/
+/*=====================================
+BORDER
+===================================*/
+/*=====================================
+BORDER RADIUS
+===================================*/
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap");
+/*--------------------
+ COLORS
+-----------------*/
+/*--------------------
+ FONT FAMILLY
+-----------------*/
+/*--------------------
+ FONT SIZE
+-----------------*/
+/*--------------------
+ FONT WEIGHT
+-----------------*/
+/*=====================================
+SPACING
+===================================*/
+/*=====================================
+LINE HEIGHT
+===================================*/
+/*=====================================
+BORDER
+===================================*/
+/*=====================================
+BORDER RADIUS
+===================================*/
+@import './bootstrap/bootstrap.css';
+@import './flaticon/flaticon.css';
+@import './magnific-popup/magnific-popup.css';
+@import './fonts/gilroy/font-gilroy.css';
+@import './animate-css/animate.css';
+@import './animated-headline/animated-headline.css';
+@import './owl/assets/owl.carousel.min.css';
+@import './owl/assets/owl.theme.default.min.css';
+@import './css/responsive.css';
+@import './css/style.css';
+@import './css/woocomerce.css';
+.btn {
+  font-weight: 600;
+  padding: 14px 30px;
+  border-radius: 0;
+  font-size: 16px;
+  border: 2px solid transparent;
+  background-color: #F14D5D;
+  cursor: pointer;
+  position: relative;
+  text-transform: capitalize;
+  transition: all 0.6s ease;
+}
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.btn-radius {
+  border-radius: 35px;
+}
+
+.btn-main {
+  background: #F14D5D;
+  color: #fff;
+  border-color: #F14D5D;
+}
+.btn-main:hover {
+  border-color: #015ABD;
+  color: #fff;
+  background: #015ABD;
+}
+
+.btn-main-2 {
+  border-color: #015ABD;
+  color: #fff;
+  background: #015ABD;
+}
+.btn-main-2:hover {
+  background: #F14D5D;
+  color: #fff;
+  border-color: #F14D5D;
+}
+
+.btn-main-outline {
+  background: transparent;
+  color: #F14D5D;
+  border-color: #F14D5D;
+}
+.btn-main-outline:hover {
+  background: #F14D5D;
+  color: #fff;
+  border-color: #F14D5D;
+}
+
+.btn-main2-outline {
+  background: transparent;
+  color: #fff;
+  border-color: #F14D5D;
+}
+.btn-main2-outline:hover {
+  background: #F14D5D;
+  color: #fff;
+  border-color: #F14D5D;
+}
+
+.btn-white {
+  background: #fff;
+  border-color: #fff;
+  color: #F14D5D;
+}
+.btn-white:hover {
+  border-color: --theme-primary-color;
+  color: #fff;
+  background: --theme-primary-color;
+}
+
+.btn-white-outline {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+.btn-white-outline:hover {
+  border-color: #F14D5D;
+  color: #fff;
+  background: #F14D5D;
+}
+
+.btn-grey {
+  border-color: #ddd;
+  color: #222;
+  background: #ddd;
+}
+.btn-grey:hover {
+  border-color: #F14D5D;
+  color: #fff;
+  background: #F14D5D;
+}
+
+.btn-grey-outline {
+  border-color: #ddd;
+  background: transparent;
+}
+.btn-grey-outline:hover {
+  border-color: #F14D5D;
+  color: #fff;
+  background: #F14D5D;
+}
+
+.btn-sm {
+  padding: 8px 22px;
+}
+
+.btn-sm-2 {
+  padding: 6px 22px;
+}/*# sourceMappingURL=button.css.map */
