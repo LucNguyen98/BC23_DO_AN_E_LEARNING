@@ -3,14 +3,14 @@ BUTTONS STYLE
 ----------------=----*/
 @import '../../../assets/scss/index.scss';
 
-@mixin button-hover($bg-c: $theme-primary-color, $c: #fff) {
+@mixin button-hover($bg-c: $theme-primary-color, $c: $theme-white-color) {
   border-color: $bg-c;
   color: $c;
   background: $bg-c;
 }
 
 .btn {
-  @include button(#fff, $theme-primary-color, 0);
+  @include button($theme-white-color, $theme-primary-color, 0);
   position: relative;
   text-transform: capitalize;
   transition: all 0.6s ease;
@@ -59,7 +59,7 @@ BUTTONS STYLE
 
 .btn-main2-outline {
   background: transparent;
-  color: #fff;
+  color: $theme-white-color;
   border-color: $theme-primary-color;
   &:not(:disabled) {
     &:hover {
@@ -69,16 +69,16 @@ BUTTONS STYLE
 }
 
 .btn-white {
-  background: #fff;
-  border-color: #fff;
+  background: $theme-white-color;
+  border-color: $theme-white-color;
   color: $theme-primary-color;
 
 }
 
 .btn-white-outline {
   background: transparent;
-  border-color: #fff;
-  color: #fff;
+  border-color: $theme-white-color;
+  color: $theme-white-color;
 
   &:not(:disabled) {
     &:hover {
@@ -90,9 +90,9 @@ BUTTONS STYLE
 }
 
 .btn-grey {
-  border-color: #ddd;
+  border-color: $theme-border-color;
   color: #222;
-  background: #ddd;
+  background: $theme-border-color;
 
   &:not(:disabled) {
     &:hover {
@@ -102,7 +102,7 @@ BUTTONS STYLE
 }
 
 .btn-grey-outline {
-  border-color: #ddd;
+  border-color: $theme-border-color;
   background: transparent;
 
   &:hover {
