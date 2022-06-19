@@ -2,8 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { clientRouter } from './configs/router.config';
-import Home from './pages/ClientPages/Home/Home';
-import { Header, Footer } from './components';
+import TemplateClient from './templates/Template/client/TemplateClient';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -20,23 +19,11 @@ function App() {
       <BrowserRouter>
         <Switch>
           {clientRouter.map((route, index) => {
-            const { path, exact } = route;
+            const { path, exact, Component } = route;
             return (
-              <Route
-                render={() => {
-                  return (
-                    <div>
-                      <Header />
-                      <Home />
-                      <Footer />
-                    </div>
-                  );
-                }}
-                key={index}
-                path={path}
-                exact={exact}
-                // component={Component}
-              />
+              <Route key={index} path={path} exact={exact}>
+                <TemplateClient Component={Component} />
+              </Route>
             );
           })}
         </Switch>
