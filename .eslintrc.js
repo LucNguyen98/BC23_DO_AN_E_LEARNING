@@ -28,6 +28,7 @@ module.exports = {
     radix: 'error',
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
+    'react/prop-types': 0,
     // 'react/react-in-jsx-scope': 'off',
   },
   settings: {

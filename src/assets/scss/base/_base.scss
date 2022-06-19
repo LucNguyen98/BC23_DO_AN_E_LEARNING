@@ -1,0 +1,165 @@
+body,
+html {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(238, 122, 122, 0);
+    overflow-x: hidden;
+}
+
+body {
+    font-family: $theme-secondary-font;
+    font-size: $fs-6;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    background-color: $theme-white-color;
+    font-weight: $fw-400;
+    color: $theme-text-color;
+}
+
+p {
+    color: $theme-text-color;
+    font-family: $theme-secondary-font;
+    line-height: 30px;
+    font-size: $fs-6;
+}
+
+
+/*--------------------
+ TYPOGRAPHY
+-----------------*/
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $theme-heading-font;
+    font-weight: $fw-700;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    color: $theme-heading-color;
+    margin-bottom: 0px;
+}
+
+.h1,
+h1 {
+    font-size: $fs-1;
+}
+
+.h2,
+h2 {
+    font-size: $fs-2;
+}
+
+.h3,
+h3 {
+    font-size: $fs-3;
+}
+
+.h4,
+h4 {
+    font-size: $fs-4;
+}
+
+.h5,
+h5 {
+    font-size: $fs-5;
+}
+
+.h6,
+h6 {
+    font-size: $fs-6;
+}
+
+.text-sm {
+    font-size: $fs-sm;
+}
+
+.h1 a,
+.h2 a,
+.h3 a,
+.h4 a,
+.h5 a,
+.h6 a,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    color: inherit;
+}
+
+.h1 a:hover,
+.h2 a:hover,
+.h3 a:hover,
+.h4 a:hover,
+.h5 a:hover,
+.h6 a:hover,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+    color: $theme-primary-color;
+}
+
+a {
+    color: $theme-primary-color;
+    outline: none;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        color: $theme-secondary-color;
+        outline: none;
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
+
+    &:focus,
+    a:visited {
+        outline: none;
+    }
+}
+
+button:focus,
+input:focus {
+    outline: none;
+}
+
+ul,
+ol {
+    margin-bottom: 0px;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.form-control {
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}

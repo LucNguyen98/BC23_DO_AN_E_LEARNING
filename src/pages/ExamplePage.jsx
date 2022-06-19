@@ -15,7 +15,12 @@ export default function ExamplePage() {
         lấy danh sách khoá học
       </Button> */}
 
-      <Button onClick={fetchCourseList} title="lấy danh sách khoá học" />
+      <Button
+        // disabled
+        onClick={fetchCourseList}
+        title="lấy danh sách khoá học"
+        // btnType="grey"
+      />
     </div>
   );
 }

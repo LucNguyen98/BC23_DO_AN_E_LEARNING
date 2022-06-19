@@ -1,14 +1,36 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ExamplePage from './pages/ExamplePage';
+import { ErrorBoundary } from 'react-error-boundary';
+import { clientRouter } from './configs/router.config';
+
 function App() {
+  const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
+    return (
+      <div>
+        <h1>An error occurred: {error?.message}</h1>
+        <button onClick={resetErrorBoundary}>Try again</button>
+      </div>
+    );
+  };
+
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path={'/exam'} component={ExamplePage} />
-        <Route exact path={'/'} component={ExamplePage} />
-      </Switch>
-    </BrowserRouter>
+    <ErrorBoundary FallbackComponent={OurFallbackComponent}>
+      <BrowserRouter>
+        <Switch>
+          {clientRouter.map((route, index) => {
+            const { path, exact, Component } = route;
+            return (
+              <Route
+                key={index}
+                path={path}
+                exact={exact}
+                component={Component}
+              />
+            );
+          })}
+        </Switch>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
