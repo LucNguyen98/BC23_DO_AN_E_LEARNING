@@ -1,4 +1,5 @@
 @import './variable';
+
 @mixin text($fs, $fw, $lh, $c) {
     font-family: $theme-heading-font;
     font-weight: $fw;
@@ -15,4 +16,10 @@
     border: $b;
     background-color: $bg;
     cursor: pointer;
+}
+
+@mixin button-hover($bg-c: $theme-primary-color, $c: $theme-white-color) {
+    border-color: $bg-c;
+    color: $c;
+    background: $bg-c;
 }

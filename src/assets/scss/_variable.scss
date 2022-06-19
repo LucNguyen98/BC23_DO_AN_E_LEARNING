@@ -15,7 +15,7 @@ $theme-border-color: #ddd;
  FONT FAMILLY
 -----------------*/
 $theme-heading-font: 'Gilroy', sans-serif;
-$theme-secondary-font:'Jost', sans-serif;
+$theme-secondary-font: 'Jost', sans-serif;
 
 /*--------------------
  FONT SIZE
@@ -31,10 +31,10 @@ $fs-1: 46px;
 /*--------------------
  FONT WEIGHT
 -----------------*/
-$fw-600:600;
-$fw-400:400;
-$fw-700:700;
-$fw-normal:normal;
+$fw-600: 600;
+$fw-400: 400;
+$fw-700: 700;
+$fw-normal: normal;
 
 /*=====================================
 SPACING
@@ -54,8 +54,8 @@ $spc-150: 150px;
 $spc-210: 210px;
 $spc-250: 250px;
 $spc--120: -120px;
-$spc--200:-200px;
-$spc--300:-300px; 
+$spc--200: -200px;
+$spc--300: -300px;
 
 /*=====================================
 LINE HEIGHT
@@ -82,3 +82,17 @@ $br-5: 5px;
 $br-10: 10px;
 $br-35: 35px;
 $br-100: 100%;
+
+/*=====================================
+BREAK POINT
+===================================*/
+$xs: 576px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+$breakpoints: (
+    "lg": $lg,
+    "md": $md,
+    'sm': $sm,
+    "xs": $xs,
+);
