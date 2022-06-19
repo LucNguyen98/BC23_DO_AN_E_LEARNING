@@ -3,12 +3,6 @@ BUTTONS STYLE
 ----------------=----*/
 @import '../../../assets/scss/index.scss';
 
-@mixin button-hover($bg-c: $theme-primary-color, $c: $theme-white-color) {
-  border-color: $bg-c;
-  color: $c;
-  background: $bg-c;
-}
-
 .btn {
   @include button($theme-white-color, $theme-primary-color, 0);
   position: relative;
@@ -49,6 +43,7 @@ BUTTONS STYLE
   background: transparent;
   color: $theme-primary-color;
   border-color: $theme-primary-color;
+
   &:not(:disabled) {
     &:hover {
       @include button-hover();
@@ -61,6 +56,7 @@ BUTTONS STYLE
   background: transparent;
   color: $theme-white-color;
   border-color: $theme-primary-color;
+
   &:not(:disabled) {
     &:hover {
       @include button-hover();
