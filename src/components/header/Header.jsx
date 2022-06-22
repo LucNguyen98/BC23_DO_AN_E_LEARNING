@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Header.scss';
 export default function Header() {
   return (
     <div>
@@ -123,7 +123,7 @@ export default function Header() {
                     placeholder="Search for Course"
                   />
                   <a href="#" className="search-submit">
-                    <i className="far fa-search" />
+                    <i className="fa fa-search"></i>
                   </a>
                 </form>
               </div>
@@ -131,6 +131,7 @@ export default function Header() {
                 <ul className="primary-menu">
                   <li className="current">
                     <a href="index.html">Home</a>
+
                     <ul className="submenu">
                       <li>
                         <a href="index.html">Home One</a>
@@ -145,6 +146,9 @@ export default function Header() {
                         <a href="index-4.html">Home Four</a>
                       </li>
                     </ul>
+                    <span className="menu-trigger">
+                      <i className="fa fa-angle-down"></i>
+                    </span>
                   </li>
                   <li>
                     <a href="about.html">About</a>
@@ -188,6 +192,9 @@ export default function Header() {
                         </ul>
                       </li>
                     </ul>
+                    <span className="menu-trigger">
+                      <i className="fa fa-angle-down"></i>
+                    </span>
                   </li>
                   <li>
                     <a href="#">Pages</a>
@@ -219,6 +226,9 @@ export default function Header() {
                         <a href="blog-single.html">Blog Details</a>
                       </li>
                     </ul>
+                    <span className="menu-trigger">
+                      <i className="fa fa-angle-down"></i>
+                    </span>
                   </li>
                   <li>
                     <a href="contact.html">Contact</a>

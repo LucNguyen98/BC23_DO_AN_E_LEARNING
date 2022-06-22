@@ -69,6 +69,11 @@ BUTTONS STYLE
   border-color: $theme-white-color;
   color: $theme-primary-color;
 
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
 }
 
 .btn-white-outline {
