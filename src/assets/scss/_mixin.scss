@@ -23,3 +23,19 @@
     color: $c;
     background: $bg-c;
 }
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($map: $breakpoints, $key: $breakpoint) {
+      $value: map-get($map: $breakpoints,
+        $key: $breakpoint,
+      );
+  
+      @media screen and (min-width: $value) {
+        @content;
+      }
+    }
+  
+    @else {
+      @warn $breakpoint +" not exist";
+    }
+  }
