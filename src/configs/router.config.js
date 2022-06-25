@@ -6,6 +6,7 @@ import CourseDetail from 'src/pages/ClientPages/CourseDetail/CourseDetail';
 import Courses from 'src/pages/ClientPages/Courses/Courses';
 import Home from 'src/pages/ClientPages/Home/Home';
 import ExamplePage from 'src/pages/ExamplePage';
+import Instructors from 'src/pages/ClientPages/Instructors/Instructors';
 
 export const clientRouter = [
   {
@@ -50,6 +51,13 @@ export const clientRouter = [
     exact: true,
     Component: BlogDetail,
   },
+  {
+
+    path: '/instructors',
+    exact: true,
+    Component: Instructors,
+  },
+  
   {
     path: '/',
     exact: true,
