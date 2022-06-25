@@ -1,0 +1,46 @@
+@import '../../assets/scss/index.scss';
+
+.section-error {
+    background: linear-gradient(270deg, rgba(67, 6, 214, 0.9), rgba(33, 69, 228, 0.9));
+    background-color: #681F9D;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    padding: 70px 0 100px 0;
+
+    .error-text {
+        text-align: center;
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 45px;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        .btn-hover {
+            @include button(#fff, transparent, 3, 16px, $fw-600, 13px 25px, none, );
+            text-align: center;
+            background-size: 300% 100%;
+            transition: all .4s;
+
+            &:hover {
+                background-position: 100% 0;
+                transition: all .4s ease-in-out;
+                color: #fff;
+            }
+        }
+
+        .btn-hover.color-1 {
+            background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+        }
+    }
+
+}

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { clientRouter } from './configs/router.config';
 import TemplateClient from './templates/Template/client/TemplateClient';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -26,6 +27,7 @@ function App() {
               </Route>
             );
           })}
+          <Route path="" component={PageNotFound} />
         </Switch>
       </BrowserRouter>
     </ErrorBoundary>
