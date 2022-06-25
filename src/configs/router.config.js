@@ -6,6 +6,10 @@ import CourseDetail from 'src/pages/ClientPages/CourseDetail/CourseDetail';
 import Courses from 'src/pages/ClientPages/Courses/Courses';
 import Home from 'src/pages/ClientPages/Home/Home';
 import ExamplePage from 'src/pages/ExamplePage';
+import Register from 'src/pages/ClientPages/Register/Register';
+import Login from 'src/pages/ClientPages/Login/Login';
+import Cart from 'src/pages/ClientPages/Cart/Cart';
+import Checkout from 'src/pages/ClientPages/Checkout/Checkout';
 
 export const clientRouter = [
   {
@@ -49,6 +53,30 @@ export const clientRouter = [
     path: '/blog',
     exact: true,
     Component: BlogDetail,
+  },
+  {
+
+    path: '/register',
+    exact: true,
+    Component: Register,
+  },
+  {
+
+    path: '/login',
+    exact: true,
+    Component: Login,
+  },
+  {
+
+    path: '/cart',
+    exact: true,
+    Component: Cart,
+  },
+  {
+
+    path: '/checkout',
+    exact: true,
+    Component: Checkout,
   },
   {
     path: '/',
