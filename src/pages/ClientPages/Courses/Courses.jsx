@@ -1,7 +1,10 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import CoursesList from 'src/components/courseList/coursesList';
 
 export default function Courses() {
+  const { maDanhMucKhoahoc = '' } = useParams();
+  console.log(maDanhMucKhoahoc);
   return (
     <div>
       <section className="page-header">

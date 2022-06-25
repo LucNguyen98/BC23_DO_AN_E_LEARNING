@@ -25,7 +25,12 @@ export const clientRouter = [
     Component: Courses,
   },
   {
-    path: '/course-detail',
+    path: '/courses/:maDanhMucKhoahoc',
+    exact: true,
+    Component: Courses,
+  },
+  {
+    path: '/course-detail/:maKhoaHoc',
     exact: true,
     Component: CourseDetail,
   },
@@ -38,7 +43,6 @@ export const clientRouter = [
     path: '/about',
     exact: true,
     Component: About,
-
   },
   {
     path: '/blog-list',
@@ -46,18 +50,16 @@ export const clientRouter = [
     Component: BlogList,
   },
   {
-
     path: '/blog',
     exact: true,
     Component: BlogDetail,
   },
   {
-
     path: '/instructors',
     exact: true,
     Component: Instructors,
   },
-  
+
   {
     path: '/',
     exact: true,

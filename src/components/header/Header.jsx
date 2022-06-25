@@ -1,6 +1,49 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import {
+  getCategoriesAction,
+  getCourseListAction,
+} from 'src/redux/actions/courseAction';
+import {
+  categoriesSelector,
+  courseGroupByCategorySelector,
+} from 'src/redux/selectors/courseSelector';
+import SubMenu from '../SubMenu/SubMenu';
 import './Header.scss';
 export default function Header() {
+  const dispatch = useDispatch();
+  const categories = useSelector(categoriesSelector);
+  const courseGroupByCategory = useSelector(courseGroupByCategorySelector);
+  useEffect(() => {
+    dispatch(getCategoriesAction());
+    dispatch(getCourseListAction());
+  }, [dispatch]);
+
+  const renderCategories = () => {
+    return (
+      <div className="header-category-menu d-none d-xl-block">
+        <ul>
+          <li className="has-submenu">
+            <a href="#">
+              <i className="fa fa-th mr-2" />
+              Danh mục
+            </a>
+            <ul className="submenu">
+              {categories?.map((cate, index) => (
+                <li key={index}>
+                  <NavLink to={`/courses/${cate.maDanhMuc}`}>
+                    {cate?.tenDanhMuc}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div>
       <header className="header-style-1">
@@ -80,41 +123,7 @@ export default function Header() {
                   <i className="fal fa-bars" />
                 </a>
               </div>
-              <div className="header-category-menu d-none d-xl-block">
-                <ul>
-                  <li className="has-submenu">
-                    <a href="#">
-                      <i className="fa fa-th me-2" />
-                      Categories
-                    </a>
-                    <ul className="submenu">
-                      <li>
-                        <a href="#">Design</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="#">Design Tools</a>
-                          </li>
-                          <li>
-                            <a href="#">Photoshop mastering</a>
-                          </li>
-                          <li>
-                            <a href="#">Adobe Xd Deisgn</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Developemnt</a>
-                      </li>
-                      <li>
-                        <a href="#">Marketing</a>
-                      </li>
-                      <li>
-                        <a href="#">Freelancing</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+              {renderCategories()}
               <div className="header-search-bar d-none d-xl-block ms-4">
                 <form action="#">
                   <input
@@ -130,72 +139,20 @@ export default function Header() {
               <nav className="site-navbar ms-auto">
                 <ul className="primary-menu">
                   <li className="current">
-                    <a href="index.html">Home</a>
+                    <NavLink to="/home">Trang chủ</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/courses">Khoá học</NavLink>
+                    <SubMenu data={courseGroupByCategory} />
 
-                    <ul className="submenu">
-                      <li>
-                        <a href="index.html">Home One</a>
-                      </li>
-                      <li>
-                        <a href="index-2.html">Home Two</a>
-                      </li>
-                      <li>
-                        <a href="index-3.html">Home Three</a>
-                      </li>
-                      <li>
-                        <a href="index-4.html">Home Four</a>
-                      </li>
-                    </ul>
                     <span className="menu-trigger">
                       <i className="fa fa-angle-down"></i>
                     </span>
                   </li>
                   <li>
-                    <a href="about.html">About</a>
+                    <NavLink to="/about">Về chúng tôi</NavLink>
                   </li>
-                  <li>
-                    <a href="courses.html">Courses</a>
-                    <ul className="submenu">
-                      <li>
-                        <a href="courses.html">Courses</a>
-                      </li>
-                      <li>
-                        <a href="courses-2.html">Course Grid 2 </a>
-                      </li>
-                      <li>
-                        <a href="courses-3.html">Course Grid 3</a>
-                      </li>
-                      <li>
-                        <a href="courses-4.html">Course Grid 4</a>
-                      </li>
-                      <li>
-                        <a href="courses-5-list.html">Course List</a>
-                      </li>
-                      <li className="has-submenu">
-                        <a href="#">Single Layout</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="course-single.html">Course Single 1</a>
-                          </li>
-                          <li>
-                            <a href="course-single-2.html">Course Single 2</a>
-                          </li>
-                          <li>
-                            <a href="course-single-3.html">Course Single 3</a>
-                          </li>
-                          <li>
-                            <a href="course-single-4.html">Course Single 4</a>
-                          </li>
-                          <li>
-                            <a href="course-single-5.html">Course Single 5</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                    <span className="menu-trigger">
-                      <i className="fa fa-angle-down"></i>
-                    </span>
-                  </li>
+
                   <li>
                     <a href="#">Pages</a>
                     <ul className="submenu">
@@ -220,10 +177,10 @@ export default function Header() {
                     <a href="blog.html">Blog</a>
                     <ul className="submenu">
                       <li>
-                        <a href="blog-grid.html">Blog</a>
+                        <NavLink to={'/blog-list'}>Blog</NavLink>
                       </li>
                       <li>
-                        <a href="blog-single.html">Blog Details</a>
+                        <NavLink to={'/blog'}>Blog Details</NavLink>
                       </li>
                     </ul>
                     <span className="menu-trigger">
@@ -231,7 +188,7 @@ export default function Header() {
                     </span>
                   </li>
                   <li>
-                    <a href="contact.html">Contact</a>
+                    <NavLink to={'/contact'}>Liên hệ</NavLink>
                   </li>
                 </ul>
                 <a href="#" className="nav-close">
