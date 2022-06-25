@@ -1,5 +1,7 @@
 import About from 'src/pages/ClientPages/About/About';
 import Contact from 'src/pages/ClientPages/Contact/Contact';
+import BlogDetail from 'src/pages/ClientPages/Blog/BlogDetail';
+import BlogList from 'src/pages/ClientPages/Blog/BlogList';
 import CourseDetail from 'src/pages/ClientPages/CourseDetail/CourseDetail';
 import Courses from 'src/pages/ClientPages/Courses/Courses';
 import Home from 'src/pages/ClientPages/Home/Home';
@@ -35,6 +37,18 @@ export const clientRouter = [
     path: '/about',
     exact: true,
     Component: About,
+
+  },
+  {
+    path: '/blog-list',
+    exact: true,
+    Component: BlogList,
+  },
+  {
+
+    path: '/blog',
+    exact: true,
+    Component: BlogDetail,
   },
   {
     path: '/',
