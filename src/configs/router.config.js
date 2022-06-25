@@ -1,3 +1,5 @@
+import BlogDetail from 'src/pages/ClientPages/Blog/BlogDetail';
+import BlogList from 'src/pages/ClientPages/Blog/BlogList';
 import CourseDetail from 'src/pages/ClientPages/CourseDetail/CourseDetail';
 import Courses from 'src/pages/ClientPages/Courses/Courses';
 import Home from 'src/pages/ClientPages/Home/Home';
@@ -23,6 +25,16 @@ export const clientRouter = [
     path: '/course-detail',
     exact: true,
     Component: CourseDetail,
+  },
+  {
+    path: '/blog',
+    exact: true,
+    Component: BlogDetail,
+  },
+  {
+    path: '/blog-list',
+    exact: true,
+    Component: BlogList,
   },
   {
     path: '/',
