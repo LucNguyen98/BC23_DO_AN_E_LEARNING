@@ -6,8 +6,6 @@
 *.ico
 *.html
 *.txt
-*.jsx
-*.js
 reportWebVitals.ts
 tailwind.config.js
 postcss.config.js

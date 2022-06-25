@@ -1,5 +1,7 @@
 import courseApi from 'src/services/api/courseApi';
 import {
+  getCategoriesFail,
+  getCategoriesSuccess,
   getCourseListFail,
   getCourseListHandle,
   getCourseListSuccess,
@@ -17,6 +19,19 @@ export const getCourseListAction = (params) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getCourseListFail());
+  }
+};
+
+export const getCategoriesAction = (params) => async (dispatch) => {
+  try {
+    const result = await courseApi.layDanhMucKhoaHoc(params);
+    if (result) {
+      dispatch(getCategoriesSuccess(result));
+    } else {
+      dispatch(getCourseListFail());
+    }
+  } catch (error) {
     console.log(error);
+    dispatch(getCategoriesFail(error));
   }
 };

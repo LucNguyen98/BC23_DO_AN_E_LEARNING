@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'src/components';
-import { getCourseListAction } from 'src/redux/actions/todoAction';
+import { getCourseListAction } from 'src/redux/actions/courseAction';
 
 export default function ExamplePage() {
   const dispatch = useDispatch();
