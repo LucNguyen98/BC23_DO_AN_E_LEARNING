@@ -1,0 +1,120 @@
+/*-------------------
+BUTTONS STYLE
+----------------=----*/
+@import '../../../assets/scss/index.scss';
+
+.btn {
+  @include button($theme-white-color, $theme-primary-color, 0);
+  position: relative;
+  text-transform: capitalize;
+  transition: all 0.6s ease;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-radius {
+  border-radius: 35px;
+}
+
+.btn-main {
+  @include button-hover();
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover($theme-secondary-color);
+    }
+  }
+
+}
+
+.btn-main-2 {
+  @include button-hover($theme-secondary-color);
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
+}
+
+.btn-main-outline {
+  background: transparent;
+  color: $theme-primary-color;
+  border-color: $theme-primary-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
+
+}
+
+.btn-main2-outline {
+  background: transparent;
+  color: $theme-white-color;
+  border-color: $theme-primary-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
+}
+
+.btn-white {
+  background: $theme-white-color;
+  border-color: $theme-white-color;
+  color: $theme-primary-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
+}
+
+.btn-white-outline {
+  background: transparent;
+  border-color: $theme-white-color;
+  color: $theme-white-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
+
+
+}
+
+.btn-grey {
+  border-color: $theme-border-color;
+  color: #222;
+  background: $theme-border-color;
+
+  &:not(:disabled) {
+    &:hover {
+      @include button-hover();
+    }
+  }
+}
+
+.btn-grey-outline {
+  border-color: $theme-border-color;
+  background: transparent;
+
+  &:hover {
+    @include button-hover();
+  }
+}
+
+.btn-sm {
+  padding: 8px 22px;
+}
+
+.btn-sm-2 {
+  padding: 6px 22px;
+}

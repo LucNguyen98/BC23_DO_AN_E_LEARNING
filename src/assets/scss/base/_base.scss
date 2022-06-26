@@ -1,0 +1,313 @@
+body,
+html {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(238, 122, 122, 0);
+    overflow-x: hidden;
+}
+
+body {
+    font-family: $theme-secondary-font;
+    font-size: $fs-6;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    background-color: $theme-white-color;
+    font-weight: $fw-400;
+    color: $theme-text-color;
+}
+
+p {
+    color: $theme-text-color;
+    font-family: $theme-secondary-font;
+    line-height: 30px;
+    font-size: $fs-6;
+}
+
+
+/*--------------------
+ TYPOGRAPHY
+-----------------*/
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $theme-heading-font;
+    font-weight: $fw-700;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    color: $theme-heading-color;
+    margin-bottom: 0px;
+}
+
+.h1,
+h1 {
+    font-size: $fs-1;
+}
+
+.h2,
+h2 {
+    font-size: $fs-2;
+}
+
+.h3,
+h3 {
+    font-size: $fs-3;
+}
+
+.h4,
+h4 {
+    font-size: $fs-4;
+}
+
+.h5,
+h5 {
+    font-size: $fs-5;
+}
+
+.h6,
+h6 {
+    font-size: $fs-6;
+}
+
+.text-sm {
+    font-size: $fs-sm;
+}
+
+.h1 a,
+.h2 a,
+.h3 a,
+.h4 a,
+.h5 a,
+.h6 a,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    color: inherit;
+}
+
+.h1 a:hover,
+.h2 a:hover,
+.h3 a:hover,
+.h4 a:hover,
+.h5 a:hover,
+.h6 a:hover,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+    color: $theme-primary-color;
+}
+
+a {
+    color: $theme-primary-color;
+    outline: none;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        color: $theme-secondary-color;
+        outline: none;
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
+
+    &:focus,
+    a:visited {
+        outline: none;
+    }
+}
+
+button:focus,
+input:focus {
+    outline: none;
+}
+
+ul,
+ol {
+    margin-bottom: 0px;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.form-control {
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+
+/*=====================================
+Spacing
+===================================*/
+.page-wrapper {
+    padding: $spc-100 0px;
+}
+
+.section-padding {
+    padding: $spc-100 0px;
+}
+
+.section-padding-top {
+    padding-top: $spc-100;
+}
+
+.section-padding-btm {
+    padding-bottom: $spc-100;
+}
+
+.pb-70 {
+    padding-bottom: $spc-70;
+}
+
+.mb-10 {
+    margin-bottom: $spc-10  !important;
+}
+
+.mb-20 {
+    margin-bottom: $spc-20  !important;
+}
+
+.mb-30 {
+    margin-bottom: $spc-30  !important;
+}
+
+.mb-40 {
+    margin-bottom: $spc-40  !important;
+}
+
+.mb-50 {
+    margin-bottom: $spc-50  !important;
+}
+
+.mb-60 {
+    margin-bottom: $spc-60  !important;
+}
+
+.mb-70 {
+    margin-bottom: $spc-70  !important;
+}
+
+.mb-80 {
+    margin-bottom: $spc-80  !important;
+}
+
+.mb-100 {
+    margin-bottom: $spc-100  !important;
+}
+
+.mb--120 {
+    margin-bottom: - $spc-120;
+}
+
+.mb--200 {
+    margin-bottom: $spc--200;
+}
+
+.mt--200 {
+    margin-top: $spc--200;
+}
+
+.mt--300 {
+    margin-top: $spc--300;
+}
+
+.pt-60 {
+    padding-top: $spc-60;
+}
+
+.pt-80 {
+    padding-top: $spc-80;
+}
+
+.pb-80 {
+    padding-bottom: $spc-80;
+}
+
+.pb-90 {
+    padding-bottom: $spc-90;
+}
+
+.pt-110 {
+    padding-top: $spc-210;
+}
+
+.mt-10 {
+    margin-top: $spc-10;
+}
+
+.mt-20 {
+    margin-top: $spc-20;
+}
+
+.mt-30 {
+    margin-top: $spc-30;
+}
+
+.mt-40 {
+    margin-top: $spc-40;
+}
+
+.pb-20 {
+    padding-bottom: $spc-20;
+}
+
+.pb-30 {
+    padding-bottom: $spc-30;
+}
+
+.pb-40 {
+    padding-bottom: $spc-40;
+}
+
+.pb-50 {
+    padding-bottom: $spc-50;
+}
+
+.pb-60 {
+    padding-bottom: $spc-60;
+}
+
+.pt-150 {
+    padding-top: $spc-150;
+}
+
+.pt-250 {
+    padding-top: $spc-100 * 2 !important;
+}
+
+.pt-200 {
+    padding-top: $spc-250  !important;
+}
+
+.mb--120 {
+    margin-bottom: $spc--120;
+}

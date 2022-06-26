@@ -1,0 +1,42 @@
+@import './variable';
+
+@mixin text($fs, $fw, $lh, $c) {
+  font-family: $theme-heading-font;
+  font-weight: $fw;
+  line-height: $lh;
+  color: $c;
+  font-size: $fs;
+}
+
+@mixin button($c, $bg, $br, $fs: $fs-6, $fw: $fw-600, $p: 14px 30px, $b: 2px solid transparent) {
+  color: $c;
+  font-weight: $fw;
+  padding: $p;
+  border-radius: $br;
+  font-size: $fs;
+  border: $b;
+  background-color: $bg;
+  cursor: pointer;
+}
+
+@mixin button-hover($bg-c: $theme-primary-color, $c: $theme-white-color) {
+  border-color: $bg-c;
+  color: $c;
+  background: $bg-c;
+}
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($map: $breakpoints, $key: $breakpoint) {
+    $value: map-get($map: $breakpoints,
+      $key: $breakpoint,
+    );
+
+    @media screen and (min-width: $value) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn $breakpoint +" not exist";
+  }
+}

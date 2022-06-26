@@ -1,7 +1,8 @@
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getCourseListAction } from 'src/redux/actions/todoAction';
+import { Button } from 'src/components';
+import { getCourseListAction } from 'src/redux/actions/courseAction';
 
 export default function ExamplePage() {
   const dispatch = useDispatch();
@@ -10,9 +11,16 @@ export default function ExamplePage() {
   };
   return (
     <div>
-      <Button type="primary" onClick={fetchCourseList}>
+      {/* <Button type="primary" onClick={fetchCourseList}>
         lấy danh sách khoá học
-      </Button>
+      </Button> */}
+
+      <Button
+        // disabled
+        onClick={fetchCourseList}
+        title="lấy danh sách khoá học"
+        // btnType="grey"
+      />
     </div>
   );
 }
