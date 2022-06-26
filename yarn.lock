@@ -9216,7 +9216,7 @@
     "tiny-invariant" "^1.0.2"
     "tiny-warning" "^1.0.0"
 
-"react-router@5.3.3":
+"react-router@>=6.0.0", "react-router@5.3.3":
   "integrity" "sha512-mzQGUvS3bM84TnbtMYR8ZjKnuPJ71IjSzR+DE6UkUqvN4czWIqEs17yLL8xkAycv4ev0AiN+IGrWu88vJs/p2w=="
   "resolved" "https://registry.npmjs.org/react-router/-/react-router-5.3.3.tgz"
   "version" "5.3.3"
@@ -9298,7 +9298,7 @@
     "lodash.debounce" "^4.0.8"
     "resize-observer-polyfill" "^1.5.0"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.0.0", "react@^18.1.0", "react@>= 16", "react@>=15", "react@>=16.0.0", "react@>=16.11.0", "react@>=16.13.1", "react@>=16.9.0":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^18.0.0", "react@^18.1.0", "react@>= 16", "react@>=15", "react@>=16.0.0", "react@>=16.11.0", "react@>=16.13.1", "react@>=16.8", "react@>=16.9.0":
   "integrity" "sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.1.0.tgz"
   "version" "18.1.0"
@@ -10738,6 +10738,11 @@
   "version" "4.4.1"
   dependencies:
     "punycode" "^2.1.0"
+
+"use-react-router-breadcrumbs@^3.2.1":
+  "integrity" "sha512-GpDhGo/A0I1ckGLER1/YZX/tgX+KOAyCGG2HgFIc0SVzQ30hTilufNdNRN3Gt+WXJW0zgn48CxxKvKSe+xA3TA=="
+  "resolved" "https://registry.npmjs.org/use-react-router-breadcrumbs/-/use-react-router-breadcrumbs-3.2.1.tgz"
+  "version" "3.2.1"
 
 "use-sync-external-store@^1.0.0":
   "integrity" "sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ=="

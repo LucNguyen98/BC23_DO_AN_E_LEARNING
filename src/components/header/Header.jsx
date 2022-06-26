@@ -29,6 +29,30 @@ export default function Header() {
     dispatch(getCourseListAction());
   }, [dispatch]);
 
+  useEffect(() => {
+    window.addEventListener('resize', () => breakpointCheck());
+    return () => window.removeEventListener('resize', null);
+  }, []);
+
+  function breakpointCheck() {
+    let windoWidth = window.innerWidth;
+    if (windoWidth <= 991) {
+      document.querySelector('.header-navbar').classList.add('mobile-menu');
+    } else {
+      document.querySelector('.header-navbar').classList.remove('mobile-menu');
+    }
+  }
+
+  const openMenu = (e) => {
+    document.querySelector('.site-navbar').classList.toggle('menu-on');
+    e.preventDefault();
+  };
+
+  const closeMenu = (e) => {
+    document.querySelector('.site-navbar').classList.remove('menu-on');
+    e.preventDefault();
+  };
+
   const renderCategories = () => {
     return (
       <div className="header-category-menu d-none d-xl-block">
@@ -54,149 +78,148 @@ export default function Header() {
   };
 
   return (
-    <div>
-      <header className="header-style-1">
-        <div className="header-topbar topbar-style-2">
-          <div className="container">
-            <div className="row justify-content-between">
-              <div className="col-xl-8 col-lg-6 col-md-12">
-                <div className="header-contact text-center text-lg-start d-none d-sm-block">
+    <header className="header-style-1">
+      <div className="header-topbar topbar-style-2">
+        <div className="container">
+          <div className="row justify-content-between">
+            <div className="col-xl-8 col-lg-6 col-md-12">
+              <div className="header-contact text-center text-lg-start d-none d-sm-block">
+                <ul className="list-inline">
+                  <li className="list-inline-item">
+                    <span className="text-color me-2">
+                      <i className="fa fa-phone-alt" />
+                    </span>
+                    <a href="tel:+(354) 6800 37849"> +(354) 6800 37849</a>
+                  </li>
+                  <li className="list-inline-item">
+                    <span className="text-color me-2">
+                      <i className="fa fa-envelope" />
+                    </span>
+                    <a href="malito:hello@edumel.com"> hello@edumel.com</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-xl-4 col-lg-6 col-md-12">
+              <div className="d-sm-flex justify-content-center justify-content-lg-end">
+                <div className="header-socials text-center text-lg-end">
                   <ul className="list-inline">
                     <li className="list-inline-item">
-                      <span className="text-color me-2">
-                        <i className="fa fa-phone-alt" />
-                      </span>
-                      <a href="tel:+(354) 6800 37849"> +(354) 6800 37849</a>
+                      <a href="#">
+                        <i className="fab fa-facebook-f" />
+                      </a>
                     </li>
                     <li className="list-inline-item">
-                      <span className="text-color me-2">
-                        <i className="fa fa-envelope" />
-                      </span>
-                      <a href="malito:hello@edumel.com"> hello@edumel.com</a>
+                      <a href="#">
+                        <i className="fab fa-twitter" />
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="#">
+                        <i className="fab fa-linkedin-in" />
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="#">
+                        <i className="fab fa-pinterest" />
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="#">
+                        <i className="fab fa-youtube" />
+                      </a>
                     </li>
                   </ul>
                 </div>
-              </div>
-              <div className="col-xl-4 col-lg-6 col-md-12">
-                <div className="d-sm-flex justify-content-center justify-content-lg-end">
-                  <div className="header-socials text-center text-lg-end">
-                    <ul className="list-inline">
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <i className="fab fa-facebook-f" />
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <i className="fab fa-twitter" />
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <i className="fab fa-linkedin-in" />
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <i className="fab fa-pinterest" />
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <i className="fab fa-youtube" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="header-btn text-center text-lg-end">
-                    <NavLink to={REGISTER_PATH}>
-                      <i className="fa fa-user-alt" />
-                      Login/Register
-                    </NavLink>
-                  </div>
+                <div className="header-btn text-center text-lg-end">
+                  <NavLink to={REGISTER_PATH}>
+                    <i className="fa fa-user-alt" />
+                    Login/Register
+                  </NavLink>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="header-navbar navbar-sticky">
-          <div className="container">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="site-logo">
-                <NavLink to={'/'}>
-                  <img src="/images/logo.png" alt="" className="img-fluid" />
-                </NavLink>
-              </div>
-              <div className="offcanvas-icon d-block d-lg-none">
-                <a href="#" className="nav-toggler">
-                  <i className="fal fa-bars" />
+      </div>
+      <div className="header-navbar navbar-sticky">
+        <div className="container">
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="site-logo">
+              <NavLink to={'/'}>
+                <img src="/images/logo.png" alt="" className="img-fluid" />
+              </NavLink>
+            </div>
+            <div className="offcanvas-icon d-block d-lg-none">
+              <button className="nav-toggler" onClick={openMenu}>
+                <i className="fa fa-bars"></i>
+              </button>
+            </div>
+            {renderCategories()}
+            <div className="header-search-bar d-none d-xl-block ms-4">
+              <form action="#">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search for Course"
+                />
+                <a href="#" className="search-submit">
+                  <i className="fa fa-search"></i>
                 </a>
-              </div>
-              {renderCategories()}
-              <div className="header-search-bar d-none d-xl-block ms-4">
-                <form action="#">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search for Course"
-                  />
-                  <a href="#" className="search-submit">
-                    <i className="fa fa-search"></i>
-                  </a>
-                </form>
-              </div>
-              <nav className="site-navbar ms-auto">
-                <ul className="primary-menu">
-                  <li className="current">
-                    <NavLink to="/">Trang chủ</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={COURSE_PATH}>Khoá học</NavLink>
-                    <SubMenu data={courseGroupByCategory} />
+              </form>
+            </div>
+            <nav className="site-navbar ml-auto">
+              <ul className="primary-menu">
+                <li className="current">
+                  <NavLink to="/">Trang chủ</NavLink>
+                </li>
+                <li>
+                  <NavLink to={COURSE_PATH}>Khoá học</NavLink>
+                  <SubMenu data={courseGroupByCategory} />
 
-                    <span className="menu-trigger">
-                      <i className="fa fa-angle-down"></i>
-                    </span>
-                  </li>
-                  <li>
-                    <NavLink to={ABOUT_PATH}>Về chúng tôi</NavLink>
-                  </li>
+                  <span className="menu-trigger">
+                    <i className="fa fa-angle-down"></i>
+                  </span>
+                </li>
+                <li>
+                  <NavLink to={ABOUT_PATH}>Về chúng tôi</NavLink>
+                </li>
 
-                  <li>
-                    <a href="#">Pages</a>
-                    <ul className="submenu">
-                      <li>
-                        <NavLink to={INSTRUCTORS_PATH}>Giảng viên</NavLink>
-                      </li>
-                      {/* <li>
+                <li>
+                  <a href="#">Pages</a>
+                  <ul className="submenu">
+                    <li>
+                      <NavLink to={INSTRUCTORS_PATH}>Giảng viên</NavLink>
+                    </li>
+                    {/* <li>
                         <a href="cart.html">Cart</a>
                       </li>
                       <li>
                         <a href="checkout.html">Checkout</a>
                       </li> */}
-                      <li>
-                        <NavLink to={LOGIN_PATH}>Đăng nhập</NavLink>
-                      </li>
-                      <li>
-                        <NavLink to={REGISTER_PATH}>Đăng ký</NavLink>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <NavLink to={BLOG_PATH}>Blog</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={CONTACT_PATH}>Liên hệ</NavLink>
-                  </li>
-                </ul>
-                <a href="#" className="nav-close">
-                  <i className="fal fa-times" />
-                </a>
-              </nav>
-            </div>
+                    <li>
+                      <NavLink to={LOGIN_PATH}>Đăng nhập</NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={REGISTER_PATH}>Đăng ký</NavLink>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <NavLink to={BLOG_PATH}>Blog</NavLink>
+                </li>
+                <li>
+                  <NavLink to={CONTACT_PATH}>Liên hệ</NavLink>
+                </li>
+              </ul>
+
+              <button className="nav-close" onClick={closeMenu}>
+                <i className="fa fa-times"></i>
+              </button>
+            </nav>
           </div>
         </div>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 }

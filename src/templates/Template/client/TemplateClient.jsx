@@ -1,7 +1,8 @@
 import React from 'react';
-import { Footer, Header, SuspenseComponent } from 'src/components';
+import { Breadcrumbs, Footer, Header, SuspenseComponent } from 'src/components';
 
-export default function TemplateClient({ Component }) {
+export default function TemplateClient({ Component, path }) {
+  const isBreadcrumb = !path || path !== '/';
   return (
     <div>
       <div>
@@ -9,6 +10,7 @@ export default function TemplateClient({ Component }) {
           <Header />
         </header>
         <main>
+          {isBreadcrumb && <Breadcrumbs />}
           <SuspenseComponent component={<Component />} />
         </main>
         <footer>

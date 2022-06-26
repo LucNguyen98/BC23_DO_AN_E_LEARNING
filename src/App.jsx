@@ -23,7 +23,7 @@ function App() {
             const { path, exact, Component } = route;
             return (
               <Route key={index} path={path} exact={exact}>
-                <TemplateClient Component={Component} />
+                <TemplateClient Component={Component} path={path} />
               </Route>
             );
           })}
