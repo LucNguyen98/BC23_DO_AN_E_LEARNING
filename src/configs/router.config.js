@@ -11,6 +11,7 @@ import Register from 'src/pages/ClientPages/Register/Register';
 import Login from 'src/pages/ClientPages/Login/Login';
 import Cart from 'src/pages/ClientPages/Cart/Cart';
 import Checkout from 'src/pages/ClientPages/Checkout/Checkout';
+import CourseRegister from 'src/pages/ClientPages/Courses/CourseRegister';
 
 export const clientRouter = [
   {
@@ -83,6 +84,11 @@ export const clientRouter = [
     path: '/checkout',
     exact: true,
     Component: Checkout,
+  },
+  {
+    path: '/course-register',
+    exact: true,
+    Component: CourseRegister,
   },
   {
     path: '/',
