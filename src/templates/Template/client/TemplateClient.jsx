@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, Header } from 'src/components';
+import { Footer, Header, SuspenseComponent } from 'src/components';
 
 export default function TemplateClient({ Component }) {
   return (
@@ -9,7 +9,7 @@ export default function TemplateClient({ Component }) {
           <Header />
         </header>
         <main>
-          <Component />
+          <SuspenseComponent component={<Component />} />
         </main>
         <footer>
           <Footer />

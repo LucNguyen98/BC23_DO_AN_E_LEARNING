@@ -2,6 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
+  ABOUT_PATH,
+  BLOG_PATH,
+  CONTACT_PATH,
+  COURSE_PATH,
+  INSTRUCTORS_PATH,
+  LOGIN_PATH,
+  REGISTER_PATH,
+} from 'src/constants/pathName';
+import {
   getCategoriesAction,
   getCourseListAction,
 } from 'src/redux/actions/courseAction';
@@ -25,14 +34,14 @@ export default function Header() {
       <div className="header-category-menu d-none d-xl-block">
         <ul>
           <li className="has-submenu">
-            <a href="#">
+            <NavLink to={''}>
               <i className="fa fa-th mr-2" />
               Danh mục
-            </a>
+            </NavLink>
             <ul className="submenu">
               {categories?.map((cate, index) => (
                 <li key={index}>
-                  <NavLink to={`/courses/${cate.maDanhMuc}`}>
+                  <NavLink to={`${COURSE_PATH}/${cate.maDanhMuc}`}>
                     {cate?.tenDanhMuc}
                   </NavLink>
                 </li>
@@ -100,10 +109,10 @@ export default function Header() {
                     </ul>
                   </div>
                   <div className="header-btn text-center text-lg-end">
-                    <a href="#">
-                      {' '}
-                      <i className="fa fa-user-alt" /> Login/Register
-                    </a>
+                    <NavLink to={REGISTER_PATH}>
+                      <i className="fa fa-user-alt" />
+                      Login/Register
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -114,9 +123,9 @@ export default function Header() {
           <div className="container">
             <div className="d-flex align-items-center justify-content-between">
               <div className="site-logo">
-                <a href="index.html">
+                <NavLink to={'/'}>
                   <img src="/images/logo.png" alt="" className="img-fluid" />
-                </a>
+                </NavLink>
               </div>
               <div className="offcanvas-icon d-block d-lg-none">
                 <a href="#" className="nav-toggler">
@@ -139,10 +148,10 @@ export default function Header() {
               <nav className="site-navbar ms-auto">
                 <ul className="primary-menu">
                   <li className="current">
-                    <NavLink to="/home">Trang chủ</NavLink>
+                    <NavLink to="/">Trang chủ</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/courses">Khoá học</NavLink>
+                    <NavLink to={COURSE_PATH}>Khoá học</NavLink>
                     <SubMenu data={courseGroupByCategory} />
 
                     <span className="menu-trigger">
@@ -150,45 +159,34 @@ export default function Header() {
                     </span>
                   </li>
                   <li>
-                    <NavLink to="/about">Về chúng tôi</NavLink>
+                    <NavLink to={ABOUT_PATH}>Về chúng tôi</NavLink>
                   </li>
 
                   <li>
                     <a href="#">Pages</a>
                     <ul className="submenu">
                       <li>
-                        <a href="instructor.html">Instructors</a>
+                        <NavLink to={INSTRUCTORS_PATH}>Giảng viên</NavLink>
                       </li>
-                      <li>
+                      {/* <li>
                         <a href="cart.html">Cart</a>
                       </li>
                       <li>
                         <a href="checkout.html">Checkout</a>
+                      </li> */}
+                      <li>
+                        <NavLink to={LOGIN_PATH}>Đăng nhập</NavLink>
                       </li>
                       <li>
-                        <a href="login.html">Login</a>
-                      </li>
-                      <li>
-                        <a href="Register.html">Register</a>
+                        <NavLink to={REGISTER_PATH}>Đăng ký</NavLink>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="blog.html">Blog</a>
-                    <ul className="submenu">
-                      <li>
-                        <NavLink to={'/blog-list'}>Blog</NavLink>
-                      </li>
-                      <li>
-                        <NavLink to={'/blog'}>Blog Details</NavLink>
-                      </li>
-                    </ul>
-                    <span className="menu-trigger">
-                      <i className="fa fa-angle-down"></i>
-                    </span>
+                    <NavLink to={BLOG_PATH}>Blog</NavLink>
                   </li>
                   <li>
-                    <NavLink to={'/contact'}>Liên hệ</NavLink>
+                    <NavLink to={CONTACT_PATH}>Liên hệ</NavLink>
                   </li>
                 </ul>
                 <a href="#" className="nav-close">
