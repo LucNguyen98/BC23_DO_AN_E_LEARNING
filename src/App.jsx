@@ -20,10 +20,10 @@ function App() {
       <BrowserRouter>
         <Switch>
           {clientRouter.map((route, index) => {
-            const { path, exact, Component } = route;
+            const { path, exact, name, Component } = route;
             return (
               <Route key={index} path={path} exact={exact}>
-                <TemplateClient Component={Component} path={path} />
+                <TemplateClient Component={Component} path={path} name={name} />
               </Route>
             );
           })}

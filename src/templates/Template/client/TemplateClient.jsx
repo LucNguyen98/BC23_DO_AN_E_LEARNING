@@ -1,8 +1,11 @@
 import React from 'react';
 import { Breadcrumbs, Footer, Header, SuspenseComponent } from 'src/components';
+import { LOGIN_PATH, REGISTER_PATH } from 'src/constants/pathName';
 
-export default function TemplateClient({ Component, path }) {
-  const isBreadcrumb = !path || path !== '/';
+const NOT_BREADCRUMB = ['/', REGISTER_PATH, LOGIN_PATH];
+
+export default function TemplateClient({ Component, path, name }) {
+  const isBreadcrumb = !path || !NOT_BREADCRUMB.includes(path);
   return (
     <div>
       <div>
@@ -10,7 +13,7 @@ export default function TemplateClient({ Component, path }) {
           <Header />
         </header>
         <main>
-          {isBreadcrumb && <Breadcrumbs />}
+          {isBreadcrumb && <Breadcrumbs name={name} />}
           <SuspenseComponent component={<Component />} />
         </main>
         <footer>

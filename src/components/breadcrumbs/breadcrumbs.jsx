@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
-function Breadcrumbs({ location }) {
+function Breadcrumbs({ location, name = '' }) {
   const pathnames = location.pathname.split('/').filter((x) => x);
   return (
     <section className="page-header">
@@ -9,7 +9,7 @@ function Breadcrumbs({ location }) {
         <div className="row justify-content-center">
           <div className="col-lg-8 col-xl-8">
             <div className="title-block">
-              <h1>About Us</h1>
+              <h1>{name}</h1>
               <ul className="header-bradcrumb justify-content-center">
                 <li>
                   <NavLink to={'/'}>{'trang-chu'}</NavLink>

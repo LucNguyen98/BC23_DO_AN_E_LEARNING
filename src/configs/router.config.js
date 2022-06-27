@@ -36,41 +36,49 @@ export const clientRouter = [
     path: COURSE_PATH,
     exact: true,
     Component: Courses,
+    name: 'Danh sách khoá học',
   },
   {
     path: `${COURSE_PATH}/:maDanhMucKhoahoc`,
     exact: true,
     Component: Courses,
+    name: 'Danh sách khoá học',
   },
   {
     path: `${COURSE_DETAIL_PATH}/:maKhoaHoc`,
     exact: true,
     Component: CourseDetail,
+    name: 'Thông tin khoá học',
   },
   {
     path: CONTACT_PATH,
     exact: true,
     Component: Contact,
+    name: 'Liên hệ',
   },
   {
     path: ABOUT_PATH,
     exact: true,
     Component: About,
+    name: 'Về chúng tôi',
   },
   {
     path: BLOG_PATH,
     exact: true,
     Component: BlogList,
+    name: 'Blog',
   },
   {
     path: '/blog',
     exact: true,
     Component: BlogDetail,
+    name: 'Blog',
   },
   {
     path: INSTRUCTORS_PATH,
     exact: true,
     Component: Instructors,
+    name: 'Giảng viên',
   },
 
   {
@@ -97,6 +105,7 @@ export const clientRouter = [
     path: ACCOUNT_PATH,
     exact: true,
     Component: Account,
+    name: 'Tài khoản',
   },
   {
     path: '/',
