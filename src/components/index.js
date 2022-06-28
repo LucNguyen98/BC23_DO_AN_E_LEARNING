@@ -3,3 +3,4 @@ export { default as Header } from './header/Header';
 export { default as Footer } from './footer/Footer';
 export { default as SuspenseComponent } from './_common/suspenseComponent/suspenseComponent';
 export { default as Breadcrumbs } from './breadcrumbs/breadcrumbs';
+export { default as ErrorMessage } from './_common/errorMessage/errorMessage';
