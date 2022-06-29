@@ -1,12 +1,18 @@
 import { useFormik } from 'formik';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'src/components';
+import { Button, Loading } from 'src/components';
 import ErrorMessage from 'src/components/_common/errorMessage/errorMessage';
+import { VALIDATION_MESSAGE } from 'src/constants/error';
 import { LOGIN_PATH } from 'src/constants/pathName';
+import { regexPhoneNumber } from 'src/helpers/validation';
+import withLoader from 'src/HOC/withLoader';
+import { registerAction } from 'src/redux/actions/authAction';
 import * as yup from 'yup';
 import './Register.scss';
-export default function Register() {
+function Register() {
+  const dispatch = useDispatch();
   const users = React.useRef({
     hoTen: '',
     taiKhoan: '',
@@ -14,32 +20,42 @@ export default function Register() {
     soDT: '',
     matKhau: '',
     reMatKhau: '',
+    maNhom: 'GP01',
   });
 
   const schema = yup.object().shape({
-    hoTen: yup.string().required(),
-    taiKhoan: yup.number().required().min(8),
-    email: yup.string().required().email(),
-    soDT: yup.string().required(),
-    matKhau: yup.string().required(),
-    reMatKhau: yup.string().oneOf(['matKhau']),
+    hoTen: yup.string().required(VALIDATION_MESSAGE.required),
+    taiKhoan: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .min(8, VALIDATION_MESSAGE.leastCharacter),
+    email: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .email(VALIDATION_MESSAGE.email),
+    soDT: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .matches(regexPhoneNumber, VALIDATION_MESSAGE.phone),
+    matKhau: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .min(8, VALIDATION_MESSAGE.password),
+    reMatKhau: yup
+      .string()
+      .oneOf([yup.ref('matKhau')], VALIDATION_MESSAGE.rePassword),
   });
 
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    touched,
-    errors,
-    isSubmitting,
-    isValid,
-  } = useFormik({
-    initialValues: users.current,
-    validationSchema: schema,
-    onSubmit: () => {
-      alert(values);
-    },
-  });
+  const { values, handleChange, handleSubmit, touched, errors, isValid } =
+    useFormik({
+      initialValues: users.current,
+      validationSchema: schema,
+      onSubmit: () => {
+        // eslint-disable-next-line no-unused-vars
+        const { reMatKhau, ...newValues } = values;
+        dispatch(registerAction(newValues));
+      },
+    });
 
   return (
     <div id="top-header">
@@ -125,7 +141,8 @@ export default function Register() {
                     <div className="col-12">
                       <p className="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                         <label htmlFor="soDT">
-                          Số điện thoại&nbsp;<span className="required">*</span>
+                          Số điện thoại&nbsp;
+                          <span className="required">*</span>
                         </label>
                         <input
                           type="text"
@@ -202,7 +219,7 @@ export default function Register() {
                       type="submit"
                       title="Đăng ký"
                       customClass={'button'}
-                      disabled={isSubmitting || isValid}
+                      disabled={!isValid}
                     />
                   </p>
                 </form>
@@ -211,6 +228,8 @@ export default function Register() {
           </div>
         </div>
       </section>
+      <Loading />
     </div>
   );
 }
+export default withLoader(Register);

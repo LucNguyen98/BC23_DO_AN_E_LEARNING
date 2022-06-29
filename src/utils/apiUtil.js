@@ -19,7 +19,7 @@ axiosInstance.interceptors.response.use(
     return configs.data;
   },
   (errors) => {
-    return errors;
+    return errors.response.data;
   }
 );
 
