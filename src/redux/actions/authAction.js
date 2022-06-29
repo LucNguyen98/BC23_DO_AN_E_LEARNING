@@ -1,4 +1,6 @@
+import { handleResponseApi } from 'src/helpers/parse';
 import authApi from 'src/services/api/authApi';
+import Swal from 'sweetalert2';
 import {
   loginHandle,
   registerFail,
@@ -20,18 +22,30 @@ export const loginAction = (data) => async (dispatch) => {
   }
 };
 
-export const registerAction = (data) => async (dispatch) => {
+export const registerAction = (data, onSuccess) => async (dispatch) => {
   try {
     dispatch(registerHandle());
     const result = await authApi.dangKy(data);
-    if (result) {
-      dispatch(registerSuccess(result));
-    } else {
-      dispatch(registerFail());
+    const { data: dataResp, error } = handleResponseApi(result);
+    if (dataResp) {
+      dispatch(registerSuccess(dataResp));
+      onSuccess?.();
+      Swal.fire({
+        icon: 'success',
+        title: 'Đăng ký tài khoản thành công',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
-    console.log(result);
+    if (error) {
+      dispatch(registerFail(error));
+      Swal.fire({
+        icon: 'error',
+        title: 'Có lỗi xảy ra',
+        text: error,
+      });
+    }
   } catch (error) {
-    console.log(error);
     dispatch(registerFail(error));
   }
 };

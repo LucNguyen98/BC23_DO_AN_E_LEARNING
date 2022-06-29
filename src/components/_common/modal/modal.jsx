@@ -1,20 +1,22 @@
 import React from 'react';
 
-export default function modal() {
+export default function modal({ title }) {
   return (
     <div
       className="modal fade"
-      id="exampleModal"
+      id="elearningModal"
       tabIndex={-1}
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="elearningModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              Modal title
-            </h5>
+            {title && (
+              <h5 className="modal-title" id="elearningModalLabel">
+                Modal title
+              </h5>
+            )}
             <button
               type="button"
               className="close"

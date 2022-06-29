@@ -1,3 +1,4 @@
+import { handleResponseApi } from 'src/helpers/parse';
 import courseApi from 'src/services/api/courseApi';
 import {
   getCategoriesFail,
@@ -12,10 +13,12 @@ export const getCourseListAction = (params) => async (dispatch) => {
   try {
     dispatch(getCourseListHandle());
     const result = await courseApi.layDanhSachKhoaHoc(params);
-    if (result) {
-      dispatch(getCourseListSuccess(result));
-    } else {
-      dispatch(getCourseListFail());
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getCourseListSuccess(data));
+    }
+    if (error) {
+      return dispatch(getCourseListFail(error));
     }
   } catch (error) {
     dispatch(getCourseListFail());
@@ -25,13 +28,14 @@ export const getCourseListAction = (params) => async (dispatch) => {
 export const getCategoriesAction = (params) => async (dispatch) => {
   try {
     const result = await courseApi.layDanhMucKhoaHoc(params);
-    if (result) {
-      dispatch(getCategoriesSuccess(result));
-    } else {
-      dispatch(getCourseListFail());
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getCategoriesSuccess(data));
+    }
+    if (error) {
+      return dispatch(getCategoriesFail(error));
     }
   } catch (error) {
-    console.log(error);
     dispatch(getCategoriesFail(error));
   }
 };

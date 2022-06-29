@@ -50,10 +50,14 @@ function Register() {
     useFormik({
       initialValues: users.current,
       validationSchema: schema,
-      onSubmit: () => {
+      onSubmit: (vals, { resetForm }) => {
         // eslint-disable-next-line no-unused-vars
-        const { reMatKhau, ...newValues } = values;
-        dispatch(registerAction(newValues));
+        const { reMatKhau, ...newValues } = vals;
+        dispatch(
+          registerAction(newValues, () => {
+            resetForm();
+          })
+        );
       },
     });
 
