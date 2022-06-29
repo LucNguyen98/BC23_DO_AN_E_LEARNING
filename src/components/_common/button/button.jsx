@@ -18,6 +18,8 @@ export default function Button({
   radius,
   icon,
   btnType = BUTTON_TYPE['main'],
+  type,
+  ...props
 }) {
   const onHandleClick = () => {
     if (typeof onClick !== 'function') return;
@@ -35,6 +37,8 @@ export default function Button({
         disabled && 'btn-grey',
       ])}
       onClick={onHandleClick}
+      type={type}
+      {...props}
     >
       <span>{title}</span>
       {icon && <span>{icon}</span>}

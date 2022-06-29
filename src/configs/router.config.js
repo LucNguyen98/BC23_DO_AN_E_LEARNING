@@ -1,77 +1,97 @@
-import About from 'src/pages/ClientPages/About/About';
-import Contact from 'src/pages/ClientPages/Contact/Contact';
-import BlogDetail from 'src/pages/ClientPages/Blog/BlogDetail';
-import BlogList from 'src/pages/ClientPages/Blog/BlogList';
-import CourseDetail from 'src/pages/ClientPages/CourseDetail/CourseDetail';
-import Courses from 'src/pages/ClientPages/Courses/Courses';
-import Home from 'src/pages/ClientPages/Home/Home';
-import ExamplePage from 'src/pages/ExamplePage';
-import Instructors from 'src/pages/ClientPages/Instructors/Instructors';
-import Register from 'src/pages/ClientPages/Register/Register';
-import Login from 'src/pages/ClientPages/Login/Login';
-import Cart from 'src/pages/ClientPages/Cart/Cart';
-import Checkout from 'src/pages/ClientPages/Checkout/Checkout';
-import CourseRegister from 'src/pages/ClientPages/Courses/CourseRegister';
+import { lazy } from 'react';
+
+//
+const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
+const Login = lazy(() => import('src/pages/ClientPages/Login/Login'));
+const Register = lazy(() => import('src/pages/ClientPages/Register/Register'));
+const Courses = lazy(() => import('src/pages/ClientPages/Courses/Courses'));
+const CourseDetail = lazy(() =>
+  import('src/pages/ClientPages/CourseDetail/CourseDetail')
+);
+const About = lazy(() => import('src/pages/ClientPages/About/About'));
+const Contact = lazy(() => import('src/pages/ClientPages/Contact/Contact'));
+const BlogList = lazy(() => import('src/pages/ClientPages/Blog/BlogList'));
+const BlogDetail = lazy(() => import('src/pages/ClientPages/Blog/BlogDetail'));
+const Instructors = lazy(() =>
+  import('src/pages/ClientPages/Instructors/Instructors')
+);
+const Account = lazy(() => import('src/pages/ClientPages/Account/Account'));
+const Cart = lazy(() => import('src/pages/ClientPages/Cart/Cart'));
+const Checkout = lazy(() => import('src/pages/ClientPages/Checkout/Checkout'));
+const CourseRegister = lazy(() =>
+  import('src/pages/ClientPages/Courses/CourseRegister')
+);
+
+import {
+  ABOUT_PATH,
+  ACCOUNT_PATH,
+  BLOG_PATH,
+  CONTACT_PATH,
+  COURSE_DETAIL_PATH,
+  COURSE_PATH,
+  COURSE_REGISTER,
+  INSTRUCTORS_PATH,
+  LOGIN_PATH,
+  REGISTER_PATH,
+} from 'src/constants/pathName';
 
 export const clientRouter = [
   {
-    path: '/exam',
-    exact: true,
-    Component: ExamplePage,
-  },
-  {
-    path: '/home',
-    exact: true,
-    Component: Home,
-  },
-  {
-    path: '/courses',
+    path: COURSE_PATH,
     exact: true,
     Component: Courses,
+    name: 'Danh sách khoá học',
   },
   {
-    path: '/courses/:maDanhMucKhoahoc',
+    path: `${COURSE_PATH}/:maDanhMucKhoahoc`,
     exact: true,
     Component: Courses,
+    name: 'Danh sách khoá học',
   },
   {
-    path: '/course-detail/:maKhoaHoc',
+    path: `${COURSE_DETAIL_PATH}/:maKhoaHoc`,
     exact: true,
     Component: CourseDetail,
+    name: 'Thông tin khoá học',
   },
   {
-    path: '/contact',
+    path: CONTACT_PATH,
     exact: true,
     Component: Contact,
+    name: 'Liên hệ',
   },
   {
-    path: '/about',
+    path: ABOUT_PATH,
     exact: true,
     Component: About,
+    name: 'Về chúng tôi',
   },
   {
-    path: '/blog-list',
+    path: BLOG_PATH,
     exact: true,
     Component: BlogList,
+    name: 'Blog',
   },
   {
     path: '/blog',
     exact: true,
     Component: BlogDetail,
+    name: 'Blog',
   },
   {
-    path: '/instructors',
+    path: INSTRUCTORS_PATH,
     exact: true,
     Component: Instructors,
+    name: 'Giảng viên',
   },
 
   {
-    path: '/register',
+    path: REGISTER_PATH,
     exact: true,
     Component: Register,
   },
   {
-    path: '/login',
+    path: LOGIN_PATH,
     exact: true,
     Component: Login,
   },
@@ -86,7 +106,13 @@ export const clientRouter = [
     Component: Checkout,
   },
   {
-    path: '/course-register',
+    path: ACCOUNT_PATH,
+    exact: true,
+    Component: Account,
+    name: 'Tài khoản',
+  },
+  {
+    path: COURSE_REGISTER,
     exact: true,
     Component: CourseRegister,
   },

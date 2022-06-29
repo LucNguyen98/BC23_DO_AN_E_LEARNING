@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function CourseRegister() {
   return (
@@ -15,7 +15,8 @@ export default function CourseRegister() {
                   </div>
                   <form
                     className="woocommerce-form woocommerce-form-login login"
-                    method="post">
+                    method="post"
+                  >
                     <p className="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                       <label htmlFor="username">
                         Username or email address&nbsp;
@@ -72,5 +73,5 @@ export default function CourseRegister() {
         </section>
       </div>
     </div>
-  )
+  );
 }

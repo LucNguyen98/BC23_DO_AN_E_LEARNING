@@ -16,10 +16,10 @@ axiosInstance.interceptors.request.use((configs) => {
 // Xử lý sau khi nhận response
 axiosInstance.interceptors.response.use(
   (configs) => {
-    return configs.data;
+    return configs;
   },
   (errors) => {
-    return errors;
+    return errors.response;
   }
 );
 
