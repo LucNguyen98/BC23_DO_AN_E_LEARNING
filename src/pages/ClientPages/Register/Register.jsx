@@ -212,7 +212,9 @@ function Register() {
                               id="policy"
                               defaultValue="forever"
                             />
-                            <span>Accept the Terms and Privacy Policy</span>
+                            <span>
+                              Chấp nhận Điều khoản và Chính sách Bảo mật
+                            </span>
                           </label>
                         </p>
                       </div>

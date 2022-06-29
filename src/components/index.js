@@ -5,3 +5,4 @@ export { default as SuspenseComponent } from './_common/suspenseComponent/suspen
 export { default as Breadcrumbs } from './breadcrumbs/breadcrumbs';
 export { default as ErrorMessage } from './_common/errorMessage/errorMessage';
 export { default as Loading } from './_common/loading/loading';
+export { default as NavLinkComponent } from './_common/navLinkComponent/navLinkComponent';

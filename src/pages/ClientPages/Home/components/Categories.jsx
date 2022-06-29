@@ -11,12 +11,12 @@ function Categories({ categories = [] }) {
             <div className="section-heading text-center">
               <h2 className="font-lg">Các danh mục bạn muốn học</h2>
               <p>
-                CyberSoft vạch ra lộ trình học lập trình một cách chi tiết, bài
+                Edumel vạch ra lộ trình học lập trình một cách chi tiết, bài
                 bản, chuyên nghiệp, chuẩn nghề ĐH Arizona -USA, 100% thực hành
                 theo dự án thực tế tránh lan man, luyện tập tư duy, logic nền
                 tảng chuyên sâu dễ dàng phát triển lên senior, leader. Đi đúng
-                lộ trình CyberSoft bạn sẽ tiết kiệm được thời gian, chi phí và
-                có việc làm tốt nhất và bền vững để thăng tiến.
+                lộ trình Edumel bạn sẽ tiết kiệm được thời gian, chi phí và có
+                việc làm tốt nhất và bền vững để thăng tiến.
               </p>
             </div>
           </div>

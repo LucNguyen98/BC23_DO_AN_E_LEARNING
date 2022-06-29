@@ -2,23 +2,33 @@ import { handleResponseApi } from 'src/helpers/parse';
 import authApi from 'src/services/api/authApi';
 import Swal from 'sweetalert2';
 import {
+  loginFail,
   loginHandle,
+  loginSuccess,
   registerFail,
   registerHandle,
   registerSuccess,
 } from '../reducers/authReducer';
 
-export const loginAction = (data) => async (dispatch) => {
+export const loginAction = (data, onSuccess) => async (dispatch) => {
   try {
     dispatch(loginHandle());
     const result = await authApi.dangNhap(data);
-    if (result) {
-      //   dispatch(getCourseListSuccess(result));
-    } else {
-      //   dispatch(getCourseListFail());
+    const { data: dataResp, error } = handleResponseApi(result);
+    if (dataResp) {
+      dispatch(loginSuccess(dataResp));
+      onSuccess?.();
+    }
+    if (error) {
+      dispatch(loginFail(error));
+      Swal.fire({
+        icon: 'error',
+        title: 'Có lỗi xảy ra',
+        text: error,
+      });
     }
   } catch (error) {
-    // dispatch(getCourseListFail());
+    dispatch(loginFail(error));
   }
 };
 
