@@ -4,6 +4,8 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { clientRouter } from './configs/router.config';
 import TemplateClient from './templates/Template/client/TemplateClient';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import { SuspenseComponent } from './components';
+// import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -18,17 +20,34 @@ function App() {
   return (
     <ErrorBoundary FallbackComponent={OurFallbackComponent}>
       <BrowserRouter>
-        <Switch>
-          {clientRouter.map((route, index) => {
-            const { path, exact, Component } = route;
-            return (
-              <Route key={index} path={path} exact={exact}>
-                <TemplateClient Component={Component} />
-              </Route>
-            );
-          })}
-          <Route path="" component={PageNotFound} />
-        </Switch>
+        <SuspenseComponent
+          component={
+            <Switch>
+              {clientRouter.map((route, index) => {
+                const { path, exact, name, Component } = route;
+                // if (requireLogin) {
+                //   return (
+                //     <Route path={path} exact={exact} key={index}>
+                //       <PrivateRoute>
+                //         <TemplateClient Component={Component} />
+                //       </PrivateRoute>
+                //     </Route>
+                //   );
+                // }
+                return (
+                  <Route key={index} path={path} exact={exact}>
+                    <TemplateClient
+                      Component={Component}
+                      path={path}
+                      name={name}
+                    />
+                  </Route>
+                );
+              })}
+              <Route path="" component={PageNotFound} />
+            </Switch>
+          }
+        />
       </BrowserRouter>
     </ErrorBoundary>
   );

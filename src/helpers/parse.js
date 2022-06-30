@@ -22,3 +22,17 @@ export const groupCourseByCategory = (state) => {
     return acc;
   }, []);
 };
+
+export const handleResponseApi = (response) => {
+  const { data, status, statusText } = response;
+  if (status === 200) {
+    return {
+      data,
+      error: null,
+    };
+  }
+  return {
+    data: null,
+    error: data || statusText,
+  };
+};

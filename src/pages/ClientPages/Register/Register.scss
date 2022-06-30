@@ -1,0 +1,23 @@
+@import '../../../assets/scss/index.scss';
+.signup-form {
+    box-shadow: 0px 16px 32px 0px rgb(196 203 255 / 30%);
+    padding: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .woocommerce-form-login__policy{
+        span{
+            margin-left: 5px;
+        }
+    }
+
+    .button {
+        width: 100%;
+    }
+}

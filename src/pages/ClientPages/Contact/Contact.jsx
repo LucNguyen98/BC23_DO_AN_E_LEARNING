@@ -3,25 +3,6 @@ import React from 'react';
 export default function Contact() {
   return (
     <div>
-      <section className="page-header">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8 col-xl-8">
-              <div className="title-block">
-                <h1>Contact Us</h1>
-                <ul className="header-bradcrumb justify-content-center">
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li className="active" aria-current="page">
-                    Contact
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* Contact section start */}
       <section className="contact section-padding">
         <div className="container">

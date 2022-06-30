@@ -7,3 +7,4 @@ export const REGISTER_PATH = '/dang-ky';
 export const LOGIN_PATH = '/dang-nhap';
 export const INSTRUCTORS_PATH = '/giang-vien';
 export const BLOG_PATH = '/blog-list';
+export const COURSE_REGISTER = '/course-register';
