@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL, REQUEST_TIMEOUT, TOKEN_CYBERSOFT } from 'src/constants';
-import { getUser } from 'src/helpers/localStorage';
+import { getUser, removeUser } from 'src/helpers/localStorage';
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -27,6 +27,9 @@ axiosInstance.interceptors.response.use(
     return configs;
   },
   (errors) => {
+    if (errors.response.status === 401) {
+      removeUser();
+    }
     return errors.response;
   }
 );

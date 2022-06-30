@@ -98,7 +98,9 @@ export default function Header() {
                   className="d-flex justify-content-center align-items-center"
                 >
                   <i className="fa fa-user-circle text-white"></i>
-                  <span className="text-white">{user?.hoTen}</span>
+                  <span className="text-white text-truncate">
+                    {user?.hoTen}
+                  </span>
                   <i className="fa fa-angle-down ml-2 text-white"></i>
                 </NavLinkComponent>
                 <ul className="submenu">
@@ -112,6 +114,7 @@ export default function Header() {
                       to={''}
                       className="text-left"
                       onClick={logOut}
+                      inActiveColor
                     >
                       <i className="fa fa-sign-out-alt"></i> Đăng xuất
                     </NavLinkComponent>

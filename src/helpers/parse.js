@@ -24,8 +24,7 @@ export const groupCourseByCategory = (state) => {
 };
 
 export const handleResponseApi = (response) => {
-  const { data, status } = response;
-
+  const { data, status, statusText } = response;
   if (status === 200) {
     return {
       data,
@@ -34,6 +33,6 @@ export const handleResponseApi = (response) => {
   }
   return {
     data: null,
-    error: data,
+    error: data || statusText,
   };
 };

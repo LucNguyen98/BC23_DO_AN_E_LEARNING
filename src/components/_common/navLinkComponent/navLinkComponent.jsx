@@ -4,12 +4,16 @@ import { createClass } from 'src/utils/utils';
 import './style.scss';
 export default function NavLinkComponent({
   activeClassName: activeClassNameCustom = '',
+  inActiveColor = false,
   children,
   ...props
 }) {
   return (
     <NavLink
-      activeClassName={createClass(['active', activeClassNameCustom])}
+      activeClassName={createClass([
+        inActiveColor ? '' : 'active',
+        activeClassNameCustom,
+      ])}
       {...props}
     >
       {children}

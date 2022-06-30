@@ -3,6 +3,7 @@ import { removeUser, setUser } from 'src/helpers/localStorage';
 
 const initialState = {
   loading: false,
+  profile: {},
 };
 
 const authReducer = createSlice({
@@ -13,7 +14,6 @@ const authReducer = createSlice({
       state.loading = true;
     },
     loginSuccess: (state, action) => {
-      console.log(action.payload);
       setUser(action.payload);
       state.loading = false;
     },
@@ -27,6 +27,27 @@ const authReducer = createSlice({
       state.loading = false;
     },
     registerFail: (state) => {
+      state.loading = false;
+    },
+
+    updateUserHandle: (state) => {
+      state.loading = true;
+    },
+    updateUserSuccess: (state) => {
+      state.loading = false;
+    },
+    updateUserFail: (state) => {
+      state.loading = false;
+    },
+
+    getProfileHandle: (state) => {
+      state.loading = true;
+    },
+    getProfileSuccess: (state, action) => {
+      setUser(action.payload);
+      state.loading = false;
+    },
+    getProfileFail: (state) => {
       state.loading = false;
     },
 
@@ -44,6 +65,12 @@ export const {
   registerSuccess,
   registerFail,
   logOutHandle,
+  updateUserHandle,
+  updateUserSuccess,
+  updateUserFail,
+  getProfileHandle,
+  getProfileSuccess,
+  getProfileFail,
 } = authReducer.actions;
 
 export default authReducer.reducer;

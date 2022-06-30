@@ -5,9 +5,8 @@ import { getUser } from 'src/helpers/localStorage';
 
 export default function PrivateRoute({ children }) {
   const user = getUser();
-  console.log(user);
-  if (!user) {
+  if (user) {
     return children;
   }
-  <Redirect to={LOGIN_PATH} />;
+  return <Redirect to={LOGIN_PATH} />;
 }

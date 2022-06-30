@@ -110,6 +110,7 @@ export const clientRouter = [
     exact: true,
     Component: Account,
     name: 'Tài khoản',
+    requireLogin: false,
   },
   {
     path: COURSE_REGISTER,
