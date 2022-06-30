@@ -7,20 +7,23 @@ export default function Banner() {
         <div className="row align-items-center justify-content-center">
           <div className="col-md-12 col-xl-6 col-lg-6">
             <div className="banner-content ">
-              <span className="subheading">Over 3000 Course Available</span>
-              <h1>Upgrade your learning Skills &amp; Upgrade your life</h1>
+              <span className="subheading">Hơn 3000 khoá học</span>
+              <h1>
+                Nâng cấp kỹ năng học tập của bạn là nâng cấp cuộc sống của bạn
+              </h1>
               <p className="mb-40">
                 {' '}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                ullam libero magni reiciendis quam ipsa blanditiis, facilis
-                velit eaque illo?
+                Hơn 92% trên hơn 3000 học viên học tại Edumel học theo lộ trình
+                và có việc làm tốt. Edumel đã triển khai chương trình Học lập
+                trình trực tuyến Online tại CyberLearn để tạo điều kiện cho các
+                bạn không có điều kiện học trực tiếp tại HCM có thể tham gia.
               </p>
               <div className="btn-container">
                 <a href="" className="btn btn-main rounded">
-                  Find Courses
+                  Tìm kiếm khoá học
                 </a>
                 <a href="" className="btn btn-white rounded ml-3">
-                  Get started{' '}
+                  Bắt đầu ngay{' '}
                 </a>
               </div>
             </div>

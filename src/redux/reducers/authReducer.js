@@ -3,7 +3,7 @@ import { removeUser, setUser } from 'src/helpers/localStorage';
 
 const initialState = {
   loading: false,
-  profile: {},
+  users: [],
 };
 
 const authReducer = createSlice({
@@ -51,6 +51,11 @@ const authReducer = createSlice({
       state.loading = false;
     },
 
+    getUserSuccess: (state, action) => {
+      state.users = action.payload;
+    },
+    getUserFail: () => {},
+
     logOutHandle: () => {
       removeUser();
     },
@@ -71,6 +76,8 @@ export const {
   getProfileHandle,
   getProfileSuccess,
   getProfileFail,
+  getUserSuccess,
+  getUserFail,
 } = authReducer.actions;
 
 export default authReducer.reducer;

@@ -17,6 +17,10 @@ const authApi = {
     const endPoint = '/api/QuanLyNguoiDung/ThongTinNguoiDung';
     return axiosInstance.post(endPoint);
   },
+  layDanhSachNguoiDung: (params) => {
+    const endPoint = '/api/QuanLyNguoiDung/LayDanhSachNguoiDung';
+    return axiosInstance.get(endPoint, { params });
+  },
 };
 
 export default authApi;
