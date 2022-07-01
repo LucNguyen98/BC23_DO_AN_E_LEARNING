@@ -20,7 +20,7 @@ export default function PopularCourses({ customClass = [] }) {
             </div>
           </div>
         </div>
-        <CoursesList />
+        <CoursesList maKhoaHoc={'Home'} />
       </div>
     </section>
   );
