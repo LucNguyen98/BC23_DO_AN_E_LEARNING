@@ -1,29 +1,33 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import {
   ABOUT_PATH,
+  ACCOUNT_PATH,
   BLOG_PATH,
   CONTACT_PATH,
   COURSE_PATH,
   INSTRUCTORS_PATH,
   LOGIN_PATH,
-  REGISTER_PATH,
 } from 'src/constants/pathName';
+import { getUser } from 'src/helpers/localStorage';
 import {
   getCategoriesAction,
   getCourseListAction,
 } from 'src/redux/actions/courseAction';
+import { logOutHandle } from 'src/redux/reducers/authReducer';
 import {
-  categoriesSelector,
+  // categoriesSelector,
   courseGroupByCategorySelector,
 } from 'src/redux/selectors/courseSelector';
+import { NavLinkComponent } from '..';
 import SubMenu from '../SubMenu/SubMenu';
 import './Header.scss';
 export default function Header() {
   const dispatch = useDispatch();
-  const categories = useSelector(categoriesSelector);
+  // const categories = useSelector(categoriesSelector);
   const courseGroupByCategory = useSelector(courseGroupByCategorySelector);
+  const user = getUser();
+
   useEffect(() => {
     dispatch(getCategoriesAction());
     dispatch(getCourseListAction());
@@ -43,36 +47,88 @@ export default function Header() {
     }
   }
 
-  const openMenu = (e) => {
-    document.querySelector('.site-navbar').classList.toggle('menu-on');
-    e.preventDefault();
-  };
+  // const openMenu = (e) => {
+  //   document.querySelector('.site-navbar').classList.toggle('menu-on');
+  //   e.preventDefault();
+  // };
 
   const closeMenu = (e) => {
     document.querySelector('.site-navbar').classList.remove('menu-on');
     e.preventDefault();
   };
 
-  const renderCategories = () => {
+  const logOut = () => {
+    dispatch(logOutHandle());
+    window.location.reload(false);
+  };
+
+  // const renderCategories = () => {
+  //   return (
+  //     <div className="header-category-menu d-none d-xl-block">
+  //       <ul>
+  //         <li className="has-submenu">
+  //           <NavLinkComponent to={''}>
+  //             <i className="fa fa-th mr-2" />
+  //             Danh mục
+  //           </NavLinkComponent>
+  //           <ul className="submenu">
+  //             {categories?.map((cate, index) => (
+  //               <li key={index}>
+  //                 <NavLinkComponent to={`${COURSE_PATH}/${cate.maDanhMuc}`}>
+  //                   {cate?.tenDanhMuc}
+  //                 </NavLinkComponent>
+  //               </li>
+  //             ))}
+  //           </ul>
+  //         </li>
+  //       </ul>
+  //     </div>
+  //   );
+  // };
+
+  const renderAccount = () => {
     return (
-      <div className="header-category-menu d-none d-xl-block">
-        <ul>
-          <li className="has-submenu">
-            <NavLink to={''}>
-              <i className="fa fa-th mr-2" />
-              Danh mục
-            </NavLink>
-            <ul className="submenu">
-              {categories?.map((cate, index) => (
-                <li key={index}>
-                  <NavLink to={`${COURSE_PATH}/${cate.maDanhMuc}`}>
-                    {cate?.tenDanhMuc}
-                  </NavLink>
-                </li>
-              ))}
+      <div className="header-btn text-center text-lg-end">
+        {user ? (
+          <div className="header-category-menu d-none d-xl-block">
+            <ul>
+              <li className="has-submenu">
+                <NavLinkComponent
+                  to={''}
+                  className="d-flex justify-content-center align-items-center"
+                >
+                  <i className="fa fa-user-circle text-white"></i>
+                  <span className="text-white text-truncate">
+                    {user?.hoTen}
+                  </span>
+                  <i className="fa fa-angle-down ml-2 text-white"></i>
+                </NavLinkComponent>
+                <ul className="submenu">
+                  <li>
+                    <NavLinkComponent to={ACCOUNT_PATH} className="text-left">
+                      <i className="fa fa-user"></i> Tài khoản
+                    </NavLinkComponent>
+                  </li>
+                  <li>
+                    <NavLinkComponent
+                      to={''}
+                      className="text-left"
+                      onClick={logOut}
+                      inActiveColor
+                    >
+                      <i className="fa fa-sign-out-alt"></i> Đăng xuất
+                    </NavLinkComponent>
+                  </li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
+          </div>
+        ) : (
+          <NavLinkComponent to={LOGIN_PATH}>
+            <i className="fa fa-user-alt" />
+            Đăng nhập/Đăng ký
+          </NavLinkComponent>
+        )}
       </div>
     );
   };
@@ -131,12 +187,7 @@ export default function Header() {
                     </li>
                   </ul>
                 </div>
-                <div className="header-btn text-center text-lg-end">
-                  <NavLink to={REGISTER_PATH}>
-                    <i className="fa fa-user-alt" />
-                    Login/Register
-                  </NavLink>
-                </div>
+                {renderAccount()}
               </div>
             </div>
           </div>
@@ -146,16 +197,16 @@ export default function Header() {
         <div className="container">
           <div className="d-flex align-items-center justify-content-between">
             <div className="site-logo">
-              <NavLink to={'/'}>
+              <NavLinkComponent to={'/'}>
                 <img src="/images/logo.png" alt="" className="img-fluid" />
-              </NavLink>
+              </NavLinkComponent>
             </div>
-            <div className="offcanvas-icon d-block d-lg-none">
+            {/* <div className="offcanvas-icon d-block d-lg-none">
               <button className="nav-toggler" onClick={openMenu}>
                 <i className="fa fa-bars"></i>
               </button>
             </div>
-            {renderCategories()}
+            {renderCategories()} */}
             <div className="header-search-bar d-none d-xl-block ms-4">
               <form action="#">
                 <input
@@ -171,10 +222,10 @@ export default function Header() {
             <nav className="site-navbar ml-auto">
               <ul className="primary-menu">
                 <li className="current">
-                  <NavLink to="/">Trang chủ</NavLink>
+                  <NavLinkComponent to="">Trang chủ</NavLinkComponent>
                 </li>
                 <li>
-                  <NavLink to={COURSE_PATH}>Khoá học</NavLink>
+                  <NavLinkComponent to={COURSE_PATH}>Khoá học</NavLinkComponent>
                   <SubMenu data={courseGroupByCategory} />
 
                   <span className="menu-trigger">
@@ -182,34 +233,20 @@ export default function Header() {
                   </span>
                 </li>
                 <li>
-                  <NavLink to={ABOUT_PATH}>Về chúng tôi</NavLink>
-                </li>
-
-                <li>
-                  <a href="#">Pages</a>
-                  <ul className="submenu">
-                    <li>
-                      <NavLink to={INSTRUCTORS_PATH}>Giảng viên</NavLink>
-                    </li>
-                    {/* <li>
-                        <a href="cart.html">Cart</a>
-                      </li>
-                      <li>
-                        <a href="checkout.html">Checkout</a>
-                      </li> */}
-                    <li>
-                      <NavLink to={LOGIN_PATH}>Đăng nhập</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to={REGISTER_PATH}>Đăng ký</NavLink>
-                    </li>
-                  </ul>
+                  <NavLinkComponent to={ABOUT_PATH}>
+                    Về chúng tôi
+                  </NavLinkComponent>
                 </li>
                 <li>
-                  <NavLink to={BLOG_PATH}>Blog</NavLink>
+                  <NavLinkComponent to={INSTRUCTORS_PATH}>
+                    Giảng viên
+                  </NavLinkComponent>
                 </li>
                 <li>
-                  <NavLink to={CONTACT_PATH}>Liên hệ</NavLink>
+                  <NavLinkComponent to={BLOG_PATH}>Blog</NavLinkComponent>
+                </li>
+                <li>
+                  <NavLinkComponent to={CONTACT_PATH}>Liên hệ</NavLinkComponent>
                 </li>
               </ul>
 

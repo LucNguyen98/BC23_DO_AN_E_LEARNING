@@ -31,6 +31,8 @@ module.exports = {
     'react/prop-types': 0,
     // 'react/react-in-jsx-scope': 'off',
     'jsx-a11y/anchor-is-valid': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
   },
   settings: {
     react: {

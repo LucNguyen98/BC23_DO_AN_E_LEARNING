@@ -18,7 +18,7 @@ function Breadcrumbs({ location, name = '' }) {
                   const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
                   const isLast = index === pathnames.length - 1;
                   return (
-                    <li key={index} className="active" aria-current="page">
+                    <li key={index} aria-current="page">
                       {isLast ? (
                         <span>{name}</span>
                       ) : (

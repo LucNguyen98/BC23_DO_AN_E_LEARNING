@@ -5,6 +5,7 @@ import { clientRouter } from './configs/router.config';
 import TemplateClient from './templates/Template/client/TemplateClient';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import { SuspenseComponent } from './components';
+// import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -24,6 +25,15 @@ function App() {
             <Switch>
               {clientRouter.map((route, index) => {
                 const { path, exact, name, Component } = route;
+                // if (requireLogin) {
+                //   return (
+                //     <Route path={path} exact={exact} key={index}>
+                //       <PrivateRoute>
+                //         <TemplateClient Component={Component} />
+                //       </PrivateRoute>
+                //     </Route>
+                //   );
+                // }
                 return (
                   <Route key={index} path={path} exact={exact}>
                     <TemplateClient

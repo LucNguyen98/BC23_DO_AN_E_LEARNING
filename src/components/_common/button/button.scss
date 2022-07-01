@@ -97,7 +97,7 @@ BUTTONS STYLE
 
   &:not(:disabled) {
     &:hover {
-      @include button-hover();
+      opacity: 0.6;
     }
   }
 }

@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Button, Loading } from 'src/components';
 import ErrorMessage from 'src/components/_common/errorMessage/errorMessage';
 import { VALIDATION_MESSAGE } from 'src/constants/error';
@@ -13,6 +13,7 @@ import * as yup from 'yup';
 import './Register.scss';
 function Register() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const users = React.useRef({
     hoTen: '',
     taiKhoan: '',
@@ -56,6 +57,7 @@ function Register() {
         dispatch(
           registerAction(newValues, () => {
             resetForm();
+            history.push(LOGIN_PATH);
           })
         );
       },
@@ -212,7 +214,9 @@ function Register() {
                               id="policy"
                               defaultValue="forever"
                             />
-                            <span>Accept the Terms and Privacy Policy</span>
+                            <span>
+                              Chấp nhận Điều khoản và Chính sách Bảo mật
+                            </span>
                           </label>
                         </p>
                       </div>

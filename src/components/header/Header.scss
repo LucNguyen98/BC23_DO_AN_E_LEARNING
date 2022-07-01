@@ -1,3 +1,4 @@
+@import '../../assets/scss/index.scss';
 /*-------------------------
 Main Menu header
 -------------------------*/
@@ -14,6 +15,11 @@ Main Menu header
     display: flex;
     align-items: center;
     justify-content: end;
+    .current{
+      a {
+        color: #000 !important;
+      }
+    }
 }
 
 .header-navbar .primary-menu li {
@@ -421,10 +427,19 @@ Menu center bottom
   }
   
   .header-btn {
-    margin-left: 40px;
+    margin-left: 20px;
     border-left: 1px solid #e1e1e1;
     padding-left: 20px;
+    display: flex;
+    align-items: center;
+    .header-category-menu{
+      span{
+        font-size: 14px;
+      }
+    }
   }
+
+
   
   .header-btn .login {
     color: #000;
@@ -432,7 +447,7 @@ Menu center bottom
   }
   
   .header-btn .login:hover {
-    color: var(--theme-primary-color);
+    color: $theme-primary-color;
   }
   
   .header-search-bar {
@@ -442,7 +457,7 @@ Menu center bottom
   .header-search-bar .form-control {
     background: #f5f5f5;
     border-color: transparent;
-    padding: 10px 20px;
+    padding: 10px 80px;
     border-radius: 4px;
   }
   
@@ -592,7 +607,7 @@ Menu center bottom
   }
   
   .search_close i {
-    color: var(--theme-primary-color);
+    color: $theme-primary-color;
   }
   
   .page_search_box form {
@@ -646,7 +661,7 @@ Menu center bottom
   }
   
   .offcanvas-icon .nav-toggler:hover {
-    background: var(--theme-primary-color);
+    background: $theme-primary-color;
   }
   
   .menu_fixed {
@@ -669,7 +684,7 @@ Menu center bottom
     color: #333;
     line-height: 1.4;
     text-transform: capitalize;
-    font-family: var(--theme-heading-font);
+    font-family: $theme-primary-color;
   }
   
   .header-category-menu li.has-submenu .submenu a {
@@ -681,7 +696,7 @@ Menu center bottom
   
   .header-category-menu li.has-submenu .submenu a:hover {
     opacity: 1;
-    color: var(--theme-primary-color);
+    color: $theme-primary-color;
   }
   
   .header-category-menu .submenu {
@@ -744,9 +759,6 @@ Menu center bottom
   .header-contact ul li:hover {
     opacity: 1;
   }
-
-
-  //@at-root
 
 
   
