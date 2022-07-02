@@ -40,8 +40,11 @@ export default function Button({
       type={type}
       {...props}
     >
-      <span>{title}</span>
-      {icon && <span>{icon}</span>}
+      <div>
+        {' '}
+        <span>{title}</span>
+        {icon && <span className="icon">{icon}</span>}
+      </div>
     </button>
   );
 }

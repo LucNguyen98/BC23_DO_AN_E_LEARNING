@@ -5,6 +5,7 @@ const initialState = {
   categories: [],
   isLoading: false,
   error: null,
+  coursesByCategory: [],
 };
 
 const courseSlice = createSlice({
@@ -37,6 +38,16 @@ const courseSlice = createSlice({
     getCategoriesFail: (state, action) => {
       state.error = action.payload;
     },
+    // Lấy danh mục khoá học
+    getCourseByCategorySuccess: (state, action) => {
+      return {
+        ...state,
+        coursesByCategory: action.payload,
+      };
+    },
+    getCourseByCategoryFail: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -46,6 +57,8 @@ export const {
   getCourseListFail,
   getCategoriesSuccess,
   getCategoriesFail,
+  getCourseByCategorySuccess,
+  getCourseByCategoryFail,
 } = courseSlice.actions;
 
 export default courseSlice.reducer;

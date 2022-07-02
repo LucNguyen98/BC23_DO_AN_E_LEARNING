@@ -52,3 +52,21 @@ export const mapDataInstructors = (users) => {
     };
   });
 };
+
+export const mapDataCourses = (courses) => {
+  return courses?.map((course) => {
+    const students = Math.floor(Math.random(1) * 500);
+    const lessons = Math.floor(Math.random(1) * 99);
+    const hours = Math.floor(Math.random(1) * 70);
+    return {
+      ...course,
+      nguoiTao: {
+        ...course.nguoiTao,
+        hinhAnh: `https://i.pravatar.cc?u=${course.nguoiTao?.hoTen}`,
+      },
+      students,
+      lessons,
+      hours,
+    };
+  });
+};

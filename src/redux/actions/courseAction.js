@@ -3,6 +3,8 @@ import courseApi from 'src/services/api/courseApi';
 import {
   getCategoriesFail,
   getCategoriesSuccess,
+  getCourseByCategoryFail,
+  getCourseByCategorySuccess,
   getCourseListFail,
   getCourseListHandle,
   getCourseListSuccess,
@@ -37,5 +39,20 @@ export const getCategoriesAction = (params) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getCategoriesFail(error));
+  }
+};
+
+export const getCourseByCategoryAction = (params) => async (dispatch) => {
+  try {
+    const result = await courseApi.LayKhoaHocTheoDanhMuc(params);
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getCourseByCategorySuccess(data));
+    }
+    if (error) {
+      return dispatch(getCourseByCategoryFail(error));
+    }
+  } catch (error) {
+    dispatch(getCourseByCategoryFail(error));
   }
 };
