@@ -6,3 +6,5 @@ export { default as Breadcrumbs } from './breadcrumbs/breadcrumbs';
 export { default as ErrorMessage } from './_common/errorMessage/errorMessage';
 export { default as Loading } from './_common/loading/loading';
 export { default as NavLinkComponent } from './_common/navLinkComponent/navLinkComponent';
+export { default as LazyLoadImg } from './_common/lazyLoadImg/lazyLoadImg';
+export { default as Pagination } from './Pagination/Pagination';

@@ -10,27 +10,22 @@ import {
   LOGIN_PATH,
 } from 'src/constants/pathName';
 import { getUser } from 'src/helpers/localStorage';
-import {
-  getCategoriesAction,
-  getCourseListAction,
-} from 'src/redux/actions/courseAction';
+import { getCourseMenuAction } from 'src/redux/actions/courseAction';
 import { logOutHandle } from 'src/redux/reducers/authReducer';
 import {
   // categoriesSelector,
-  courseGroupByCategorySelector,
+  courseMenuSelector,
 } from 'src/redux/selectors/courseSelector';
 import { NavLinkComponent } from '..';
 import SubMenu from '../SubMenu/SubMenu';
 import './Header.scss';
 export default function Header() {
   const dispatch = useDispatch();
-  // const categories = useSelector(categoriesSelector);
-  const courseGroupByCategory = useSelector(courseGroupByCategorySelector);
+  const courseGroupByCategory = useSelector(courseMenuSelector);
   const user = getUser();
 
   useEffect(() => {
-    dispatch(getCategoriesAction());
-    dispatch(getCourseListAction());
+    dispatch(getCourseMenuAction());
   }, [dispatch]);
 
   useEffect(() => {

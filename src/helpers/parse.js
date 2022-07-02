@@ -1,5 +1,5 @@
 export const groupCourseByCategory = (state) => {
-  const courseList = state.course.courseList || [];
+  const courseList = state.course.courseMenu || [];
   return courseList.reduce((acc, current) => {
     let danhMucKhoaHoc = current['danhMucKhoaHoc'];
     let item = {
@@ -69,4 +69,12 @@ export const mapDataCourses = (courses) => {
       hours,
     };
   });
+};
+
+export const mapPages = (totalPages) => {
+  let pages = [];
+  for (let index = 1; index <= totalPages; index++) {
+    pages.push(index);
+  }
+  return pages;
 };

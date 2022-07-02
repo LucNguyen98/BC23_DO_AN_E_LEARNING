@@ -22,6 +22,13 @@ const courseApi = {
       headers,
     });
   },
+  layDanhSachKhoaHocPhanTrang: (params, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang';
+    return axiosInstance.get(endPoint, {
+      params,
+      headers,
+    });
+  },
 };
 
 export default courseApi;

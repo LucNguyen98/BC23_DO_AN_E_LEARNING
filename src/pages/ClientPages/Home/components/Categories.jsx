@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLinkComponent } from 'src/components';
+import { COURSE_PATH } from 'src/constants/pathName';
 import { getCategoryImage } from 'src/helpers/getImage';
 import { createClass } from 'src/utils/utils';
 
@@ -37,7 +39,11 @@ function Categories({ categories = [] }) {
                   </div>
                   <div className="course-cat-content">
                     <h4 className="course-cat-title">
-                      <a href="">{cate?.tenDanhMuc}</a>
+                      <NavLinkComponent
+                        to={`${COURSE_PATH}/${cate?.maDanhMuc}`}
+                      >
+                        {cate?.tenDanhMuc}
+                      </NavLinkComponent>
                     </h4>
                   </div>
                 </div>
