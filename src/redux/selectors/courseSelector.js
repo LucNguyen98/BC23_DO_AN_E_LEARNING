@@ -7,7 +7,21 @@ export const coursesSelector = createSelector(
   mapDataCourses
 );
 
+export const courseAllListSelector = createSelector(
+  [(state) => state.course.courseList],
+  mapDataCourses
+);
+
 export const courseGroupByCategorySelector = createSelector(
   [groupCourseByCategory],
   (courses) => courses
+);
+
+export const coursesPopularSelector = createSelector(
+  [courseAllListSelector],
+  (courses) => {
+    return courses
+      ?.sort((coursesA, coursesB) => coursesB.luotXem - coursesA.luotXem)
+      .slice(0, 3);
+  }
 );

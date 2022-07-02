@@ -6,14 +6,17 @@ import {
   getCourseByCategoryAction,
   getCourseListAction,
 } from 'src/redux/actions/courseAction';
-import { coursesSelector } from 'src/redux/selectors/courseSelector';
+import {
+  courseAllListSelector,
+  coursesSelector,
+} from 'src/redux/selectors/courseSelector';
 
 export default function Courses() {
   const dispatch = useDispatch();
   const { maDanhMucKhoahoc: maDanhMuc = '' } = useParams();
 
   const courses = useSelector(coursesSelector);
-  const courseAllList = useSelector((state) => state.course.courseList);
+  const courseAllList = useSelector(courseAllListSelector);
   const [filters, setfilters] = useState({});
 
   const data = useMemo(() => {

@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLinkComponent } from 'src/components';
+import { COURSE_PATH } from 'src/constants/pathName';
 
 export default function Banner() {
   return (
@@ -19,12 +21,18 @@ export default function Banner() {
                 bạn không có điều kiện học trực tiếp tại HCM có thể tham gia.
               </p>
               <div className="btn-container">
-                <a href="" className="btn btn-main rounded">
+                <NavLinkComponent
+                  to={COURSE_PATH}
+                  className="btn btn-main rounded mr-3"
+                >
                   Tìm kiếm khoá học
-                </a>
-                <a href="" className="btn btn-white rounded ml-3">
-                  Bắt đầu ngay{' '}
-                </a>
+                </NavLinkComponent>
+                <NavLinkComponent
+                  to={COURSE_PATH}
+                  className="btn btn-main rounded"
+                >
+                  Bắt đầu ngay
+                </NavLinkComponent>
               </div>
             </div>
           </div>
