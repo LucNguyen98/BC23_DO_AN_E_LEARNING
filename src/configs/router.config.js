@@ -4,7 +4,9 @@ import { lazy } from 'react';
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
 const Login = lazy(() => import('src/pages/ClientPages/Login/Login'));
 const Register = lazy(() => import('src/pages/ClientPages/Register/Register'));
-const Courses = lazy(() => import('src/pages/ClientPages/Courses/Courses'));
+const Courses = lazy(() =>
+  import('src/pages/ClientPages/Courses/CoursesNew.jsx')
+);
 const CourseDetail = lazy(() =>
   import('src/pages/ClientPages/CourseDetail/CourseDetail')
 );
