@@ -2951,36 +2951,7 @@
     color: #fff;
 }
 
-.blog-page-navigation .pagination {
-    display: inline-flex;
-    margin: 10px 0 0 0;
-}
 
-.blog-page-navigation .pagination li a {
-    height: 50px;
-    width: 50px;
-    margin-right: 10px;
-    border: 1px solid #eef0f6;
-    border-radius: 0;
-    line-height: 49px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.4s ease;
-    display: block;
-    color: var(--theme-text-color);
-    font-size: 18px;
-    border-radius: 5px;
-}
-
-.blog-page-navigation .pagination li a:hover {
-    background: var(--theme-primary-color);
-    color: #fff;
-}
-
-.blog-page-navigation .pagination li a.active {
-    background: var(--theme-primary-color);
-    color: #fff;
-}
 
 /*---------------------
   Single Blog POSt

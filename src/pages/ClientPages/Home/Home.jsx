@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCourseListAction } from 'src/redux/actions/courseAction';
+import {
+  getCategoriesAction,
+  getCourseMenuAction,
+} from 'src/redux/actions/courseAction';
 import { getUserAction } from 'src/redux/actions/userAction';
 import {
   categoriesSelector,
@@ -24,9 +27,11 @@ export default function Home() {
   const categories = useSelector(categoriesSelector);
   const instructorsPopular = useSelector(instructorsPopularSelector);
   const coursesPopular = useSelector(coursesPopularSelector);
+
   useEffect(() => {
     dispatch(getUserAction());
-    dispatch(getCourseListAction());
+    dispatch(getCourseMenuAction());
+    dispatch(getCategoriesAction());
   }, [dispatch]);
 
   return (

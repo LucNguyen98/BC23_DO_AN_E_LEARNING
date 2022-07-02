@@ -8,13 +8,15 @@ import {
   getCourseListFail,
   getCourseListHandle,
   getCourseListSuccess,
+  getCourseMenuFail,
+  getCourseMenuSuccess,
 } from '../reducers/courseReducer';
 
 // eslint-disable-next-line no-unused-vars
 export const getCourseListAction = (params) => async (dispatch) => {
   try {
     dispatch(getCourseListHandle());
-    const result = await courseApi.layDanhSachKhoaHoc(params);
+    const result = await courseApi.layDanhSachKhoaHocPhanTrang(params);
     const { data, error } = handleResponseApi(result);
     if (data) {
       return dispatch(getCourseListSuccess(data));
@@ -24,6 +26,21 @@ export const getCourseListAction = (params) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getCourseListFail());
+  }
+};
+
+export const getCourseMenuAction = (params) => async (dispatch) => {
+  try {
+    const result = await courseApi.layDanhSachKhoaHoc(params);
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getCourseMenuSuccess(data));
+    }
+    if (error) {
+      return dispatch(getCourseMenuFail(error));
+    }
+  } catch (error) {
+    dispatch(getCourseMenuFail());
   }
 };
 

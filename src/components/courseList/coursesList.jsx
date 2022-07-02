@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '..';
+import { Button, LazyLoadImg } from '..';
 
 function CoursesList({ courses = [] }) {
   const renderCourse = (course, index) => {
@@ -13,12 +13,12 @@ function CoursesList({ courses = [] }) {
         <div className="course-grid bg-shadow tooltip-style">
           <div className="course-header">
             <div className="course-thumb">
-              <img
+              <LazyLoadImg
                 src={course?.hinhAnh}
                 alt=""
+                height={200}
                 style={{
                   width: '100%',
-                  height: 200,
                   objectFit: 'fill',
                 }}
               />
