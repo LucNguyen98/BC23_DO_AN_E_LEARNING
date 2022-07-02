@@ -7,8 +7,11 @@ export default function Features() {
         <div className="row justify-content-center">
           <div className="col-xl-8">
             <div className="section-heading mb-50 text-center">
-              <h2 className="font-lg">Transform Your Life </h2>
-              <p>Discover Your Perfect Program In Our Courses.</p>
+              <h2 className="font-lg">Thay đổi cuộc sống của bạn</h2>
+              <p>
+                Khám phá chương trình hoàn hảo của bạn trong các khóa học của
+                chúng tôi.
+              </p>
             </div>
           </div>
         </div>
@@ -19,9 +22,10 @@ export default function Features() {
                 <i className="flaticon-teacher" />
               </div>
               <div className="feature-text">
-                <h4>Expert Teacher</h4>
+                <h4>Giảng viên chuyên nghiệp</h4>
                 <p>
-                  Develop skills for career of various majors including computer
+                  Phát triển các kỹ năng cho nghề nghiệp của các chuyên ngành
+                  khác nhau bao gồm cả máy tính
                 </p>
               </div>
             </div>
@@ -32,10 +36,10 @@ export default function Features() {
                 <i className="flaticon-layer" />
               </div>
               <div className="feature-text">
-                <h4>Self Development</h4>
+                <h4>Tự phát triển</h4>
                 <p>
-                  Develop skills for career of various majors including
-                  computer.
+                  Phát triển các kỹ năng cho sự nghiệp của các chuyên ngành khác
+                  nhau bao gồm máy tính.
                 </p>
               </div>
             </div>
@@ -46,9 +50,10 @@ export default function Features() {
                 <i className="flaticon-video-camera" />
               </div>
               <div className="feature-text">
-                <h4>Remote Learning</h4>
+                <h4>Học từ xa</h4>
                 <p>
-                  Develop skills for career of various majors including language
+                  Phát triển các kỹ năng cho sự nghiệp của các chuyên ngành khác
+                  nhau bao gồm cả ngôn ngữ
                 </p>
               </div>
             </div>
@@ -59,9 +64,10 @@ export default function Features() {
                 <i className="flaticon-lifesaver" />
               </div>
               <div className="feature-text">
-                <h4>Life Time Support</h4>
+                <h4>Hỗ trợ trọn đời</h4>
                 <p>
-                  Develop skills for career of various majors including language{' '}
+                  Phát triển các kỹ năng cho sự nghiệp của các chuyên ngành khác
+                  nhau bao gồm cả ngôn ngữ
                 </p>
               </div>
             </div>

@@ -28,7 +28,6 @@ export default function Home() {
       <div>
         <Banner />
         <Statistics />
-        <PopularCourses />
         <Categories categories={categories} />
         <WorkProcess />
         <PopularCourses customClass={['bg-gray']} />

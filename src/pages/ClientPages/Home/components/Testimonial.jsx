@@ -15,8 +15,11 @@ export default function Testimonial() {
         <div className="row justify-content-center">
           <div className="col-xl-6">
             <div className="section-heading text-center mb-50">
-              <h2 className="font-lg">Our Students Says</h2>
-              <p>Discover Your Perfect Program In Our Courses.</p>
+              <h2 className="font-lg">HỌC VIÊN ĐÃ NÓI GÌ VỀ EDUMEL</h2>
+              <p>
+                Khám phá chương trình hoàn hảo của bạn trong các khóa học của
+                chúng tôi.
+              </p>
             </div>
           </div>
         </div>
