@@ -36,3 +36,19 @@ export const handleResponseApi = (response) => {
     error: data || statusText,
   };
 };
+
+export const mapDataInstructors = (users) => {
+  const instructors =
+    users?.filter((user) => user.maLoaiNguoiDung === 'GV') || [];
+  return instructors?.map((ins) => {
+    const students = Math.floor(Math.random(1) * 500);
+    const courses = Math.floor(Math.random(1) * 100);
+    return {
+      ...ins,
+      students,
+      courses,
+      tenLoaiNguoiDung: 'Giảng viên',
+      urlImage: `https://i.pravatar.cc?u=${ins?.hoTen}`,
+    };
+  });
+};

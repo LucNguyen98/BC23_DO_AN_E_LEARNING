@@ -50,12 +50,6 @@ const authReducer = createSlice({
     getProfileFail: (state) => {
       state.loading = false;
     },
-
-    getUserSuccess: (state, action) => {
-      state.users = action.payload;
-    },
-    getUserFail: () => {},
-
     logOutHandle: () => {
       removeUser();
     },
@@ -76,8 +70,6 @@ export const {
   getProfileHandle,
   getProfileSuccess,
   getProfileFail,
-  getUserSuccess,
-  getUserFail,
 } = authReducer.actions;
 
 export default authReducer.reducer;

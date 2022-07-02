@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-
+import './breadcrumbs.scss';
 function Breadcrumbs({ location, name = '' }) {
   const pathnames = location.pathname.split('/').filter((x) => x);
   return (

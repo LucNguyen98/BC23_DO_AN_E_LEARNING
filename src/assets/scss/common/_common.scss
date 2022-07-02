@@ -1,0 +1,76 @@
+/*----------------------
+  Team Style 
+  ------------------------*/
+.team-item {
+    border-radius: 5px;
+    transition: all .4s ease;
+    border: 1px solid #DCF1FD;
+}
+
+.team-item .team-img {
+    padding: 0px 20px 20px;
+    position: relative;
+}
+
+.team-item .team-img img {
+    border-radius: 5px;
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+    transition: all .4s ease;
+}
+
+.team-item .team-content {
+    padding: 0px 30px 30px;
+}
+
+.team-item .team-info p {
+    font-size: 14px;
+}
+
+.team-item .team-socials {
+    position: absolute;
+    right: 0px;
+    bottom: 20px;
+    background: var(--theme-primary-color);
+    padding: 2px 20px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.team-item .team-socials a {
+    color: #fff;
+    font-size: 14px;
+    opacity: .8;
+}
+
+.team-item .team-socials a:hover {
+    opacity: 1;
+}
+
+.team-item .course-meta {
+    margin-bottom: 0px;
+}
+
+.team-item:hover {
+    background: #fff;
+    box-shadow: 0 14px 59px rgba(0, 0, 0, 0.12);
+}
+
+//@at-root
+.course-meta {
+    margin-bottom: 10px;
+    display: grid;
+}
+
+.course-meta span {
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.course-meta span:last-child {
+    margin-right: 0px;
+}
+
+.course-meta i {
+    margin-right: 5px;
+    color: var(--theme-secondary-color);
+}

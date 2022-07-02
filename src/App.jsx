@@ -7,6 +7,10 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import { SuspenseComponent } from './components';
 // import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
 
+import './assets/scss/css/responsive.css';
+import './assets/scss/css/woocomerce.css';
+import './assets/scss/index.scss';
+
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
     return (

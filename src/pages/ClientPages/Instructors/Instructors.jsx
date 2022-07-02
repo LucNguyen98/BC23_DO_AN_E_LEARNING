@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { getUserAction } from 'src/redux/actions/authAction';
-import { instructorsSelector } from 'src/redux/selectors/authSelector';
+import { getUserAction } from 'src/redux/actions/userAction';
+import { instructorsSelector } from 'src/redux/selectors/userSelector';
 import InstructorItem from './InstructorItem';
 
 export default function Instructors() {
@@ -18,16 +17,7 @@ export default function Instructors() {
       <div className="container">
         <div className="row">
           {instructors?.map((instructor, index) => {
-            const studentCount = Math.floor(Math.random(1) * 500);
-            const courseCount = Math.floor(Math.random(1) * 100);
-            return (
-              <InstructorItem
-                key={index}
-                item={instructor}
-                studentCount={studentCount}
-                courseCount={courseCount}
-              />
-            );
+            return <InstructorItem key={index} item={instructor} />;
           })}
         </div>
       </div>
