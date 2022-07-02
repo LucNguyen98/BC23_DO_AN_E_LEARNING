@@ -490,62 +490,7 @@
     opacity: .5;
 }
 
-/*----------------------
-  Team Style 
-  ------------------------*/
-.team-item {
-    border-radius: 5px;
-    transition: all .4s ease;
-    border: 1px solid #DCF1FD;
-}
 
-.team-item .team-img {
-    padding: 0px 20px 20px;
-    position: relative;
-}
-
-.team-item .team-img img {
-    border-radius: 5px;
-    -webkit-transform: translateY(-15px);
-    transform: translateY(-15px);
-    transition: all .4s ease;
-}
-
-.team-item .team-content {
-    padding: 0px 30px 30px;
-}
-
-.team-item .team-info p {
-    font-size: 14px;
-}
-
-.team-item .team-socials {
-    position: absolute;
-    right: 0px;
-    bottom: 20px;
-    background: var(--theme-primary-color);
-    padding: 2px 20px;
-    border-radius: 5px 0px 0px 5px;
-}
-
-.team-item .team-socials a {
-    color: #fff;
-    font-size: 14px;
-    opacity: .8;
-}
-
-.team-item .team-socials a:hover {
-    opacity: 1;
-}
-
-.team-item .course-meta {
-    margin-bottom: 0px;
-}
-
-.team-item:hover {
-    background: #fff;
-    box-shadow: 0 14px 59px rgba(0, 0, 0, 0.12);
-}
 
 /*------------------------
   CTA
@@ -581,24 +526,7 @@
     background: #291b6d;
 }
 
-/*---------------------
-  Team style 2
-  ---------------------------*/
-.team-item-2 {
-    margin-bottom: 30px;
-    background: #fff;
-    box-shadow: 0 14px 59px rgba(0, 0, 0, 0.12);
-}
 
-.team-item-2 .team-img {
-    padding-top: 20px;
-}
-
-.team-item-2 .team-img img {
-    border-radius: 5px;
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-}
 
 .about-features .feature-item {
     margin-bottom: 30px;
@@ -3471,63 +3399,3 @@
     color: #fff;
 }
 
-/*====================
-Page Banner Area
-======================*/
-.page-header {
-    padding: 90px 0px;
-    background: #F4F5F8;
-    position: relative;
-    background: url("../../../assets/images/bg/page-title.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 1;
-}
-
-.page-header:after {
-    position: absolute;
-    content: "";
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    background: rgba(3, 31, 66, 0.9);
-    z-index: -1;
-}
-
-.page-header .title-block {
-    text-align: center;
-}
-
-.page-header .title-block h1 {
-    color: #fff;
-    line-height: 50px;
-    margin-bottom: 20px;
-    text-transform: capitalize;
-}
-
-.page-header .title-block ul li {
-    position: relative;
-    padding-right: 20px;
-    color: #fff;
-    display: inline-block;
-}
-
-.page-header .title-block ul li:after {
-    position: absolute;
-    content: "/";
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    margin: auto 0px;
-    font-size: 14px;
-    margin-right: 3px;
-}
-
-.page-header .title-block ul li:last-child:after {
-    display: none;
-}
-
-.page-header .title-block ul li a {
-    font-weight: 600;
-}

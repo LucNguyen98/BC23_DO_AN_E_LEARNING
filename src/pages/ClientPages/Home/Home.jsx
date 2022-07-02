@@ -1,6 +1,8 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAction } from 'src/redux/actions/userAction';
 import { categoriesSelector } from 'src/redux/selectors/courseSelector';
+import { instructorsPopularSelector } from 'src/redux/selectors/userSelector';
 import '../../../assets/scss/css/responsive.css';
 import Banner from './components/Banner';
 import Categories from './components/Categories';
@@ -14,18 +16,23 @@ import WorkProcess from './components/WorkProcess';
 import './Home.scss';
 
 export default function Home() {
+  const dispatch = useDispatch();
   const categories = useSelector(categoriesSelector);
+  const instructorsPopular = useSelector(instructorsPopularSelector);
+  useEffect(() => {
+    dispatch(getUserAction());
+  }, [dispatch]);
+
   return (
     <div id="top-header">
       <div>
         <Banner />
         <Statistics />
-        <PopularCourses />
         <Categories categories={categories} />
         <WorkProcess />
         <PopularCourses customClass={['bg-gray']} />
         <Features />
-        <Team />
+        <Team teams={instructorsPopular} />
         <Testimonial />
         <Cta />
       </div>
