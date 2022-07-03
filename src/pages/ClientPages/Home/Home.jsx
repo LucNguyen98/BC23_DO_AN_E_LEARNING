@@ -29,6 +29,10 @@ export default function Home() {
   const coursesPopular = useSelector(coursesPopularSelector);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  useEffect(() => {
     dispatch(getUserAction());
     dispatch(getCourseMenuAction());
     dispatch(getCategoriesAction());

@@ -24,6 +24,10 @@ const CourseRegister = lazy(() =>
   import('src/pages/ClientPages/Courses/CourseRegister')
 );
 
+const CoursesSearch = lazy(() =>
+  import('src/pages/ClientPages/Courses/CoursesSearch')
+);
+
 import {
   ABOUT_PATH,
   ACCOUNT_PATH,
@@ -32,6 +36,7 @@ import {
   COURSE_DETAIL_PATH,
   COURSE_PATH,
   COURSE_REGISTER,
+  COURSE_SEARCH_PATH,
   INSTRUCTORS_PATH,
   LOGIN_PATH,
   REGISTER_PATH,
@@ -127,6 +132,13 @@ export const clientRouter = [
     path: COURSE_REGISTER,
     exact: true,
     Component: CourseRegister,
+    isScrollToTop: true,
+  },
+  {
+    path: `${COURSE_SEARCH_PATH}`,
+    exact: false,
+    Component: CoursesSearch,
+    name: 'Tìm kiếm',
     isScrollToTop: true,
   },
   {

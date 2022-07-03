@@ -14,19 +14,12 @@ export default function Banner() {
                 Nâng cấp kỹ năng học tập của bạn là nâng cấp cuộc sống của bạn
               </h1>
               <p className="mb-40">
-                {' '}
                 Hơn 92% trên hơn 3000 học viên học tại Edumel học theo lộ trình
                 và có việc làm tốt. Edumel đã triển khai chương trình Học lập
                 trình trực tuyến Online tại CyberLearn để tạo điều kiện cho các
                 bạn không có điều kiện học trực tiếp tại HCM có thể tham gia.
               </p>
               <div className="btn-container">
-                <NavLinkComponent
-                  to={COURSE_PATH}
-                  className="btn btn-main rounded mr-3"
-                >
-                  Tìm kiếm khoá học
-                </NavLinkComponent>
                 <NavLinkComponent
                   to={COURSE_PATH}
                   className="btn btn-main rounded"

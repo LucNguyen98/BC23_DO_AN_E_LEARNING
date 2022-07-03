@@ -26,6 +26,7 @@ const courseSlice = createSlice({
         courseList: items,
         currentPage,
         totalCount,
+        error: null,
       };
     },
     getCourseListFail: (state, action) => {

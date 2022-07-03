@@ -17,7 +17,9 @@ export const getCourseListAction = (params) => async (dispatch) => {
   try {
     dispatch(getCourseListHandle());
     const result = await courseApi.layDanhSachKhoaHocPhanTrang(params);
+    console.log('result', result);
     const { data, error } = handleResponseApi(result);
+    console.log('data, error', { data, error });
     if (data) {
       return dispatch(getCourseListSuccess(data));
     }
