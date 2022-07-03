@@ -8,3 +8,4 @@ export { default as Loading } from './_common/loading/loading';
 export { default as NavLinkComponent } from './_common/navLinkComponent/navLinkComponent';
 export { default as LazyLoadImg } from './_common/lazyLoadImg/lazyLoadImg';
 export { default as Pagination } from './Pagination/Pagination';
+export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';
