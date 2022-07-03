@@ -52,12 +52,12 @@ export default function CourseDetail() {
                           <span>
                             <i className="fas fa-star" />
                           </span>
-                          <span className="rating-count">{courseDetail.luotXem}</span>
+                          <span className="rating-count">{' '}{courseDetail.luotXem}</span>
                         </div>
                       </li>
                       <li>
                         <i className="fa fa-user me-2" />
-                        {courseDetail.soLuongHocVien} enrolled students
+                        {courseDetail.soLuongHocVien} {' '} học viên
                       </li>
                     </ul>
                   </div>
@@ -101,7 +101,7 @@ export default function CourseDetail() {
                         aria-controls="nav-home-tab"
                         aria-selected="true"
                       >
-                        Overview
+                        Tổng Quan
                       </a>
                       <a
                         className="nav-item nav-link"
@@ -112,7 +112,7 @@ export default function CourseDetail() {
                         aria-controls="nav-instructor-tab"
                         aria-selected="false"
                       >
-                        Instructor
+                        Hướng Dẫn Viên
                       </a>
                       <a
                         className="nav-item nav-link"
@@ -123,7 +123,7 @@ export default function CourseDetail() {
                         aria-controls="nav-feedback-tab"
                         aria-selected="false"
                       >
-                        Reviews
+                        Đánh Giá
                       </a>
                     </div>
                   </nav>
@@ -138,37 +138,34 @@ export default function CourseDetail() {
                       aria-labelledby="nav-home-tab"
                     >
                       <div className="single-course-details ">
-                        <h4 className="course-title">Description</h4>
+                        <h4 className="course-title">Mô Tả</h4>
                         <p>{courseDetail.moTa}</p>
                         <div className="course-widget course-info">
-                          <h4 className="course-title">What You will Learn?</h4>
+                          <h4 className="course-title">Các Kiến Thức Sẽ Được Học:</h4>
                           <ul>
                             <li>
                               <i className="fa fa-check" />
-                              Clean up face imperfections, improve and repair
-                              photos
+                              Xóa các khuyết điểm trên khuôn mặt, cải thiện và sửa chữa ảnh
                             </li>
                             <li>
                               <i className="fa fa-check" />
-                              Remove people or objects from photos
+                              Xóa người hoặc đồ vật khỏi ảnh
                             </li>
                             <li>
                               <i className="fa fa-check" />
-                              Master selections, layers, and working with the
-                              layers panel
+                              Làm chủ các lựa chọn, lớp và làm việc với bảng điều khiển lớp
                             </li>
                             <li>
                               <i className="fa fa-check" />
-                              Use creative effects to design stunning text
-                              styles
+                              Sử dụng các hiệu ứng sáng tạo để thiết kế các kiểu văn bản tuyệt đẹp
                             </li>
                             <li>
                               <i className="fa fa-check" />
-                              working with the layers panel
+                              Làm việc với bảng điều khiển lớp
                             </li>
                             <li>
                               <i className="fa fa-check" />
-                              Cut away a person from their background
+                              Loại bỏ một người khỏi nền tảng của họ
                             </li>
                           </ul>
                         </div>
@@ -196,12 +193,11 @@ export default function CourseDetail() {
                                 </h4>
                                 <span className="sub-title">{courseDetail?.nguoiTao?.tenLoaiNguoiDung}</span>
                                 <p>
-                                  {courseDetail?.nguoiTao?.hoTen} is a celebrated photographer, author,
-                                  and writer who brings passion to everything he
-                                  does.
+                                  <span style={{'text-transform':'capitalize'}}>{courseDetail?.nguoiTao?.hoTen}</span> là một nhiếp ảnh gia, tác giả và nhà văn nổi tiếng, 
+                                  người mang lại niềm đam mê cho mọi thứ mà anh ấy làm.
                                 </p>
                                 <div className="intructor-social-links">
-                                  <span className="me-2">Follow Me: </span>
+                                  <span className="me-2">Mạng Xã Hội: </span>
                                   <a href="#">
                                     {' '}
                                     <i className="fab fa-facebook-f" />
@@ -248,7 +244,7 @@ export default function CourseDetail() {
                                   <div className="review-header mb-10">
                                     <h4 className="user-name">Tutori</h4>
                                     <p className="review-title">
-                                      Cover all topicc{' '}
+                                    Bao gồm tất cả các chủ đề{' '}
                                     </p>
                                     <div className="rating review-stars-rated">
                                       <a href="#">
@@ -270,13 +266,13 @@ export default function CourseDetail() {
                                   </div>
                                   <div className="review-text">
                                     <div className="review-content">
-                                      The course identify things we want to change
-                                      and then figure out the things that need to
-                                      be done to create the desired outcome. The
-                                      course helped me in clearly define problems
-                                      and generate a wider variety of quality
-                                      solutions. Support more structures analysis
-                                      of options leading to better decisions.
+                                      Khóa học xác định những điều chúng tôi muốn thay đổi
+                                      và sau đó tìm ra những thứ cần
+                                      được thực hiện để tạo ra kết quả mong muốn. Các
+                                      khóa học đã giúp tôi xác định rõ ràng các vấn đề
+                                      và tạo ra nhiều loại chất lượng hơn
+                                      các giải pháp. Hỗ trợ phân tích cấu trúc khác
+                                      trong số các tùy chọn dẫn đến các quyết định tốt hơn.
                                     </div>
                                   </div>
                                 </div>
@@ -297,7 +293,7 @@ export default function CourseDetail() {
                                   <div className="review-header mb-10">
                                     <h4 className="user-name">Tutori</h4>
                                     <p className="review-title">
-                                      Cover all topicc{' '}
+                                    Bao gồm tất cả các chủ đề{' '}
                                     </p>
                                     <div className="rating review-stars-rated">
                                       <a href="#">
@@ -319,13 +315,13 @@ export default function CourseDetail() {
                                   </div>
                                   <div className="review-text">
                                     <div className="review-content">
-                                      The course identify things we want to change
-                                      and then figure out the things that need to
-                                      be done to create the desired outcome. The
-                                      course helped me in clearly define problems
-                                      and generate a wider variety of quality
-                                      solutions. Support more structures analysis
-                                      of options leading to better decisions.
+                                      Khóa học xác định những điều chúng tôi muốn thay đổi
+                                      và sau đó tìm ra những thứ cần
+                                      được thực hiện để tạo ra kết quả mong muốn. Các
+                                      khóa học đã giúp tôi xác định rõ ràng các vấn đề
+                                      và tạo ra nhiều loại chất lượng hơn
+                                      các giải pháp. Hỗ trợ phân tích cấu trúc khác
+                                      trong số các tùy chọn dẫn đến các quyết định tốt hơn.
                                     </div>
                                   </div>
                                 </div>
@@ -346,23 +342,23 @@ export default function CourseDetail() {
                       <h2 className="course-price">
                         $120.00 <span>$150</span>
                       </h2>
-                      <span className="course-price-badge onsale">39% off</span>
+                      <span className="course-price-badge onsale">Giảm 39%</span>
                     </div>
                     <ul className="course-sidebar-list">
                       <li>
                         <div className="d-flex justify-content-between align-items-center">
                           <span>
                             <i className="far fa-sliders-h" />
-                            Level
+                            Độ Khó
                           </span>
-                          Beginnner
+                          Người Bắt Đầu
                         </div>
                       </li>
                       <li>
                         <div className="d-flex justify-content-between align-items-center">
                           <span>
                             <i className="fas fa-play-circle" />
-                            Lectures
+                            Bài Giảng
                           </span>
                           2
                         </div>
@@ -371,7 +367,7 @@ export default function CourseDetail() {
                         <div className="d-flex justify-content-between align-items-center">
                           <span>
                             <i className="far fa-user" />
-                            Students
+                            Số Lượng Học Viên
                           </span>
                           20
                         </div>
@@ -380,37 +376,37 @@ export default function CourseDetail() {
                         <div className="d-flex justify-content-between align-items-center">
                           <span>
                             <i className="far fa-clock" />
-                            Duration
+                            Thời Lượng
                           </span>
-                          6 hours
+                          6 giờ
                         </div>
                       </li>
                       <li>
                         <div className="d-flex justify-content-between align-items-center">
                           <span>
                             <i className="far fa-globe" />
-                            Language
+                            Ngôn Ngữ
                           </span>
-                          English
+                          Tiếng Anh
                         </div>
                       </li>
                       <li>
                         <div className="d-flex justify-content-between align-items-center">
                           <span>
                             <i className="far fa-calendar" />
-                            Updated{' '}
+                            Ngày Tạo{' '}
                           </span>
-                          October 15, 2022
+                          {courseDetail.ngayTao}
                         </div>
                       </li>
                     </ul>
                     <div className="buy-btn">
                       <button className="button button-enroll-course btn btn-main-2 rounded">
-                        <i className="far fa-shopping-cart me-2" /> Enroll Course
+                        <i className="far fa-shopping-cart me-2" /> Tham Gia Khóa Học
                       </button>
                     </div>
                     <div className="course-meterial">
-                      <h4 className="mb-3">Material Includes</h4>
+                      <h4 className="mb-3">Tài Liệu Liên Quan</h4>
                       <ul className="course-meterial-list">
                         <li>
                           <i className="fal fa-long-arrow-right" />
@@ -418,17 +414,17 @@ export default function CourseDetail() {
                         </li>
                         <li>
                           <i className="fal fa-long-arrow-right" />
-                          Files For Development
+                          Lộ Trình Phát Triển
                         </li>
                         <li>
                           <i className="fal fa-long-arrow-right" />
-                          Documentation Files
+                          Tài Liệu
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div className="course-latest">
-                    <h4 className="mb-4">Popular Courses</h4>
+                    <h4 className="mb-4">Những Khóa Học Tham Khảo</h4>
                     <ul className="recent-posts course-popular">
                       <li>
                         <div className="widget-post-thumb">
@@ -439,7 +435,7 @@ export default function CourseDetail() {
                         <div className="widget-post-body">
                           <h6>
                             {' '}
-                            <a href="#">Wordpress Theme Development</a>
+                            <a href="#">Làm Việc Với Theme Wordpress</a>
                           </h6>
                           <h5>$120</h5>
                         </div>
@@ -453,7 +449,7 @@ export default function CourseDetail() {
                         <div className="widget-post-body">
                           <h6>
                             {' '}
-                            <a href="#">mastering Photoshop for beginners</a>
+                            <a href="#">Thành thạo Photoshop cho người mới bắt đầu</a>
                           </h6>
                           <h5>$100</h5>
                         </div>
@@ -467,7 +463,7 @@ export default function CourseDetail() {
                         <div className="widget-post-body">
                           <h6>
                             {' '}
-                            <a href="#">Photography mastering adobe tool</a>
+                            <a href="#">Thành Thạo Công Cụ Adobe</a>
                           </h6>
                           <h5>$100</h5>
                         </div>
