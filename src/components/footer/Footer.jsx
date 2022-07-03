@@ -144,11 +144,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="fixed-btm-top">
-          <a href="#top-header" className="js-scroll-trigger scroll-to-top">
-            <i className="fa fa-angle-up" />
-          </a>
-        </div>
       </footer>
     </div>
   );

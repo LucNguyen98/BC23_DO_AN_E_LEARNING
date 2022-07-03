@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button, LazyLoadImg } from '..';
 
-function CoursesList({ courses = [] }) {
+function CoursesList({ courses = [], onClick }) {
+  const onHandleClick = (item) => {
+    if (typeof onClick === 'function') {
+      onClick(item);
+    }
+  };
+
   const renderCourse = (course, index) => {
     const { nguoiTao } = course;
     const desConvert =
@@ -67,7 +73,8 @@ function CoursesList({ courses = [] }) {
             </div>
             <p className="mb-20">{desConvert}</p>
             <Button
-              title="Ghi danh ngay"
+              onClick={() => onHandleClick(course)}
+              title="Xem chi tiết"
               icon={<i className="fa fa-angle-right"></i>}
             />
           </div>

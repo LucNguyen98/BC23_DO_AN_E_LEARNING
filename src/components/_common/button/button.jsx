@@ -41,8 +41,7 @@ export default function Button({
       {...props}
     >
       <div>
-        {' '}
-        <span>{title}</span>
+        {!!title && <span>{title}</span>}
         {icon && <span className="icon">{icon}</span>}
       </div>
     </button>

@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from 'src/components';
 import CoursesList from 'src/components/courseList/coursesList';
+import { COURSE_DETAIL_PATH } from 'src/constants/pathName';
 import {
   getCourseByCategoryAction,
   getCourseListAction,
@@ -13,6 +14,7 @@ const COUNT_LIMIT = 8;
 
 export default function Courses() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { maDanhMucKhoahoc: maDanhMuc = '' } = useParams();
   const { currentPage, totalCount } = useSelector((state) => state.course);
   const courses = useSelector(coursesSelector);
@@ -20,11 +22,6 @@ export default function Courses() {
   const totalPages = useMemo(() => {
     return Math.ceil(totalCount / COUNT_LIMIT);
   }, [totalCount]);
-
-  // useEffect(() => {
-  //   setfilters({ ...filters, maDanhMuc });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [maDanhMuc]);
 
   useEffect(() => {
     if (maDanhMuc) {
@@ -39,6 +36,11 @@ export default function Courses() {
 
   const onChangePage = (page) => {
     dispatch(getCourseListAction({ page, pageSize: COUNT_LIMIT }));
+  };
+
+  const goToCourseDetail = (item) => {
+    const link = `${COURSE_DETAIL_PATH}/${item?.maKhoaHoc}`;
+    history.push(link);
   };
 
   return (
@@ -56,7 +58,7 @@ export default function Courses() {
         </div>
       </div>
       <div className="container">
-        <CoursesList courses={courses} />
+        <CoursesList courses={courses} onClick={goToCourseDetail} />
         {totalCount > 1 && (
           <Pagination
             currentPage={currentPage}
