@@ -20,10 +20,10 @@ export default function BlogList() {
                       </div>
                       <div className="blog-content">
                         <div className="post-meta">
-                          <span className="post-author">by Admin</span>
+                          <span className="post-author">bởi Admin</span>
                           <span className="post-date">
                             <i className="fa fa-calendar-alt mr-2" />
-                            May 9, 2021
+                            09/05/2021
                           </span>
                           <span className="post-comments">
                             <i className="far fa-comments" />
@@ -33,7 +33,7 @@ export default function BlogList() {
                         <h3 className="post-title">
                           {' '}
                           <a href="blog-single.html">
-                            The Challenge Of Global Learning In Public Education
+                            Thách thức của việc học toàn cầu trong giáo dục công
                           </a>
                         </h3>
                         <p>
@@ -52,10 +52,10 @@ export default function BlogList() {
                       </div>
                       <div className="blog-content">
                         <div className="post-meta">
-                          <span className="post-author">by Admin</span>
+                          <span className="post-author">bởi Admin</span>
                           <span className="post-date">
                             <i className="fa fa-calendar-alt mr-2" />
-                            May 9, 2021
+                            09/05/2021
                           </span>
                           <span className="post-comments">
                             <i className="far fa-comments" />
@@ -65,7 +65,8 @@ export default function BlogList() {
                         <h3 className="post-title">
                           {' '}
                           <a href="blog-single.html">
-                            Google Ads certifications: Are they worth it?
+                            Giấy chứng nhận Google Ads: Chúng có xứng đáng
+                            không?
                           </a>
                         </h3>
                         <p>
@@ -84,10 +85,10 @@ export default function BlogList() {
                       </div>
                       <div className="blog-content">
                         <div className="post-meta">
-                          <span className="post-author">by Admin</span>
+                          <span className="post-author">bởi Admin</span>
                           <span className="post-date">
                             <i className="fa fa-calendar-alt mr-2" />
-                            May 9, 2021
+                            09/05/2021
                           </span>
                           <span className="post-comments">
                             <i className="far fa-comments" />
@@ -97,7 +98,7 @@ export default function BlogList() {
                         <h3 className="post-title">
                           {' '}
                           <a href="blog-single.html">
-                            Engage your ommunity like never before{' '}
+                            Thu hút sự quan tâm của bạn hơn bao giờ hết{' '}
                           </a>
                         </h3>
                         <p>
@@ -116,10 +117,10 @@ export default function BlogList() {
                       </div>
                       <div className="blog-content">
                         <div className="post-meta">
-                          <span className="post-author">by Admin</span>
+                          <span className="post-author">bởi Admin</span>
                           <span className="post-date">
                             <i className="fa fa-calendar-alt mr-2" />
-                            May 9, 2021
+                            09/05/2021
                           </span>
                           <span className="post-comments">
                             <i className="far fa-comments" />
@@ -129,7 +130,8 @@ export default function BlogList() {
                         <h3 className="post-title">
                           {' '}
                           <a href="blog-single.html">
-                            How to manage Facebook ads for clients the right way
+                            Cách quản lý quảng cáo Facebook cho khách hàng đúng
+                            cách
                           </a>
                         </h3>
                         <p>
@@ -181,7 +183,7 @@ export default function BlogList() {
                     </form>
                   </div>
                   <div className="widget widget_latest_post">
-                    <h4 className="widget-title">Latest Posts</h4>
+                    <h4 className="widget-title">Bài Đăng Mới Nhất</h4>
                     <div className="recent-posts">
                       <div className="single-latest-post">
                         <div className="widget-thumb">
@@ -193,12 +195,12 @@ export default function BlogList() {
                           <h5>
                             {' '}
                             <a href="blog-single.html">
-                              Custom Platform for an Audit Insurance
+                              Nền tảng tùy chỉnh cho bảo hiểm kiểm toán
                             </a>
                           </h5>
                           <span>
                             <i className="fa fa-calendar-times" />
-                            10 april 2021
+                            10/04/2021
                           </span>
                         </div>
                       </div>
@@ -212,12 +214,13 @@ export default function BlogList() {
                           <h5>
                             {' '}
                             <a href="blog-single.html">
-                              World’s most famous app developers
+                              Các nhà phát triển ứng dụng nổi tiếng nhất thế
+                              giới
                             </a>
                           </h5>
                           <span>
                             <i className="fa fa-calendar-times" />
-                            10 april 2021
+                            10/04/2021
                           </span>
                         </div>
                       </div>
@@ -231,22 +234,22 @@ export default function BlogList() {
                           <h5>
                             {' '}
                             <a href="blog-single.html">
-                              Be a top rated marketer
+                              Là một nhà tiếp thị được đánh giá cao nhất
                             </a>
                           </h5>
                           <span>
                             <i className="fa fa-calendar-times" />
-                            10 april 2021
+                            10/04/2021
                           </span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="widget widget_categories">
-                    <h4 className="widget-title">Categories</h4>
+                    <h4 className="widget-title">Phân Loại</h4>
                     <ul>
                       <li className="cat-item">
-                        <a href="#">Web Design</a>(4)
+                        <a href="#">Thiêt Kế Web</a>(4)
                       </li>
                       <li className="cat-item">
                         <a href="#">Wordpress</a>(14)
@@ -255,23 +258,22 @@ export default function BlogList() {
                         <a href="#">Marketing</a>(24)
                       </li>
                       <li className="cat-item">
-                        <a href="#">Design &amp; dev</a>(6)
+                        <a href="#">Thiết kế &amp; phát triển</a>(6)
                       </li>
                     </ul>
                   </div>
                   <div className="widget widget_tag_cloud">
-                    <h4 className="widget-title">Tags</h4>
-                    <a href="#">Design</a>
-                    <a href="#">Development</a>
+                    <h4 className="widget-title">Thể loại</h4>
+                    <a href="#">Thiết Kế</a>
+                    <a href="#">Phát Triển</a>
                     <a href="#">UX</a>
                     <a href="#">Marketing</a>
-                    <a href="#">Tips</a>
-                    <a href="#">Tricks</a>
+                    <a href="#">Mẹo</a>
                     <a href="#">Ui</a>
-                    <a href="#">Free</a>
+                    <a href="#">Miễn phí</a>
                     <a href="#">Wordpress</a>
                     <a href="#">bootstrap</a>
-                    <a href="#">Tutorial</a>
+                    <a href="#">Hướng dẫn</a>
                     <a href="#">Html</a>
                   </div>
                 </div>
