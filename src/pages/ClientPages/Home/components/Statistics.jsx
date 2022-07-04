@@ -13,7 +13,7 @@ export default function Statistics() {
                     <span className="counter h2">2000</span>
                     <span>+</span>
                   </div>
-                  <p>Students</p>
+                  <p>Học viên</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6">
@@ -21,7 +21,7 @@ export default function Statistics() {
                   <div className="count">
                     <span className="counter h2">1200</span>
                   </div>
-                  <p>Online Courses</p>
+                  <p>Khoá học Online</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6">
@@ -29,7 +29,7 @@ export default function Statistics() {
                   <div className="count">
                     <span className="counter h2">2256</span>
                   </div>
-                  <p>Finished Seasons</p>
+                  <p>Hoàn thành chương trình</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6">
@@ -38,7 +38,7 @@ export default function Statistics() {
                     <span className="counter h2">100</span>
                     <span>%</span>
                   </div>
-                  <p>Satisfaction</p>
+                  <p>Hài lòng</p>
                 </div>
               </div>
             </div>

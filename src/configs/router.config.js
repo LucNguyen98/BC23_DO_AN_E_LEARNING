@@ -18,10 +18,12 @@ const Instructors = lazy(() =>
   import('src/pages/ClientPages/Instructors/Instructors')
 );
 const Account = lazy(() => import('src/pages/ClientPages/Account/Account'));
-const Cart = lazy(() => import('src/pages/ClientPages/Cart/Cart'));
-const Checkout = lazy(() => import('src/pages/ClientPages/Checkout/Checkout'));
 const CourseRegister = lazy(() =>
   import('src/pages/ClientPages/Courses/CourseRegister')
+);
+
+const CoursesSearch = lazy(() =>
+  import('src/pages/ClientPages/Courses/CoursesSearch')
 );
 
 import {
@@ -32,6 +34,7 @@ import {
   COURSE_DETAIL_PATH,
   COURSE_PATH,
   COURSE_REGISTER,
+  COURSE_SEARCH_PATH,
   INSTRUCTORS_PATH,
   LOGIN_PATH,
   REGISTER_PATH,
@@ -44,6 +47,7 @@ export const clientRouter = [
     Component: Courses,
     name: 'Danh sách khoá học',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: `${COURSE_PATH}/:maDanhMucKhoahoc`,
@@ -51,6 +55,7 @@ export const clientRouter = [
     Component: Courses,
     name: 'Danh sách khoá học',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: `${COURSE_DETAIL_PATH}/:maKhoaHoc`,
@@ -65,6 +70,7 @@ export const clientRouter = [
     Component: Contact,
     name: 'Liên hệ',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: ABOUT_PATH,
@@ -72,6 +78,7 @@ export const clientRouter = [
     Component: About,
     name: 'Về chúng tôi',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: BLOG_PATH,
@@ -79,6 +86,7 @@ export const clientRouter = [
     Component: BlogList,
     name: 'Blog',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: '/blog',
@@ -86,6 +94,7 @@ export const clientRouter = [
     Component: BlogDetail,
     name: 'Blog',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: INSTRUCTORS_PATH,
@@ -93,6 +102,7 @@ export const clientRouter = [
     Component: Instructors,
     name: 'Giảng viên',
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
 
   {
@@ -106,27 +116,25 @@ export const clientRouter = [
     Component: Login,
   },
   {
-    path: '/cart',
-    exact: true,
-    Component: Cart,
-  },
-  {
-    path: '/checkout',
-    exact: true,
-    Component: Checkout,
-  },
-  {
     path: ACCOUNT_PATH,
     exact: true,
     Component: Account,
     name: 'Tài khoản',
     requireLogin: false,
     isScrollToTop: true,
+    isBreadcrumb: true,
   },
   {
     path: COURSE_REGISTER,
     exact: true,
     Component: CourseRegister,
+    isScrollToTop: true,
+  },
+  {
+    path: `${COURSE_SEARCH_PATH}`,
+    exact: false,
+    Component: CoursesSearch,
+    name: 'Tìm kiếm',
     isScrollToTop: true,
   },
   {

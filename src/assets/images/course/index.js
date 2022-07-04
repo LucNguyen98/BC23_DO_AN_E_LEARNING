@@ -8,3 +8,4 @@ export { default as cate_fullstack } from './cate_fullstack.svg';
 export { default as cate_data } from './cate_data.svg';
 export { default as cate_mobile } from './cate_mobile.svg';
 export { default as cate_design } from './cate_design.svg';
+export { default as not_found } from './not-found.png';

@@ -1,21 +1,26 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { not_found } from 'src/assets/images/course';
 import { Pagination } from 'src/components';
 import CoursesList from 'src/components/courseList/coursesList';
 import { COURSE_DETAIL_PATH } from 'src/constants/pathName';
-import {
-  getCourseByCategoryAction,
-  getCourseListAction,
-} from 'src/redux/actions/courseAction';
+import { getCourseListAction } from 'src/redux/actions/courseAction';
 import { coursesSelector } from 'src/redux/selectors/courseSelector';
 
 const COUNT_LIMIT = 8;
 
-export default function Courses() {
+export default function CoursesSearch() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { maDanhMucKhoahoc: maDanhMuc = '' } = useParams();
+  const error = useSelector((state) => state.course.error);
+  const { search } = useLocation();
+
+  const tenKhoaHoc = useMemo(() => {
+    const params = new URLSearchParams(search);
+    return params.get('tenKhoaHoc');
+  }, [search]);
+
   const { currentPage, totalCount } = useSelector((state) => state.course);
   const courses = useSelector(coursesSelector);
 
@@ -28,24 +33,39 @@ export default function Courses() {
   }, []);
 
   useEffect(() => {
-    if (maDanhMuc) {
-      dispatch(getCourseByCategoryAction({ maDanhMuc }));
-    } else {
-      dispatch(
-        getCourseListAction({ page: currentPage, pageSize: COUNT_LIMIT })
-      );
-    }
+    dispatch(
+      getCourseListAction({
+        tenKhoaHoc,
+        page: 1,
+        pageSize: COUNT_LIMIT,
+      })
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [maDanhMuc]);
+  }, [tenKhoaHoc]);
 
   const onChangePage = (page) => {
-    dispatch(getCourseListAction({ page, pageSize: COUNT_LIMIT }));
+    dispatch(getCourseListAction({ tenKhoaHoc, page, pageSize: COUNT_LIMIT }));
   };
 
   const goToCourseDetail = (item) => {
     const link = `${COURSE_DETAIL_PATH}/${item?.maKhoaHoc}`;
     history.push(link);
   };
+
+  if (error?.message || error) {
+    return (
+      <div className="section-padding page text-center">
+        <img
+          alt=""
+          src={not_found}
+          className="img-fluid mb-2"
+          width={100}
+          height={100}
+        />
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <section className="section-padding page">

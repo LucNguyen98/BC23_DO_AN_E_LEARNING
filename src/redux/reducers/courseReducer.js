@@ -4,6 +4,7 @@ const initialState = {
   courseList: [],
   courseMenu: [],
   categories: [],
+  course: [],
   isLoading: false,
   error: null,
   currentPage: 1,
@@ -26,6 +27,7 @@ const courseSlice = createSlice({
         courseList: items,
         currentPage,
         totalCount,
+        error: null,
       };
     },
     getCourseListFail: (state, action) => {
@@ -67,6 +69,16 @@ const courseSlice = createSlice({
     getCourseByCategoryFail: (state, action) => {
       state.error = action.payload;
     },
+    // Lay thong tin khoa hoc
+    getCourseSuccess: (state, action) => {
+      return {
+        ...state,
+        course: action.payload,
+      };
+    },
+    getCourseFail: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -80,6 +92,8 @@ export const {
   getCourseByCategoryFail,
   getCourseMenuSuccess,
   getCourseMenuFail,
+  getCourseSuccess,
+  getCourseFail,
 } = courseSlice.actions;
 
 export default courseSlice.reducer;

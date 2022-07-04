@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ABOUT_PATH,
@@ -6,6 +6,7 @@ import {
   BLOG_PATH,
   CONTACT_PATH,
   COURSE_PATH,
+  COURSE_SEARCH_PATH,
   INSTRUCTORS_PATH,
   LOGIN_PATH,
 } from 'src/constants/pathName';
@@ -23,6 +24,8 @@ export default function Header() {
   const dispatch = useDispatch();
   const courseGroupByCategory = useSelector(courseMenuSelector);
   const user = getUser();
+
+  const [tenKhoaHoc, setTenKhoaHoc] = useState('');
 
   useEffect(() => {
     dispatch(getCourseMenuAction());
@@ -55,6 +58,11 @@ export default function Header() {
   const logOut = () => {
     dispatch(logOutHandle());
     window.location.reload(false);
+  };
+
+  const onHandleChange = (e) => {
+    const { value } = e.target;
+    setTenKhoaHoc(value);
   };
 
   // const renderCategories = () => {
@@ -127,7 +135,6 @@ export default function Header() {
       </div>
     );
   };
-
   return (
     <header className="header-style-1">
       <div className="header-topbar topbar-style-2">
@@ -196,23 +203,24 @@ export default function Header() {
                 <img src="/images/logo.png" alt="" className="img-fluid" />
               </NavLinkComponent>
             </div>
-            {/* <div className="offcanvas-icon d-block d-lg-none">
-              <button className="nav-toggler" onClick={openMenu}>
-                <i className="fa fa-bars"></i>
-              </button>
-            </div>
-            {renderCategories()} */}
             <div className="header-search-bar d-none d-xl-block ms-4">
-              <form action="#">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search for Course"
-                />
-                <a href="#" className="search-submit">
-                  <i className="fa fa-search"></i>
-                </a>
-              </form>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Tìm kiếm khoá học"
+                name="tenKhoaHoc"
+                onChange={onHandleChange}
+              />
+              <NavLinkComponent
+                inActiveColor
+                to={{
+                  pathname: `${COURSE_SEARCH_PATH}`,
+                  search: `?tenKhoaHoc=${tenKhoaHoc}`,
+                }}
+                className="search-submit"
+              >
+                <i className="fa fa-search"></i>
+              </NavLinkComponent>
             </div>
             <nav className="site-navbar ml-auto">
               <ul className="primary-menu">
