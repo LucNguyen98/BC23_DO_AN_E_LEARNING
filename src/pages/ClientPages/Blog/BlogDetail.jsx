@@ -15,20 +15,20 @@ export default function BlogDetail() {
                   </div>
                   <div className="single-post-content">
                     <div className="post-meta">
-                      <span className="post-author">by Admin</span>
+                      <span className="post-author">bởi Admin</span>
                       <span className="post-date">
                         <i className="fa fa-calendar-alt mr-2" />
-                        May 9, 2021
+                        Ngày 9 Tháng 5, 2022
                       </span>
                       <span className="post-comments">
                         <i className="far fa-comments" />
-                        15 Comments
+                        15 Bình Luận
                       </span>
                     </div>
                     <h3 className="post-title">
                       {' '}
-                      Digital Marketing Service Launched Ready Their Website
-                      Working Our Site.
+                      Digital Marketing khởi tạo Website của bạn, làm việc với
+                      chúng tôi ngay.
                     </h3>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -38,29 +38,30 @@ export default function BlogDetail() {
                       adipisci.
                     </p>
                     <p>
-                      Some SEO-related tools such as the Google Keyword Planner
-                      and Google Analytics provide quantitative
+                      Một số công cụ hỗ trợ SEO như là Google Keyword Planner
+                      and Google Analytics cúng cấp định lượng ...
                     </p>
                     <blockquote>
-                      Good design good business.Deliver the project wirthin
-                      time.its called professionalism. Build your site with
-                      care.
-                      <cite>- Site Admin</cite>
+                      Thiết kế tốt sẽ cải thiện doanh thu của bạn. Giao dự án
+                      đúng tiến độ đề ra. Nó gọi là sự chuyên nghiệp. Xây dựng
+                      trang Web của bạn với sự quan tâm.
+                      <cite>- Admin</cite>
                     </blockquote>
                     <h4 className="inner-title">
-                      SEO is a Cost-Effective Advertising Strategy
+                      SEO là một chiến lược quảng bá hiệu quả về chi phí.
                     </h4>
                     <p>
-                      Some SEO-related tools such as the Google Keyword Planner
-                      and Google Analytics provide quantitative data to help you
-                      understand your market, analyze the trends, and know your
-                      competitors’ standings. It helps you identify popular and
-                      valuable keywords so you can decide how to structure or
-                      revise your content. It also gives you insights on your
-                      market’s behavior such as location, times of activity,
-                      frequency of searches, technologies used, product
-                      preferences, etc. All these metrics are useful in helping
-                      you get to know your audience.
+                      Một số công cụ hỗ trợ SEO như là Google Keyword Planner
+                      and Google Analytics cúng cấp định lượng về dữ liệu để
+                      giúp bạn hiểu về thị trường của mình, phân tích xu hướng,
+                      và hiểu về chỗ đứng của đôi thủ. Giúp bạn xác định được
+                      các từ khóa nổi bật và có giá trị để bạn có thể quyết định
+                      xây dựng hoặc làm mới nội dung của bạn. Nó còn hỗ trợ
+                      những cái nhìn chuyên sâu vào thị trường của bạn như là
+                      địa điểm, thời gian hoạt động, tần suất tìm kiếm, công
+                      nghệ được dùng, lựa chọn sản phẩm, ... Tất cả các chỉ số
+                      này đều hữu ích trong việc trợ giúp bạn làm quen với khán
+                      giả của mình.
                     </p>
                     <ol>
                       <li>Donec porta ultricies urna, faucib</li>
@@ -68,37 +69,37 @@ export default function BlogDetail() {
                       <li>Porta ultricies urna, faucib</li>
                     </ol>
                     <h4 className="inner-title">
-                      SEO is a Cost-Effective Advertising Strategy
+                      SEO là một chiến lược quảng bá hiệu quả về chi phí.
                     </h4>
                     <p>
                       {' '}
-                      It also gives you insights on your market’s behavior such
-                      as location, times of activity, frequency of searches,
-                      technologies used, product preferences, etc. All these
-                      metrics are useful in helping you get to know your
-                      audience.
+                      Nó còn hỗ trợ những cái nhìn chuyên sâu vào thị trường của
+                      bạn như là địa điểm, thời gian hoạt động, tần suất tìm
+                      kiếm, công nghệ được dùng, lựa chọn sản phẩm, ... Tất cả
+                      các chỉ số này đều hữu ích trong việc trợ giúp bạn làm
+                      quen với khán giả của mình.
                     </p>
                     <ul>
-                      <li>Lo managed to make it hers for $28 million.</li>
+                      <li>Lo đã kiếm được nó với giá 28 triệu đô la.</li>
                       <li>Ultricies porta Donec urna, faucib</li>
                       <li>
-                        Lo managed to make it hers for $28 million. As the Bronx
-                        native acquires{' '}
+                        Lo đã kiếm được nó với giá 28 triệu đô la. Như Bronx mua
+                        lại bản địa{' '}
                       </li>
                       <li>
-                        The property, complete with a 30-seat screening room, a
-                        100-seat amphit{' '}
+                        Khách sạn hoàn chỉnh với phòng chiếu 30 chỗ, 100 chỗ
+                        ngồi{' '}
                       </li>
                     </ul>
                   </div>
                   <div className="blog-footer-meta d-md-flex justify-content-between align-items-center">
                     <div className="post-tags mb-4 mb-md-0">
-                      <a href="#">Design</a>
-                      <a href="#">Development</a>
+                      <a href="#">Thiết Kế</a>
+                      <a href="#">Phát Triển</a>
                       <a href="#">UX</a>
                     </div>
                     <div className="article-share d-md-flex align-items-center">
-                      <h6>Share: </h6>
+                      <h6>Chia sẻ: </h6>
                       <ul className="social-icon">
                         <li>
                           <a href="#">
@@ -136,7 +137,7 @@ export default function BlogDetail() {
                     </div>
                     <div className="author-info">
                       <h4>Mikel John</h4>
-                      <span>Web Developer</span>
+                      <span>Lập trình viên Web</span>
                       <p>
                         Lorem ipsum dolor sit amet Officia enim nihil accusamus
                         error perspiciatis nam quas distinctio nobis, quibusdam
@@ -146,14 +147,14 @@ export default function BlogDetail() {
                     </div>
                   </div>
                   <div className="comments common-form">
-                    <h3 className="title">2 Comments</h3>
+                    <h3 className="title">2 Bình Luận</h3>
                     <div className="comment-box">
                       <div className="comment-avatar">
                         <img src={user} className="me-3" alt="..." />
                       </div>
                       <div className="comment-info">
                         <h5>Harish John</h5>
-                        <span>17 Feb 2021</span>
+                        <span>17/02/2021</span>
                         <p>
                           {' '}
                           Cras sit amet nibh libero, in gravida nulla. Nulla vel
@@ -163,7 +164,7 @@ export default function BlogDetail() {
                         </p>
                         <a className="reply-link" href="#">
                           <i className="fas fa-reply-all" />
-                          Reply
+                          Trả Lời
                         </a>
                       </div>
                     </div>
@@ -174,7 +175,7 @@ export default function BlogDetail() {
                         </div>
                         <div className="comment-info">
                           <h5>Harish John</h5>
-                          <span>17 Feb 2021</span>
+                          <span>17/02/2021</span>
                           <p>
                             {' '}
                             Cras sit amet nibh libero, in gravida nulla. Nulla
@@ -184,7 +185,7 @@ export default function BlogDetail() {
                           </p>
                           <a className="reply-link" href="#">
                             <i className="fas fa-reply-all" />
-                            Reply
+                            Trả Lời
                           </a>
                         </div>
                       </div>
@@ -195,7 +196,7 @@ export default function BlogDetail() {
                       </div>
                       <div className="comment-info">
                         <h5>Harish John </h5>
-                        <span>17 Feb 2021</span>
+                        <span>17/02/2021</span>
                         <p>
                           Cras sit amet nibh libero, in gravida nulla. Nulla vel
                           metus scelerisque ante sollicitudin. Fusce condimentum
@@ -204,16 +205,16 @@ export default function BlogDetail() {
                         </p>
                         <a className="reply-link" href="#">
                           <i className="fas fa-reply-all" />
-                          Reply
+                          Trả Lời
                         </a>
                       </div>
                     </div>
                   </div>
                   <div className="comments-form common-form mt-4 ">
-                    <h3 className="titile">Write a Review </h3>
+                    <h3 className="titile">Hãy để lại bình luận </h3>
                     <p>
-                      Your email address will not be published. Required fields
-                      are marked *
+                      Email của bạn sẽ không được công khai. Những trường bắt
+                      buộc sẽ đánh dấu *
                     </p>
                     <form action="#" className="comment_form">
                       <div className="row form-row">
@@ -222,7 +223,7 @@ export default function BlogDetail() {
                             <input
                               type="text"
                               className="form-control"
-                              placeholder="Name"
+                              placeholder="Họ Tên"
                             />
                           </div>
                         </div>
@@ -251,7 +252,7 @@ export default function BlogDetail() {
                               id="msgt"
                               cols={30}
                               rows={6}
-                              placeholder="Comment"
+                              placeholder="Bình Luận"
                               className="form-control"
                               defaultValue={''}
                             />
@@ -260,7 +261,7 @@ export default function BlogDetail() {
                         <div className="col-lg-12">
                           <div className="form-group">
                             <a href="#" className="btn btn-main rounded">
-                              Post Comment
+                              Đăng Bình Luận
                             </a>
                           </div>
                         </div>
@@ -284,7 +285,7 @@ export default function BlogDetail() {
                     </form>
                   </div>
                   <div className="widget widget_latest_post">
-                    <h4 className="widget-title">Latest Posts</h4>
+                    <h4 className="widget-title">Bài Đăng Mới Nhất</h4>
                     <div className="recent-posts">
                       <div className="single-latest-post">
                         <div className="widget-thumb">
@@ -296,12 +297,12 @@ export default function BlogDetail() {
                           <h5>
                             {' '}
                             <a href="blog-single.html">
-                              Custom Platform for an Audit Insurance
+                              Nền tảng tùy chỉnh cho bảo hiểm kiểm toán
                             </a>
                           </h5>
                           <span>
                             <i className="fa fa-calendar-times" />
-                            10 april 2021
+                            10/04/2021
                           </span>
                         </div>
                       </div>
@@ -315,12 +316,13 @@ export default function BlogDetail() {
                           <h5>
                             {' '}
                             <a href="blog-single.html">
-                              World’s most famous app developers
+                              Các nhà phát triển ứng dụng nổi tiếng nhất thế
+                              giới
                             </a>
                           </h5>
                           <span>
                             <i className="fa fa-calendar-times" />
-                            10 april 2021
+                            10/04/2021
                           </span>
                         </div>
                       </div>
@@ -334,22 +336,22 @@ export default function BlogDetail() {
                           <h5>
                             {' '}
                             <a href="blog-single.html">
-                              Be a top rated marketer
+                              Là một nhà tiếp thị được đánh giá cao nhất
                             </a>
                           </h5>
                           <span>
                             <i className="fa fa-calendar-times" />
-                            10 april 2021
+                            10/04/2021
                           </span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="widget widget_categories">
-                    <h4 className="widget-title">Categories</h4>
+                    <h4 className="widget-title">Phân Loại</h4>
                     <ul>
                       <li className="cat-item">
-                        <a href="#">Web Design</a>(4)
+                        <a href="#">Thiết kế Web</a>(4)
                       </li>
                       <li className="cat-item">
                         <a href="#">Wordpress</a>(14)
@@ -358,23 +360,22 @@ export default function BlogDetail() {
                         <a href="#">Marketing</a>(24)
                       </li>
                       <li className="cat-item">
-                        <a href="#">Design &amp; dev</a>(6)
+                        <a href="#">Thiết kế &amp; phát triển</a>(6)
                       </li>
                     </ul>
                   </div>
                   <div className="widget widget_tag_cloud">
-                    <h4 className="widget-title">Tags</h4>
-                    <a href="#">Design</a>
-                    <a href="#">Development</a>
+                    <h4 className="widget-title">Thể loại</h4>
+                    <a href="#">Thiết Kế</a>
+                    <a href="#">Phát Triển</a>
                     <a href="#">UX</a>
                     <a href="#">Marketing</a>
-                    <a href="#">Tips</a>
-                    <a href="#">Tricks</a>
+                    <a href="#">Mẹo</a>
                     <a href="#">Ui</a>
-                    <a href="#">Free</a>
+                    <a href="#">Miễn phí</a>
                     <a href="#">Wordpress</a>
                     <a href="#">bootstrap</a>
-                    <a href="#">Tutorial</a>
+                    <a href="#">Hướng dẫn</a>
                     <a href="#">Html</a>
                   </div>
                 </div>
