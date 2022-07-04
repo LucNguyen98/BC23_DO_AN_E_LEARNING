@@ -28,7 +28,14 @@ function App() {
           component={
             <Switch>
               {clientRouter.map((route, index) => {
-                const { path, exact, name, Component, isScrollToTop } = route;
+                const {
+                  path,
+                  exact,
+                  name,
+                  Component,
+                  isScrollToTop,
+                  isBreadcrumb,
+                } = route;
                 // if (requireLogin) {
                 //   return (
                 //     <Route path={path} exact={exact} key={index}>
@@ -45,6 +52,7 @@ function App() {
                       path={path}
                       name={name}
                       isScrollToTop={isScrollToTop}
+                      isBreadcrumb={isBreadcrumb}
                     />
                   </Route>
                 );
