@@ -36,6 +36,10 @@ const courseApi = {
       headers,
     });
   },
+  ghiDanhKhoaHoc: (data, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/DangKyKhoaHoc';
+    return axiosInstance.post(endPoint, data, { headers });
+  },
 };
 
 export default courseApi;
