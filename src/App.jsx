@@ -5,7 +5,7 @@ import { clientRouter } from './configs/router.config';
 import TemplateClient from './templates/Template/client/TemplateClient';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import { SuspenseComponent } from './components';
-// import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
+import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
 
 import './assets/scss/css/responsive.css';
 import './assets/scss/css/woocomerce.css';
@@ -35,16 +35,17 @@ function App() {
                   Component,
                   isScrollToTop,
                   isBreadcrumb,
+                  requireLogin,
                 } = route;
-                // if (requireLogin) {
-                //   return (
-                //     <Route path={path} exact={exact} key={index}>
-                //       <PrivateRoute>
-                //         <TemplateClient Component={Component} />
-                //       </PrivateRoute>
-                //     </Route>
-                //   );
-                // }
+                if (requireLogin) {
+                  return (
+                    <Route path={path} exact={exact} key={index}>
+                      <PrivateRoute>
+                        <TemplateClient Component={Component} />
+                      </PrivateRoute>
+                    </Route>
+                  );
+                }
                 return (
                   <Route key={index} path={path} exact={exact}>
                     <TemplateClient

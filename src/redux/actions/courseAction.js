@@ -1,6 +1,12 @@
+import { SUBMIT_ERROR } from 'src/constants/error';
+import { SUBMIT_SUCCESS } from 'src/constants/success';
 import { handleResponseApi } from 'src/helpers/parse';
 import courseApi from 'src/services/api/courseApi';
+import Swal from 'sweetalert2';
 import {
+  courseRegisterFail,
+  courseRegisterHandle,
+  courseRegisterSuccess,
   getCategoriesFail,
   getCategoriesSuccess,
   getCourseByCategoryFail,
@@ -88,5 +94,32 @@ export const getCourseDetail = (params) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getCourseFail(error));
+  }
+};
+
+export const courseRegisterAction = (data, onSuccess) => async (dispatch) => {
+  try {
+    dispatch(courseRegisterHandle());
+    const result = await courseApi.ghiDanhKhoaHoc(data);
+    const { data: dataResp, error } = handleResponseApi(result);
+    if (dataResp) {
+      dispatch(courseRegisterSuccess(dataResp));
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'BẠN ĐÃ ĐĂNG KÍ THÀNH CÔNG!',
+        text: 'CHÚNG TÔI SẼ LIÊN HỆ BẠN SỚM NHẤT. CẢM ƠN BẠN',
+        confirmButtonText: 'Trở về',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onSuccess?.();
+        }
+      });
+    }
+    if (error) {
+      dispatch(courseRegisterFail(error));
+      Swal.fire({ ...SUBMIT_ERROR, text: error });
+    }
+  } catch (error) {
+    dispatch(courseRegisterFail(error));
   }
 };

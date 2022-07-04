@@ -1,0 +1,11 @@
+.nav{
+    width: 80%;
+    .nav-item{
+        .nav-link{
+            color: #000;
+        }
+        .active{
+            color: #fff !important;
+        }
+    }
+}

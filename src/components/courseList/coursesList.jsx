@@ -28,6 +28,7 @@ function CoursesList({ courses = [], onClick }) {
                   objectFit: 'fill',
                 }}
               />
+              <div className="course-price">$200</div>
             </div>
           </div>
           <div className="course-content">

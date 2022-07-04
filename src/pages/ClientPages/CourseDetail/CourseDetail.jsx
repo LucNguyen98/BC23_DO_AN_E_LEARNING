@@ -493,7 +493,7 @@ export default function CourseDetail() {
                     </ul>
                     <div className="buy-btn">
                       <NavLinkComponent
-                        to={COURSE_REGISTER}
+                        to={`${COURSE_REGISTER}/${maKhoaHoc}`}
                         className="button button-enroll-course btn btn-main-2 rounded"
                       >
                         Ghi danh Khóa Học

@@ -120,15 +120,15 @@ export const clientRouter = [
     exact: true,
     Component: Account,
     name: 'Tài khoản',
-    requireLogin: false,
     isScrollToTop: true,
     isBreadcrumb: true,
   },
   {
-    path: COURSE_REGISTER,
+    path: `${COURSE_REGISTER}/:maKhoaHoc`,
     exact: true,
     Component: CourseRegister,
     isScrollToTop: true,
+    requireLogin: true,
   },
   {
     path: `${COURSE_SEARCH_PATH}`,
