@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -7,7 +7,7 @@ import {
   CardTitle,
   Row,
   Col,
-} from "reactstrap";
+} from 'reactstrap';
 
 const Buttons = () => {
   const [cSelected, setCSelected] = useState([]);

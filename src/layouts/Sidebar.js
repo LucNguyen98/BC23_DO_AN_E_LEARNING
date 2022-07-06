@@ -5,52 +5,52 @@ import { Link, useLocation } from 'react-router-dom';
 const navigation = [
   {
     title: 'Dashboard',
-    href: '/starter',
+    href: '/admin/starter',
     icon: 'bi bi-speedometer2',
   },
   {
     title: 'Alert',
-    href: '/alerts',
+    href: '/admin/alerts',
     icon: 'bi bi-bell',
   },
   {
     title: 'Badges',
-    href: '/badges',
+    href: '/admin/badges',
     icon: 'bi bi-patch-check',
   },
   {
     title: 'Buttons',
-    href: '/buttons',
+    href: '/admin/buttons',
     icon: 'bi bi-hdd-stack',
   },
   {
     title: 'Cards',
-    href: '/cards',
+    href: '/admin/cards',
     icon: 'bi bi-card-text',
   },
   {
     title: 'Grid',
-    href: '/grid',
+    href: '/admin/grid',
     icon: 'bi bi-columns',
   },
   {
     title: 'Table',
-    href: '/table',
+    href: '/admin/table',
     icon: 'bi bi-layout-split',
   },
   {
     title: 'Forms',
-    href: '/forms',
+    href: '/admin/forms',
     icon: 'bi bi-textarea-resize',
   },
   {
     title: 'Breadcrumbs',
-    href: '/breadcrumbs',
+    href: '/admin/breadcrumbs',
     icon: 'bi bi-link',
   },
   {
     title: 'About',
-    href: '/about',
+    href: '/admin/about',
     icon: 'bi bi-people',
   },
 ];

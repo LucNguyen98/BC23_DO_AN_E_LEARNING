@@ -1,4 +1,4 @@
-// import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
@@ -18,7 +18,7 @@ const FullLayout = () => {
         <div className="contentArea">
           {/********Middle Content**********/}
           <Container className="p-4" fluid>
-            {/* <Outlet /> */}
+            <Outlet />
           </Container>
         </div>
       </div>

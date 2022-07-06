@@ -1,4 +1,5 @@
-import { Row, Col, Card, CardBody, CardTitle, Button } from "reactstrap";
+import { Row, Col, Card, CardBody, CardTitle, Button } from 'reactstrap';
+import React from 'react';
 
 const About = () => {
   return (
@@ -16,7 +17,7 @@ const About = () => {
             <Row justify-content>
               <Col lg="8">
                 <h2 className="mt-4">Admin Pro React Admin Pro Version</h2>
-                <h5 className=" mb-4">
+                <h5 className="mb-4">
                   5 premium and highly customizable demo variations included in
                   the package, with React Router 6, Redux Toolkit, Axios nd much
                   more...

@@ -1,4 +1,5 @@
-import { Badge, Button, Card, CardBody, CardTitle, Row, Col } from "reactstrap";
+import { Badge, Button, Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
+import React from 'react';
 
 const Badges = () => {
   return (

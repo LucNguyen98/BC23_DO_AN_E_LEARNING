@@ -10,7 +10,8 @@ import {
   Label,
   Input,
   FormText,
-} from "reactstrap";
+} from 'reactstrap';
+import React from 'react';
 
 const Forms = () => {
   return (
@@ -78,27 +79,27 @@ const Forms = () => {
                 <Input id="exampleFile" name="file" type="file" />
                 <FormText>
                   This is some placeholder block-level help text for the above
-                  input. It's a bit lighter and easily wraps to a new line.
+                  input. It&apos;s a bit lighter and easily wraps to a new line.
                 </FormText>
               </FormGroup>
               <FormGroup tag="fieldset">
                 <legend>Radio Buttons</legend>
                 <FormGroup check>
-                  <Input name="radio1" type="radio" />{" "}
+                  <Input name="radio1" type="radio" />{' '}
                   <Label check>
-                    Option one is this and that—be sure to include why it's
+                    Option one is this and that—be sure to include why it&apos;s
                     great
                   </Label>
                 </FormGroup>
                 <FormGroup check>
-                  <Input name="radio1" type="radio" />{" "}
+                  <Input name="radio1" type="radio" />{' '}
                   <Label check>
                     Option two can be something else and selecting it will
                     deselect option one
                   </Label>
                 </FormGroup>
                 <FormGroup check disabled>
-                  <Input disabled name="radio1" type="radio" />{" "}
+                  <Input disabled name="radio1" type="radio" />{' '}
                   <Label check>Option three is disabled</Label>
                 </FormGroup>
               </FormGroup>

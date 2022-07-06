@@ -11,6 +11,16 @@ import './assets/scss/css/responsive.css';
 import './assets/scss/css/woocomerce.css';
 import './assets/scss/index.scss';
 import FullLayout from './layouts/FullLayout';
+import Starter from './views/Starter';
+import Alerts from './views/ui/Alerts';
+import Badges from './views/ui/Badges';
+import Buttons from './views/ui/Buttons';
+import Cards from './views/ui/Cards';
+import Grid from './views/ui/Grid';
+import Tables from './views/ui/Tables';
+import Forms from './views/ui/Forms';
+import Breadcrumbs from './views/ui/Breadcrumbs';
+import About from './views/About';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -69,8 +79,19 @@ function App() {
                   />
                 );
               })}
-              <Route path="/admin" component={FullLayout} />
-              <Route path="" component={PageNotFound} />
+              <Route path="/admin" element={<FullLayout />}>
+                <Route path="/admin/starter" element={<Starter />} />
+                <Route path="/admin/alerts" element={<Alerts />} />
+                <Route path="/admin/badges" element={<Badges />} />
+                <Route path="/admin/buttons" element={<Buttons />} />
+                <Route path="/admin/cards" element={<Cards />} />
+                <Route path="/admin/grid" element={<Grid />} />
+                <Route path="/admin/table" element={<Tables />} />
+                <Route path="/admin/forms" element={<Forms />} />
+                <Route path="/admin/breadcrumbs" element={<Breadcrumbs />} />
+                <Route path="/admin/about" element={<About />} />
+              </Route>
+              <Route path="" element={<PageNotFound />} />
             </Routes>
           }
         />

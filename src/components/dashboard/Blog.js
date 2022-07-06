@@ -6,7 +6,8 @@ import {
   CardText,
   CardTitle,
   Button,
-} from "reactstrap";
+} from 'reactstrap';
+import React from 'react';
 
 const Blog = (props) => {
   return (

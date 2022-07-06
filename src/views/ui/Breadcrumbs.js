@@ -6,7 +6,8 @@ import {
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
-} from "reactstrap";
+} from 'reactstrap';
+import React from 'react';
 
 const Breadcrumbs = () => {
   return (
