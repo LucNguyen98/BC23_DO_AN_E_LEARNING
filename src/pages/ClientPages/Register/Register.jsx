@@ -13,7 +13,7 @@ import * as yup from 'yup';
 import './Register.scss';
 function Register() {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const users = React.useRef({
     hoTen: '',
     taiKhoan: '',
@@ -57,7 +57,7 @@ function Register() {
         dispatch(
           registerAction(newValues, () => {
             resetForm();
-            history.push(LOGIN_PATH);
+            navigate(LOGIN_PATH);
           })
         );
       },

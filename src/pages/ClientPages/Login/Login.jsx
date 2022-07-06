@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import './Login.scss';
 function Login() {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const users = React.useRef({
     taiKhoan: '',
     matKhau: '',
@@ -34,7 +34,7 @@ function Login() {
         dispatch(
           loginAction(vals, () => {
             resetForm();
-            history.replace('/');
+            navigate('/', { replace: true });
           })
         );
       },

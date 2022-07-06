@@ -13,8 +13,8 @@ export default function PageNotFound() {
           <h1>Oops! Page not found!</h1>
           <br />
           <br />
-          <a href="#" className="btn-hover color-1">
-            <i className="fa fa-home" /> Go back to homepage
+          <a href="" className="btn-hover color-1">
+            <i className="fa fa-home" /> Trang chủ
           </a>
         </div>
       </div>

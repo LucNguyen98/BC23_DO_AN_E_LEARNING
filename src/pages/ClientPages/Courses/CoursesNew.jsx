@@ -14,7 +14,7 @@ const COUNT_LIMIT = 8;
 
 export default function Courses() {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { maDanhMucKhoahoc: maDanhMuc = '' } = useParams();
   const { currentPage, totalCount } = useSelector((state) => state.course);
   const courses = useSelector(coursesSelector);
@@ -44,7 +44,7 @@ export default function Courses() {
 
   const goToCourseDetail = (item) => {
     const link = `${COURSE_DETAIL_PATH}/${item?.maKhoaHoc}`;
-    history.push(link);
+    navigate(link);
   };
 
   return (

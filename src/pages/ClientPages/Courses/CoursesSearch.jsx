@@ -12,7 +12,7 @@ const COUNT_LIMIT = 8;
 
 export default function CoursesSearch() {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.course.error);
   const { search } = useLocation();
 
@@ -49,7 +49,7 @@ export default function CoursesSearch() {
 
   const goToCourseDetail = (item) => {
     const link = `${COURSE_DETAIL_PATH}/${item?.maKhoaHoc}`;
-    history.push(link);
+    navigate(link);
   };
 
   if (error?.message || error) {
