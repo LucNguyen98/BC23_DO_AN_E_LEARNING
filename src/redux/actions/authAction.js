@@ -7,8 +7,6 @@ import {
   getProfileFail,
   getProfileHandle,
   getProfileSuccess,
-  getUserFail,
-  getUserSuccess,
   loginFail,
   loginHandle,
   loginSuccess,
@@ -104,20 +102,5 @@ export const getProfileAction = () => async (dispatch) => {
     }
   } catch (error) {
     dispatch(updateUserFail(error));
-  }
-};
-
-export const getUserAction = (params) => async (dispatch) => {
-  try {
-    const result = await authApi.layDanhSachNguoiDung(params);
-    const { data, error } = handleResponseApi(result);
-    if (data) {
-      dispatch(getUserSuccess(data));
-    }
-    if (error) {
-      dispatch(getUserFail(error));
-    }
-  } catch (error) {
-    dispatch(getUserFail(error));
   }
 };

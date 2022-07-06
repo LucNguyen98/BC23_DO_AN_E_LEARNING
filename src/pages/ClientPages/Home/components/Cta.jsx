@@ -1,6 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button } from 'src/components';
+import { COURSE_PATH } from 'src/constants/pathName';
 
 export default function Cta() {
+  const history = useHistory();
+
   return (
     <section className="cta-5 mb--120 bg-gray">
       <div className="container">
@@ -20,16 +25,16 @@ export default function Cta() {
                 <div className="col-xl-6 col-lg-6">
                   <div className="cta-content ps-lg-4">
                     <span className="subheading mb-10">
-                      Not sure where to start?
+                      Không biết nên bắt đầu từ đâu ?
                     </span>
                     <h2 className="mb-20">
-                      {' '}
-                      Want to know Special Offers &amp; Updates of new courses?
+                      Bạn muốn biết Ưu đãi đặc biệt và Thông tin cập nhật của
+                      các khóa học mới?
                     </h2>
-                    <a href="" className="btn btn-main rounded">
-                      {' '}
-                      Join NOw
-                    </a>
+                    <Button
+                      title="Đăng ký ngay"
+                      onClick={() => history.push(COURSE_PATH)}
+                    />
                   </div>
                 </div>
               </div>

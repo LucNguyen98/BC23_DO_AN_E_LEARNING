@@ -10,8 +10,8 @@ export default function Contact() {
             <div className="col-xl-4 col-lg-5">
               <div className="contact-info-wrapper mb-5 mb-lg-0">
                 <h3>
-                  what is your story?
-                  <span>Get in touch</span>
+                  Bạn gặp phải sự cố?
+                  <span>Hãy liên lạc</span>
                 </h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -27,7 +27,7 @@ export default function Contact() {
                 </div>
                 <div className="contact-item">
                   <i className="fa fa-map-marker" />
-                  <h5>Moon Street Light Avenue, 14/05 Jupiter </h5>
+                  <h5>Tầng 5, toà nhà Suri, 112 Cao Thắng, Quận 3, TPHCM</h5>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@ export default function Contact() {
                       style={{ display: 'none' }}
                       role="alert"
                     >
-                      Your message was sent successfully.
+                      Thông điệp của bạn đã được gửi thành công.
                     </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@ export default function Contact() {
                         id="name"
                         name="name"
                         className="form-control"
-                        placeholder="Your Name"
+                        placeholder="Họ Tên"
                       />
                     </div>
                   </div>
@@ -68,7 +68,7 @@ export default function Contact() {
                         name="email"
                         id="email"
                         className="form-control"
-                        placeholder="Email Address"
+                        placeholder="Email"
                       />
                     </div>
                   </div>
@@ -79,7 +79,7 @@ export default function Contact() {
                         name="subject"
                         id="subject"
                         className="form-control"
-                        placeholder="Subject"
+                        placeholder="Chủ Đề"
                       />
                     </div>
                   </div>
@@ -91,7 +91,7 @@ export default function Contact() {
                         cols={30}
                         rows={6}
                         className="form-control"
-                        placeholder="Your Message"
+                        placeholder="Tin Nhắn Của Bạn"
                         defaultValue={''}
                       />
                     </div>
@@ -103,7 +103,7 @@ export default function Contact() {
                       className="btn btn-main w-100 rounded"
                       type="submit"
                     >
-                      Send Message
+                      Gửi Tin Nhắn
                     </button>
                   </div>
                 </div>

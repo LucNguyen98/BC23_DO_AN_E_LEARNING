@@ -2,7 +2,7 @@ import React from 'react';
 import CoursesList from 'src/components/courseList/coursesList';
 import { createClass } from 'src/utils/utils';
 
-export default function PopularCourses({ customClass = [] }) {
+function PopularCourses({ courses = [], customClass = [] }) {
   return (
     <section
       className={createClass([
@@ -15,13 +15,18 @@ export default function PopularCourses({ customClass = [] }) {
         <div className="row justify-content-center">
           <div className="col-xl-8">
             <div className="section-heading mb-70 text-center">
-              <h2 className="font-lg">Popular Courses</h2>
-              <p>Discover Your Perfect Program In Our Courses.</p>
+              <h2 className="font-lg">Các khóa học phổ biến</h2>
+              <p>
+                Khám phá chương trình hoàn hảo của bạn trong các khóa học của
+                chúng tôi.
+              </p>
             </div>
           </div>
         </div>
-        <CoursesList />
+        <CoursesList courses={courses} maKhoaHoc={'Home'} />
       </div>
     </section>
   );
 }
+
+export default React.memo(PopularCourses);

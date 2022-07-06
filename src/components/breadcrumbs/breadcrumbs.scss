@@ -1,0 +1,60 @@
+/*====================
+Page Banner Area
+======================*/
+.page-header {
+    padding: 90px 0px;
+    background: #F4F5F8;
+    position: relative;
+    background: url("../../assets/images/bg/page-title.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+.page-header:after {
+    position: absolute;
+    content: "";
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 31, 66, 0.9);
+    z-index: -1;
+}
+
+.page-header .title-block {
+    text-align: center;
+}
+
+.page-header .title-block h1 {
+    color: #fff;
+    line-height: 50px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.page-header .title-block ul li {
+    position: relative;
+    padding-right: 20px;
+    color: #fff;
+    display: inline-block;
+}
+
+.page-header .title-block ul li:after {
+    position: absolute;
+    content: "/";
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto 0px;
+    font-size: 14px;
+    margin-right: 3px;
+}
+
+.page-header .title-block ul li:last-child:after {
+    display: none;
+}
+
+.page-header .title-block ul li a {
+    font-weight: 600;
+}

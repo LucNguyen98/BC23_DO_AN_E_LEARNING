@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLinkComponent } from 'src/components';
+import { COURSE_PATH } from 'src/constants/pathName';
 
 export default function Banner() {
   return (
@@ -12,19 +14,18 @@ export default function Banner() {
                 Nâng cấp kỹ năng học tập của bạn là nâng cấp cuộc sống của bạn
               </h1>
               <p className="mb-40">
-                {' '}
                 Hơn 92% trên hơn 3000 học viên học tại Edumel học theo lộ trình
                 và có việc làm tốt. Edumel đã triển khai chương trình Học lập
                 trình trực tuyến Online tại CyberLearn để tạo điều kiện cho các
                 bạn không có điều kiện học trực tiếp tại HCM có thể tham gia.
               </p>
               <div className="btn-container">
-                <a href="" className="btn btn-main rounded">
-                  Tìm kiếm khoá học
-                </a>
-                <a href="" className="btn btn-white rounded ml-3">
-                  Bắt đầu ngay{' '}
-                </a>
+                <NavLinkComponent
+                  to={COURSE_PATH}
+                  className="btn btn-main rounded"
+                >
+                  Bắt đầu ngay
+                </NavLinkComponent>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 export const groupCourseByCategory = (state) => {
-  const courseList = state.course.courseList || [];
+  const courseList = state.course.courseMenu || [];
   return courseList.reduce((acc, current) => {
     let danhMucKhoaHoc = current['danhMucKhoaHoc'];
     let item = {
@@ -35,4 +35,46 @@ export const handleResponseApi = (response) => {
     data: null,
     error: data || statusText,
   };
+};
+
+export const mapDataInstructors = (users) => {
+  const instructors =
+    users?.filter((user) => user.maLoaiNguoiDung === 'GV') || [];
+  return instructors?.map((ins) => {
+    const students = Math.floor(Math.random(1) * 500);
+    const courses = Math.floor(Math.random(1) * 100);
+    return {
+      ...ins,
+      students,
+      courses,
+      tenLoaiNguoiDung: 'Giảng viên',
+      urlImage: `https://i.pravatar.cc?u=${ins?.hoTen}`,
+    };
+  });
+};
+
+export const mapDataCourses = (courses) => {
+  return courses?.map((course) => {
+    const students = Math.floor(Math.random(1) * 500);
+    const lessons = Math.floor(Math.random(1) * 99);
+    const hours = Math.floor(Math.random(1) * 70);
+    return {
+      ...course,
+      nguoiTao: {
+        ...course.nguoiTao,
+        hinhAnh: `https://i.pravatar.cc?u=${course.nguoiTao?.hoTen}`,
+      },
+      students,
+      lessons,
+      hours,
+    };
+  });
+};
+
+export const mapPages = (totalPages) => {
+  let pages = [];
+  for (let index = 1; index <= totalPages; index++) {
+    pages.push(index);
+  }
+  return pages;
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ABOUT_PATH,
@@ -6,51 +6,57 @@ import {
   BLOG_PATH,
   CONTACT_PATH,
   COURSE_PATH,
+  COURSE_SEARCH_PATH,
   INSTRUCTORS_PATH,
   LOGIN_PATH,
 } from 'src/constants/pathName';
 import { getUser } from 'src/helpers/localStorage';
-import {
-  getCategoriesAction,
-  getCourseListAction,
-} from 'src/redux/actions/courseAction';
+import { getCourseMenuAction } from 'src/redux/actions/courseAction';
 import { logOutHandle } from 'src/redux/reducers/authReducer';
 import {
-  // categoriesSelector,
-  courseGroupByCategorySelector,
+  categoriesSelector,
+  courseMenuSelector,
 } from 'src/redux/selectors/courseSelector';
 import { NavLinkComponent } from '..';
 import SubMenu from '../SubMenu/SubMenu';
 import './Header.scss';
+import HeaderMobile from './HeaderMenuMobile';
 export default function Header() {
-  const dispatch = useDispatch();
-  // const categories = useSelector(categoriesSelector);
-  const courseGroupByCategory = useSelector(courseGroupByCategorySelector);
   const user = getUser();
+  const dispatch = useDispatch();
+  const courseGroupByCategory = useSelector(courseMenuSelector);
+  const categories = useSelector(categoriesSelector);
+  const [screen, setScreen] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const [tenKhoaHoc, setTenKhoaHoc] = useState('');
 
   useEffect(() => {
-    dispatch(getCategoriesAction());
-    dispatch(getCourseListAction());
+    dispatch(getCourseMenuAction());
   }, [dispatch]);
 
   useEffect(() => {
-    window.addEventListener('resize', () => breakpointCheck());
-    return () => window.removeEventListener('resize', null);
+    window.onload = () => {
+      setScreen({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.onresize = () => {
+      setScreen({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    return () => {
+      window.removeEventListener('onload', null);
+      window.removeEventListener('onresize', null);
+    };
   }, []);
-
-  function breakpointCheck() {
-    let windoWidth = window.innerWidth;
-    if (windoWidth <= 991) {
-      document.querySelector('.header-navbar').classList.add('mobile-menu');
-    } else {
-      document.querySelector('.header-navbar').classList.remove('mobile-menu');
-    }
-  }
-
-  // const openMenu = (e) => {
-  //   document.querySelector('.site-navbar').classList.toggle('menu-on');
-  //   e.preventDefault();
-  // };
 
   const closeMenu = (e) => {
     document.querySelector('.site-navbar').classList.remove('menu-on');
@@ -62,29 +68,34 @@ export default function Header() {
     window.location.reload(false);
   };
 
-  // const renderCategories = () => {
-  //   return (
-  //     <div className="header-category-menu d-none d-xl-block">
-  //       <ul>
-  //         <li className="has-submenu">
-  //           <NavLinkComponent to={''}>
-  //             <i className="fa fa-th mr-2" />
-  //             Danh mục
-  //           </NavLinkComponent>
-  //           <ul className="submenu">
-  //             {categories?.map((cate, index) => (
-  //               <li key={index}>
-  //                 <NavLinkComponent to={`${COURSE_PATH}/${cate.maDanhMuc}`}>
-  //                   {cate?.tenDanhMuc}
-  //                 </NavLinkComponent>
-  //               </li>
-  //             ))}
-  //           </ul>
-  //         </li>
-  //       </ul>
-  //     </div>
-  //   );
-  // };
+  const onHandleChange = (e) => {
+    const { value } = e.target;
+    setTenKhoaHoc(value);
+  };
+
+  const renderCategories = () => {
+    return (
+      <div className="header-category-menu d-none d-xl-block mr-2">
+        <ul>
+          <li className="has-submenu">
+            <NavLinkComponent to={''} inActiveColor>
+              <i className="fa fa-th mr-2" />
+              Danh mục
+            </NavLinkComponent>
+            <ul className="submenu">
+              {categories?.map((cate, index) => (
+                <li key={index}>
+                  <NavLinkComponent to={`${COURSE_PATH}/${cate.maDanhMuc}`}>
+                    {cate?.tenDanhMuc}
+                  </NavLinkComponent>
+                </li>
+              ))}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    );
+  };
 
   const renderAccount = () => {
     return (
@@ -193,70 +204,95 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="header-navbar navbar-sticky">
-        <div className="container">
-          <div className="d-flex align-items-center justify-content-between">
-            <div className="site-logo">
-              <NavLinkComponent to={'/'}>
-                <img src="/images/logo.png" alt="" className="img-fluid" />
-              </NavLinkComponent>
-            </div>
-            {/* <div className="offcanvas-icon d-block d-lg-none">
-              <button className="nav-toggler" onClick={openMenu}>
-                <i className="fa fa-bars"></i>
-              </button>
-            </div>
-            {renderCategories()} */}
-            <div className="header-search-bar d-none d-xl-block ms-4">
-              <form action="#">
+      {screen.width <= 991 ? (
+        <HeaderMobile
+          courseGroupByCategory={courseGroupByCategory}
+          tenKhoaHoc={tenKhoaHoc}
+          renderCategories={renderCategories}
+        />
+      ) : (
+        <div className="header-navbar navbar-sticky">
+          <div className="container">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="site-logo">
+                <NavLinkComponent to={'/'}>
+                  <img src="/images/logo.png" alt="" className="img-fluid" />
+                </NavLinkComponent>
+              </div>
+              {renderCategories()}
+              <div className="header-search-bar d-none d-xl-block ms-4">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Search for Course"
+                  placeholder="Tìm kiếm khoá học"
+                  name="tenKhoaHoc"
+                  onChange={onHandleChange}
                 />
-                <a href="#" className="search-submit">
+                <NavLinkComponent
+                  inActiveColor
+                  to={{
+                    pathname: `${COURSE_SEARCH_PATH}`,
+                    search: `?tenKhoaHoc=${tenKhoaHoc}`,
+                  }}
+                  className="search-submit"
+                >
                   <i className="fa fa-search"></i>
-                </a>
-              </form>
+                </NavLinkComponent>
+              </div>
+
+              <nav className="site-navbar ml-auto">
+                <ul className="primary-menu">
+                  <li className="current">
+                    <NavLinkComponent to="">Trang chủ</NavLinkComponent>
+                  </li>
+                  <li>
+                    <NavLinkComponent to={COURSE_PATH}>
+                      Khoá học
+                    </NavLinkComponent>
+                    <SubMenu data={courseGroupByCategory} />
+
+                    <span className="menu-trigger">
+                      <i className="fa fa-angle-down"></i>
+                    </span>
+                  </li>
+                  <li className="has-submenu">
+                    <NavLinkComponent to={ABOUT_PATH}>
+                      Giới thiệu
+                    </NavLinkComponent>
+                    <ul className="submenu">
+                      <li>
+                        <NavLinkComponent to={ABOUT_PATH}>
+                          Giới thiệu
+                        </NavLinkComponent>
+                      </li>
+                      <li>
+                        <NavLinkComponent to={CONTACT_PATH}>
+                          Liên hệ
+                        </NavLinkComponent>
+                      </li>
+                    </ul>
+                    <span className="menu-trigger">
+                      <i className="fa fa-angle-down"></i>
+                    </span>
+                  </li>
+                  <li>
+                    <NavLinkComponent to={INSTRUCTORS_PATH}>
+                      Giảng viên
+                    </NavLinkComponent>
+                  </li>
+                  <li>
+                    <NavLinkComponent to={BLOG_PATH}>Blog</NavLinkComponent>
+                  </li>
+                </ul>
+
+                <button className="nav-close" onClick={closeMenu}>
+                  <i className="fa fa-times"></i>
+                </button>
+              </nav>
             </div>
-            <nav className="site-navbar ml-auto">
-              <ul className="primary-menu">
-                <li className="current">
-                  <NavLinkComponent to="">Trang chủ</NavLinkComponent>
-                </li>
-                <li>
-                  <NavLinkComponent to={COURSE_PATH}>Khoá học</NavLinkComponent>
-                  <SubMenu data={courseGroupByCategory} />
-
-                  <span className="menu-trigger">
-                    <i className="fa fa-angle-down"></i>
-                  </span>
-                </li>
-                <li>
-                  <NavLinkComponent to={ABOUT_PATH}>
-                    Về chúng tôi
-                  </NavLinkComponent>
-                </li>
-                <li>
-                  <NavLinkComponent to={INSTRUCTORS_PATH}>
-                    Giảng viên
-                  </NavLinkComponent>
-                </li>
-                <li>
-                  <NavLinkComponent to={BLOG_PATH}>Blog</NavLinkComponent>
-                </li>
-                <li>
-                  <NavLinkComponent to={CONTACT_PATH}>Liên hệ</NavLinkComponent>
-                </li>
-              </ul>
-
-              <button className="nav-close" onClick={closeMenu}>
-                <i className="fa fa-times"></i>
-              </button>
-            </nav>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

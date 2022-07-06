@@ -1,649 +1,535 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom/cjs/react-router-dom';
 import { author } from 'src/assets/images/blog';
-import { course_2, course_author, img_02 } from 'src/assets/images/course';
+import { course_author } from 'src/assets/images/course';
+import { LazyLoadImg, NavLinkComponent } from 'src/components';
+import { COURSE_REGISTER } from 'src/constants/pathName';
+import {
+  getCourseByCategoryAction,
+  getCourseDetail,
+} from 'src/redux/actions/courseAction';
+import { coursesSelector } from 'src/redux/selectors/courseSelector';
+import CourseSuggestList from './Component/CourseSuggestList/CourseSuggestList';
 
 export default function CourseDetail() {
-  return (
-    <div>
-      <section className="course-page-header page-header-2">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 col-xl-7">
-              <div className="course-header-wrapper mb-0 bg-transparent">
-                <h1 className="mb-3">Mastering PHP from zero to hero</h1>
-                <p>
-                  Grursus mal suada faci lisis Lorem ipsum dolarorit more
-                  ametion consectetur elit. Vesti at bulum nec odio. Dacere
-                  agemusque constantius concessis elit videmusne quia stoici
-                  constructio dissimillimas audiunt homerus commendationes
-                </p>
-                <div className="course-header-meta">
-                  <ul className="inline-list list-info">
-                    <li>
-                      <div className="course-author">
-                        <img src={course_author} alt="#" />
-                        Madge Alvarez
-                      </div>
-                    </li>
-                    <li>
-                      <div className="list-rating">
-                        <span>
-                          <i className="fas fa-star" />
-                        </span>
-                        <span>
-                          <i className="fas fa-star" />
-                        </span>
-                        <span>
-                          <i className="fas fa-star" />
-                        </span>
-                        <span>
-                          <i className="fas fa-star" />
-                        </span>
-                        <span>
-                          <i className="fas fa-star" />
-                        </span>
-                        <span className="rating-count">(19)</span>
-                      </div>
-                    </li>
-                    <li>
-                      <i className="fa fa-user me-2" />
-                      11 enrolled students
-                    </li>
-                  </ul>
+  const dispatch = useDispatch();
+  const { maKhoaHoc } = useParams();
+  const courseDetail = useSelector((state) => state.course.course);
+  const courses = useSelector(coursesSelector);
+
+  useEffect(() => {
+    dispatch(getCourseDetail({ maKhoaHoc }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [maKhoaHoc]);
+
+  useEffect(() => {
+    if (courseDetail?.danhMucKhoaHoc) {
+      dispatch(
+        getCourseByCategoryAction({
+          maDanhMuc: courseDetail?.danhMucKhoaHoc?.maDanhMucKhoahoc,
+        })
+      );
+    }
+  }, [courseDetail, dispatch]);
+
+  const coursesSuggest = useMemo(() => {
+    const filters =
+      courses?.filter((item) => item?.biDanh != courseDetail?.biDanh) || [];
+    return filters?.slice(0, 4) || [];
+  }, [courses, courseDetail]);
+
+  const renderDetail = (courseDetail) => {
+    return (
+      <div>
+        <section className="course-page-header page-header-3">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-7 col-xl-7">
+                <div className="course-header-wrapper mb-0 bg-transparent">
+                  <h1 className="mb-3">{courseDetail.tenKhoaHoc}</h1>
+                  <p>{courseDetail.moTa}</p>
+                  <div className="course-header-meta">
+                    <ul className="inline-list list-info">
+                      <li>
+                        <div className="course-author">
+                          <img src={course_author} alt="#" />
+                          {courseDetail?.nguoiTao?.hoTen}
+                        </div>
+                      </li>
+                      <li>
+                        <div className="list-rating">
+                          <span>
+                            <i className="fas fa-star" />
+                          </span>
+                          <span>
+                            <i className="fas fa-star" />
+                          </span>
+                          <span>
+                            <i className="fas fa-star" />
+                          </span>
+                          <span>
+                            <i className="fas fa-star" />
+                          </span>
+                          <span>
+                            <i className="fas fa-star" />
+                          </span>
+                          <span className="rating-count">
+                            {' '}
+                            {courseDetail.luotXem}
+                          </span>
+                        </div>
+                      </li>
+                      <li>
+                        <i className="fa fa-user me-2" />{' '}
+                        {courseDetail.soLuongHocVien} học viên
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-xl-5">
-              <div className="course-thumb-wrap">
-                <div className="course-thumbnail mb-0">
-                  <img src={img_02} alt="" className="img-fluid w-100" />
+              <div className="col-xl-5">
+                <div className="course-thumb-wrap">
+                  <div className="course-thumbnail mb-0">
+                    <LazyLoadImg
+                      src={courseDetail?.hinhAnh}
+                      alt=""
+                      height={200}
+                      style={{
+                        width: '100%',
+                        objectFit: 'fill',
+                      }}
+                    />
+                  </div>
                 </div>
-                <a
-                  className="popup-video video_icon"
-                  href="https://www.youtube.com/watch?v=cRXm1p-CNyk"
-                >
-                  <i className="fa fa-play"></i>
-                </a>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="tutori-course-single tutori-course-layout-3 page-wrapper">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-8 col-lg-7">
-              <div className="tutori-course-content">
-                <nav className="course-single-tabs learn-press-nav-tabs">
-                  <div
-                    className="nav nav-tabs course-nav"
-                    id="nav-tab"
-                    role="tablist"
-                  >
-                    <a
-                      className="nav-item nav-link active"
-                      id="nav-home-tab"
-                      data-toggle="tab"
-                      href="#nav-home"
-                      role="tab"
-                      aria-controls="nav-home-tab"
-                      aria-selected="true"
+        </section>
+        <section className="tutori-course-single tutori-course-layout-3 page-wrapper">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-8 col-lg-7">
+                <div className="tutori-course-content">
+                  <nav className="course-single-tabs learn-press-nav-tabs">
+                    <div
+                      className="nav nav-tabs course-nav"
+                      id="nav-tab"
+                      role="tablist"
                     >
-                      Overview
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      id="nav-topics-tab"
-                      data-toggle="tab"
-                      href="#nav-topics"
-                      role="tab"
-                      aria-controls="nav-topics-tab"
-                      aria-selected="false"
-                    >
-                      Curriculam
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      id="nav-instructor-tab"
-                      data-toggle="tab"
-                      href="#nav-instructor"
-                      role="tab"
-                      aria-controls="nav-instructor-tab"
-                      aria-selected="false"
-                    >
-                      Instructor
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      id="nav-feedback-tab"
-                      data-toggle="tab"
-                      href="#nav-feedback"
-                      role="tab"
-                      aria-controls="nav-feedback-tab"
-                      aria-selected="false"
-                    >
-                      Reviews
-                    </a>
-                  </div>
-                </nav>
-                <div
-                  className="tab-content tutori-course-content"
-                  id="nav-tabContent"
-                >
-                  <div
-                    className="tab-pane fade show active"
-                    id="nav-home"
-                    role="tabpanel"
-                    aria-labelledby="nav-home-tab"
-                  >
-                    <div className="single-course-details ">
-                      <h4 className="course-title">Description</h4>
-                      <p>
-                        Knowing PHP has allowed me to make enough money to stay
-                        home and make courses like this one for students all
-                        over the world. Being a PHP developer can allow anyone
-                        to make really good money online and offline, developing
-                        dynamic applications. Knowing PHP will allow you to
-                        build web applications, websites or Content Management
-                        systems, like WordPress, Facebook, Twitter or even
-                        Google. There is no limit to what you can do with this
-                        knowledge. PHP is one of the most important web
-                        programming languages to learn, and knowing it, will
-                        give you SUPER POWERS in the web
-                      </p>
-                      <div className="course-widget course-info">
-                        <h4 className="course-title">What You will Learn?</h4>
-                        <ul>
-                          <li>
-                            <i className="fa fa-check" />
-                            Clean up face imperfections, improve and repair
-                            photos
-                          </li>
-                          <li>
-                            <i className="fa fa-check" />
-                            Remove people or objects from photos
-                          </li>
-                          <li>
-                            <i className="fa fa-check" />
-                            Master selections, layers, and working with the
-                            layers panel
-                          </li>
-                          <li>
-                            <i className="fa fa-check" />
-                            Use creative effects to design stunning text styles
-                          </li>
-                          <li>
-                            <i className="fa fa-check" />
-                            working with the layers panel
-                          </li>
-                          <li>
-                            <i className="fa fa-check" />
-                            Cut away a person from their background
-                          </li>
-                        </ul>
-                      </div>
+                      <a
+                        className="nav-item nav-link active"
+                        id="nav-home-tab"
+                        data-toggle="tab"
+                        href="#nav-home"
+                        role="tab"
+                        aria-controls="nav-home-tab"
+                        aria-selected="true"
+                      >
+                        Tổng Quan
+                      </a>
+                      <a
+                        className="nav-item nav-link"
+                        id="nav-instructor-tab"
+                        data-toggle="tab"
+                        href="#nav-instructor"
+                        role="tab"
+                        aria-controls="nav-instructor-tab"
+                        aria-selected="false"
+                      >
+                        Giảng Viên
+                      </a>
+                      <a
+                        className="nav-item nav-link"
+                        id="nav-feedback-tab"
+                        data-toggle="tab"
+                        href="#nav-feedback"
+                        role="tab"
+                        aria-controls="nav-feedback-tab"
+                        aria-selected="false"
+                      >
+                        Đánh Giá
+                      </a>
                     </div>
-                  </div>
+                  </nav>
                   <div
-                    className="tab-pane fade"
-                    id="nav-topics"
-                    role="tabpanel"
-                    aria-labelledby="nav-topics-tab"
+                    className="tab-content tutori-course-content"
+                    id="nav-tabContent"
                   >
-                    <div className="tutori-course-curriculum">
-                      <div className="curriculum-scrollable">
-                        <ul className="curriculum-sections">
-                          <li className="section">
-                            <div className="section-header">
-                              <div className="section-left">
-                                <h5 className="section-title">
-                                  Change simplification
-                                </h5>
-                                <p className="section-desc">
-                                  Dacere agemusque constantius concessis elit
-                                  videmusne quia stoici constructio
-                                  dissimillimas audiunt homerus commendationes
-                                </p>
-                              </div>
-                            </div>
-                            <ul className="section-content">
-                              <li className="course-item has-status course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">
-                                    The importance of data nowsaday
-                                  </span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta duration">
-                                      10.30 min
-                                    </span>
-                                    <i className="item-meta course-item-status" />
-                                  </div>
-                                </a>
-                              </li>
-                              <li className="course-item has-status course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">
-                                    Why my organization should know about data
-                                  </span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta duration">
-                                      20.30 min
-                                    </span>
-                                    <i className="item-meta course-item-status" />
-                                  </div>
-                                </a>
-                              </li>
-                              <li className="course-item course-item-lp_assignment course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">Assignments</span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta count-questions">
-                                      14 questions
-                                    </span>
-                                    <span className="item-meta duration">
-                                      10.21 min
-                                    </span>
-                                    <i className="fa item-meta course-item-status trans" />
-                                  </div>
-                                </a>
-                              </li>
-                              <li className="course-item course-item-lp_quiz course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">Quiz 1</span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta count-questions">
-                                      14 questions
-                                    </span>
-                                    <span className="item-meta duration">
-                                      5.67 min
-                                    </span>
-                                    <i className="fa item-meta course-item-status trans" />
-                                  </div>
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          {/* section end */}
-                          <li className="section">
-                            <div className="section-header">
-                              <div className="section-left">
-                                <h5 className="section-title">Key concepts </h5>
-                                <p className="section-desc">
-                                  Dacere agemusque constantius concessis elit
-                                  videmusne quia stoici constructio
-                                  dissimillimas audiunt homerus commendationes
-                                </p>
-                              </div>
-                            </div>
-                            <ul className="section-content">
-                              <li className="course-item has-status course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">
-                                    Basic understanding of data management
-                                    concepts
-                                  </span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta duration">
-                                      10 min
-                                    </span>
-                                    <i className="item-meta course-item-status" />
-                                  </div>
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          {/* section end */}
-                          <li className="section">
-                            <ul className="section-content">
-                              <li className="course-item has-status course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">
-                                    Apply the principles{' '}
-                                  </span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta duration">
-                                      10 min
-                                    </span>
-                                    <i className="item-meta course-item-status" />
-                                  </div>
-                                </a>
-                              </li>
-                              <li className="course-item has-status course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">Lesson 2</span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta duration">
-                                      20 min
-                                    </span>
-                                    <i className="item-meta course-item-status" />
-                                  </div>
-                                </a>
-                              </li>
-                              <li className="course-item has-status course-item-lp_lesson">
-                                <a className="section-item-link" href="#">
-                                  <span className="item-name">Lesson 3</span>
-                                  <div className="course-item-meta">
-                                    <span className="item-meta duration">
-                                      5 min
-                                    </span>
-                                    <i className="item-meta course-item-status" />
-                                  </div>
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          {/* section end */}
-                        </ul>
-                        {/* Main ul end */}
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="nav-instructor"
-                    role="tabpanel"
-                    aria-labelledby="nav-instructor-tab"
-                  >
-                    {/* Course instructor start */}
-                    <div className="courses-instructor">
-                      <div className="single-instructor-box">
-                        <div className="row align-items-center">
-                          <div className="col-lg-4 col-md-4">
-                            <div className="instructor-image">
-                              <img src={author} alt="" className="img-fluid" />
-                            </div>
-                          </div>
-                          <div className="col-lg-8 col-md-8">
-                            <div className="instructor-content">
-                              <h4>
-                                <a href="#">Tutori</a>
-                              </h4>
-                              <span className="sub-title">Web Developer</span>
+                    <div
+                      className="tab-pane fade show active"
+                      id="nav-home"
+                      role="tabpanel"
+                      aria-labelledby="nav-home-tab"
+                    >
+                      <div className="single-course-details ">
+                        <h4 className="course-title">Mô Tả</h4>
+                        <p>{courseDetail.moTa}</p>
+
+                        <div className="course-widget course-info">
+                          <h4 className="course-title">AI CÓ THỂ THAM GIA ?</h4>
+                          <ul>
+                            <li>
                               <p>
-                                Jone Smit is a celebrated photographer, author,
-                                and writer who brings passion to everything he
-                                does.
+                                <i className="fa fa-check text-danger" />
+                                Mới học lập trình, thiếu định hướng & lộ trình
+                                học tập
                               </p>
-                              <div className="intructor-social-links">
-                                <span className="me-2">Follow Me: </span>
-                                <a href="#">
-                                  {' '}
-                                  <i className="fab fa-facebook-f" />
-                                </a>
-                                <a href="#">
-                                  {' '}
-                                  <i className="fab fa-twitter" />
-                                </a>
-                                <a href="#">
-                                  {' '}
-                                  <i className="fab fa-linkedin-in" />
-                                </a>
-                                <a href="#">
-                                  {' '}
-                                  <i className="fab fa-youtube" />
-                                </a>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Trái ngành học lập trình, chuyển nghề
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Hoàn thành chương trình trung học phổ thông
+                                (12/12)
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Yếu tư duy lập trình, mất gốc muốn học để xin
+                                việc
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Chủ dự án muốn quản lý team dev, startup muốn
+                                hiểu rõ việc làm của dev
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Thêm nghề để kiếm thêm thu nhập ngoài giờ
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div className="course-widget course-info">
+                          <h4 className="course-title">
+                            HỌC XONG LÀM VIỆC TẠI ĐÂU ?
+                          </h4>
+                          <ul>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Apply vào tất cả công ty tuyển dụng Dev ở vị trí
+                                fresher hoặc juinor
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Các công ty outsourcing - gia công phần mềm
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Các công ty startup - khởi nghiệp
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Công ty, tập đoàn trong nước và nước ngoài...
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Có thể apply ngay vào Fresher, Junior với mức
+                                lương khởi điểm từ 7tr5 đến 15tr
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                <i className="fa fa-check text-danger" />
+                                Nhận các job freelancer về xây dựng front end
+                                cho website
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="tab-pane fade"
+                      id="nav-instructor"
+                      role="tabpanel"
+                      aria-labelledby="nav-instructor-tab"
+                    >
+                      {/* Course instructor start */}
+                      <div className="courses-instructor">
+                        <div className="single-instructor-box">
+                          <div className="row align-items-center">
+                            <div className="col-lg-4 col-md-4">
+                              <div className="instructor-image">
+                                <img
+                                  src={author}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-8 col-md-8">
+                              <div className="instructor-content">
+                                <h4>{courseDetail?.nguoiTao?.hoTen}</h4>
+                                <span className="sub-title">
+                                  {courseDetail?.nguoiTao?.tenLoaiNguoiDung}
+                                </span>
+                                <p>
+                                  <span
+                                    style={{ 'text-transform': 'capitalize' }}
+                                  >
+                                    {courseDetail?.nguoiTao?.hoTen}
+                                  </span>{' '}
+                                  Giảng viên là các Senior đang làm tại các công
+                                  ty, tập đoàn lớp như ELCA, NashTech, Global
+                                  CyberSoft, KMS, ...giàu kinh nghiệm thực tế,
+                                  truyển đạt tốt và tận tâm. Edumel nói KHÔNG
+                                  với lý thuyết suông và vào học là phải CODE
+                                  mỏi tay.
+                                </p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      {/* Conurse  instructor end */}
                     </div>
-                    {/* Conurse  instructor end */}
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="nav-feedback"
-                    role="tabpanel"
-                    aria-labelledby="nav-feedback-tab"
-                  >
-                    <div id="course-reviews">
-                      <ul className="course-reviews-list">
-                        <li>
-                          <div className="course-review">
-                            <div className="course-single-review">
-                              <div className="user-image">
-                                <img
-                                  src={author}
-                                  alt=""
-                                  className="img-fluid"
-                                />
-                              </div>
-                              <div className="user-content user-review-content">
-                                <div className="review-header mb-10">
-                                  <h4 className="user-name">Tutori</h4>
-                                  <p className="review-title">
-                                    Cover all topicc{' '}
-                                  </p>
-                                  <div className="rating review-stars-rated">
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star-half" />
-                                    </a>
-                                  </div>
+                    <div
+                      className="tab-pane fade"
+                      id="nav-feedback"
+                      role="tabpanel"
+                      aria-labelledby="nav-feedback-tab"
+                    >
+                      <div id="course-reviews">
+                        <ul className="course-reviews-list">
+                          <li>
+                            <div className="course-review">
+                              <div className="course-single-review">
+                                <div className="user-image">
+                                  <img
+                                    src={'https://i.pravatar.cc?u=Ming Yuen'}
+                                    alt=""
+                                    className="img-fluid"
+                                  />
                                 </div>
-                                <div className="review-text">
-                                  <div className="review-content">
-                                    The course identify things we want to change
-                                    and then figure out the things that need to
-                                    be done to create the desired outcome. The
-                                    course helped me in clearly define problems
-                                    and generate a wider variety of quality
-                                    solutions. Support more structures analysis
-                                    of options leading to better decisions.
+                                <div className="user-content user-review-content">
+                                  <div className="review-header mb-10">
+                                    <h4 className="user-name">Ming Yuen</h4>
+                                    <p className="review-title">
+                                      Bao gồm tất cả các chủ đề{' '}
+                                    </p>
+                                    <div className="rating review-stars-rated">
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star-half" />
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div className="review-text">
+                                    <div className="review-content">
+                                      <p>
+                                        Khóa học xác định những điều chúng tôi
+                                        muốn thay đổi và sau đó tìm ra những thứ
+                                        cần được thực hiện để tạo ra kết quả
+                                        mong muốn. Các khóa học đã giúp tôi xác
+                                        định rõ ràng các vấn đề và tạo ra nhiều
+                                        loại chất lượng hơn các giải pháp. Hỗ
+                                        trợ phân tích cấu trúc khác trong số các
+                                        tùy chọn dẫn đến các quyết định tốt hơn.
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </li>
+                          <li>
+                            <div className="course-review">
+                              <div className="course-single-review">
+                                <div className="user-image">
+                                  <img
+                                    src={'https://i.pravatar.cc?u=Luc Nguyen'}
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </div>
+                                <div className="user-content user-review-content">
+                                  <div className="review-header mb-10">
+                                    <h4 className="user-name">Luc Nguyen</h4>
+                                    <p className="review-title">
+                                      Bao gồm tất cả các chủ đề{' '}
+                                    </p>
+                                    <div className="rating review-stars-rated">
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star" />
+                                      </a>
+                                      <a href="#">
+                                        <i className="fa fa-star-half" />
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div className="review-text">
+                                    <div className="review-content">
+                                      <p>
+                                        Khóa học xác định những điều chúng tôi
+                                        muốn thay đổi và sau đó tìm ra những thứ
+                                        cần được thực hiện để tạo ra kết quả
+                                        mong muốn. Các khóa học đã giúp tôi xác
+                                        định rõ ràng các vấn đề và tạo ra nhiều
+                                        loại chất lượng hơn các giải pháp. Hỗ
+                                        trợ phân tích cấu trúc khác trong số các
+                                        tùy chọn dẫn đến các quyết định tốt hơn.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-5">
+                {/* Course Sidebar start */}
+                <div className="course-sidebar course-sidebar-5 mt-5 mt-xl-0">
+                  <div className="course-widget course-details-info">
+                    <div className="price-header">
+                      <h2 className="course-price">
+                        $120.00 <span>$150</span>
+                      </h2>
+                      <span className="course-price-badge onsale">
+                        Giảm 39%
+                      </span>
+                    </div>
+                    <ul className="course-sidebar-list">
+                      <li>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="far fa-sliders-h" />
+                            Độ Khó
+                          </span>
+                          Người Bắt Đầu
+                        </div>
+                      </li>
+                      <li>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="fas fa-play-circle" />
+                            Bài Giảng
+                          </span>
+                          2
+                        </div>
+                      </li>
+                      <li>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="far fa-user" />
+                            Số Lượng Học Viên
+                          </span>
+                          {courseDetail.soLuongHocVien}
+                        </div>
+                      </li>
+                      <li>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="far fa-clock" />
+                            Thời Lượng
+                          </span>
+                          6 giờ
+                        </div>
+                      </li>
+                      <li>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="fa fa-globe" />
+                            Ngôn Ngữ
+                          </span>
+                          Tiếng Việt
+                        </div>
+                      </li>
+                      <li>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="far fa-calendar" />
+                            Ngày Tạo{' '}
+                          </span>
+                          {courseDetail.ngayTao}
+                        </div>
+                      </li>
+                    </ul>
+                    <div className="buy-btn">
+                      <NavLinkComponent
+                        to={`${COURSE_REGISTER}/${maKhoaHoc}`}
+                        className="button button-enroll-course btn btn-main-2 rounded"
+                      >
+                        Ghi danh Khóa Học
+                        <i className="fa fa-shopping-cart me-2" />
+                      </NavLinkComponent>
+                    </div>
+                    <div className="course-meterial">
+                      <h4 className="mb-3">Tài Liệu Liên Quan</h4>
+                      <ul className="course-meterial-list">
+                        <li>
+                          <i className="fa fa-arrow-right"></i>
+                          Videos
                         </li>
                         <li>
-                          <div className="course-review">
-                            <div className="course-single-review">
-                              <div className="user-image">
-                                <img
-                                  src={author}
-                                  alt=""
-                                  className="img-fluid"
-                                />
-                              </div>
-                              <div className="user-content user-review-content">
-                                <div className="review-header mb-10">
-                                  <h4 className="user-name">Tutori</h4>
-                                  <p className="review-title">
-                                    Cover all topicc{' '}
-                                  </p>
-                                  <div className="rating review-stars-rated">
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star" />
-                                    </a>
-                                    <a href="#">
-                                      <i className="fa fa-star-half" />
-                                    </a>
-                                  </div>
-                                </div>
-                                <div className="review-text">
-                                  <div className="review-content">
-                                    The course identify things we want to change
-                                    and then figure out the things that need to
-                                    be done to create the desired outcome. The
-                                    course helped me in clearly define problems
-                                    and generate a wider variety of quality
-                                    solutions. Support more structures analysis
-                                    of options leading to better decisions.
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <i className="fa fa-arrow-right"></i>
+                          Lộ Trình Phát Triển
+                        </li>
+                        <li>
+                          <i className="fa fa-arrow-right"></i>
+                          Tài Liệu
                         </li>
                       </ul>
                     </div>
                   </div>
+                  {coursesSuggest.length > 0 && (
+                    <CourseSuggestList data={coursesSuggest} />
+                  )}
                 </div>
+                {/* Course Sidebar end */}
               </div>
-            </div>
-            <div className="col-xl-4 col-lg-5">
-              {/* Course Sidebar start */}
-              <div className="course-sidebar course-sidebar-5 mt-5 mt-xl-0">
-                <div className="course-widget course-details-info">
-                  <div className="price-header">
-                    <h2 className="course-price">
-                      $120.00 <span>$150</span>
-                    </h2>
-                    <span className="course-price-badge onsale">39% off</span>
-                  </div>
-                  <ul className="course-sidebar-list">
-                    <li>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="far fa-sliders-h" />
-                          Level
-                        </span>
-                        Beginnner
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="fas fa-play-circle" />
-                          Lectures
-                        </span>
-                        2
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="far fa-user" />
-                          Students
-                        </span>
-                        20
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="far fa-clock" />
-                          Duration
-                        </span>
-                        6 hours
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="far fa-globe" />
-                          Language
-                        </span>
-                        English
-                      </div>
-                    </li>
-                    <li>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="far fa-calendar" />
-                          Updated{' '}
-                        </span>
-                        October 15, 2022
-                      </div>
-                    </li>
-                  </ul>
-                  <div className="buy-btn">
-                    <button className="button button-enroll-course btn btn-main-2 rounded">
-                      <i className="far fa-shopping-cart me-2" /> Enroll Course
-                    </button>
-                  </div>
-                  <div className="course-meterial">
-                    <h4 className="mb-3">Material Includes</h4>
-                    <ul className="course-meterial-list">
-                      <li>
-                        <i className="fal fa-long-arrow-right" />
-                        Videos
-                      </li>
-                      <li>
-                        <i className="fal fa-long-arrow-right" />
-                        Files For Development
-                      </li>
-                      <li>
-                        <i className="fal fa-long-arrow-right" />
-                        Documentation Files
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="course-latest">
-                  <h4 className="mb-4">Popular Courses</h4>
-                  <ul className="recent-posts course-popular">
-                    <li>
-                      <div className="widget-post-thumb">
-                        <a href="#">
-                          <img src={course_2} alt="" className="img-fluid" />
-                        </a>
-                      </div>
-                      <div className="widget-post-body">
-                        <h6>
-                          {' '}
-                          <a href="#">Wordpress Theme Development</a>
-                        </h6>
-                        <h5>$120</h5>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="widget-post-thumb">
-                        <a href="#">
-                          <img src={course_2} alt="" className="img-fluid" />
-                        </a>
-                      </div>
-                      <div className="widget-post-body">
-                        <h6>
-                          {' '}
-                          <a href="#">mastering Photoshop for beginners</a>
-                        </h6>
-                        <h5>$100</h5>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="widget-post-thumb">
-                        <a href="#">
-                          <img src={course_2} alt="" className="img-fluid" />
-                        </a>
-                      </div>
-                      <div className="widget-post-body">
-                        <h6>
-                          {' '}
-                          <a href="#">Photography mastering adobe tool</a>
-                        </h6>
-                        <h5>$100</h5>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              {/* Course Sidebar end */}
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
+        </section>
+      </div>
+    );
+  };
+
+  return renderDetail(courseDetail);
 }

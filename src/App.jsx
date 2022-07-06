@@ -5,7 +5,11 @@ import { clientRouter } from './configs/router.config';
 import TemplateClient from './templates/Template/client/TemplateClient';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import { SuspenseComponent } from './components';
-// import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
+import PrivateRoute from './layout/PrivateRoute/PrivateRoute';
+
+import './assets/scss/css/responsive.css';
+import './assets/scss/css/woocomerce.css';
+import './assets/scss/index.scss';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -24,22 +28,32 @@ function App() {
           component={
             <Switch>
               {clientRouter.map((route, index) => {
-                const { path, exact, name, Component } = route;
-                // if (requireLogin) {
-                //   return (
-                //     <Route path={path} exact={exact} key={index}>
-                //       <PrivateRoute>
-                //         <TemplateClient Component={Component} />
-                //       </PrivateRoute>
-                //     </Route>
-                //   );
-                // }
+                const {
+                  path,
+                  exact,
+                  name,
+                  Component,
+                  isScrollToTop,
+                  isBreadcrumb,
+                  requireLogin,
+                } = route;
+                if (requireLogin) {
+                  return (
+                    <Route path={path} exact={exact} key={index}>
+                      <PrivateRoute>
+                        <TemplateClient Component={Component} />
+                      </PrivateRoute>
+                    </Route>
+                  );
+                }
                 return (
                   <Route key={index} path={path} exact={exact}>
                     <TemplateClient
                       Component={Component}
                       path={path}
                       name={name}
+                      isScrollToTop={isScrollToTop}
+                      isBreadcrumb={isBreadcrumb}
                     />
                   </Route>
                 );

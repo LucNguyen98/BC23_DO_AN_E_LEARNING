@@ -17,11 +17,11 @@ export default function Footer() {
                     />
                   </div>
                   <p className="mt-4">
-                    Edumel is a Bootstrap Template for online courses education
-                    websites support multiple courses
+                    Edumel là một Bootstrap Template cho các trang web giáo dục
+                    các khóa học trực tuyến hỗ trợ nhiều khóa học
                   </p>
                   <div className="footer-socials mt-5">
-                    <span className="me-2">Connect :</span>
+                    <span className="me-2">Liên Hệ :</span>
                     <a href="#">
                       <i className="fab fa-facebook-f" />
                     </a>
@@ -39,35 +39,35 @@ export default function Footer() {
               </div>
               <div className="col-xl-2 col-sm-4">
                 <div className="footer-widget mb-5 mb-lg-0">
-                  <h5 className="widget-title">Explore</h5>
+                  <h5 className="widget-title">Khám Phá</h5>
                   <ul className="list-unstyled footer-links">
                     <li>
-                      <a href="#">About us</a>
+                      <a href="#">Về chúng tôi</a>
                     </li>
                     <li>
-                      <a href="#">Contact us</a>
+                      <a href="#">Liện hệ</a>
                     </li>
                     <li>
-                      <a href="#">Services</a>
+                      <a href="#">Dịch vụ</a>
                     </li>
                     <li>
-                      <a href="#">Support</a>
+                      <a href="#">Hỡ trợ</a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="col-xl-2 col-sm-4">
                 <div className="footer-widget mb-5 mb-lg-0">
-                  <h5 className="widget-title ">Programs</h5>
+                  <h5 className="widget-title ">Chương Trình</h5>
                   <ul className="list-unstyled footer-links">
                     <li>
-                      <a href="#">SEO Business</a>
+                      <a href="#">SEO cho doanh nghiệp</a>
                     </li>
                     <li>
                       <a href="#">Digital Marketing</a>
                     </li>
                     <li>
-                      <a href="#">Graphic Design</a>
+                      <a href="#">Thiết kế đồ họa</a>
                     </li>
                     <li>
                       <a href="#">Social Marketing</a>
@@ -77,26 +77,26 @@ export default function Footer() {
               </div>
               <div className="col-xl-2 col-sm-4">
                 <div className="footer-widget mb-5 mb-lg-0">
-                  <h5 className="widget-title">Links</h5>
+                  <h5 className="widget-title">Đường Dẫn</h5>
                   <ul className="list-unstyled footer-links">
                     <li>
-                      <a href="#">News &amp; Blogs</a>
+                      <a href="#">Tin tức &amp; bài viết</a>
                     </li>
                     <li>
-                      <a href="#">Privacy Policy</a>
+                      <a href="#">Chính sách bảo mật</a>
                     </li>
                     <li>
-                      <a href="#">Support</a>
+                      <a href="#">Hỗ trợ</a>
                     </li>
                     <li>
-                      <a href="#">Return Policy</a>
+                      <a href="#">Chính sách hoàn trả</a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="col-xl-2 col-sm-4">
                 <div className="footer-widget mb-5 mb-lg-0">
-                  <h5 className="widget-title">Address</h5>
+                  <h5 className="widget-title">Địa chỉ</h5>
                   <ul className="list-unstyled footer-links">
                     <li>
                       <a href="#">+0800 327 8534</a>
@@ -106,7 +106,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <a href="#">
-                        123 Fifth Floor East 26th Street,New York, NY 10011
+                        Tầng 5, toà nhà Suri, 112 Cao Thắng, Quận 3, TPHCM
                       </a>
                     </li>
                   </ul>
@@ -130,24 +130,19 @@ export default function Footer() {
                 <div className="footer-btm-links text-start text-sm-center text-lg-end">
                   <ul className="list-inline">
                     <li className="list-inline-item">
-                      <a href="#"> Terms of Service</a>
+                      <a href="#">Điều khoản dịch vụ</a>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Join Us</a>
+                      <a href="#">Tham gia</a>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Privacy Policy</a>
+                      <a href="#">Chính sách bảo mật</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="fixed-btm-top">
-          <a href="#top-header" className="js-scroll-trigger scroll-to-top">
-            <i className="fa fa-angle-up" />
-          </a>
         </div>
       </footer>
     </div>

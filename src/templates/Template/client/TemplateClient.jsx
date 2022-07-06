@@ -1,11 +1,12 @@
 import React from 'react';
-import { Breadcrumbs, Footer, Header } from 'src/components';
-import { LOGIN_PATH, REGISTER_PATH } from 'src/constants/pathName';
+import { Breadcrumbs, Footer, Header, ScrollToTop } from 'src/components';
 
-const NOT_BREADCRUMB = ['/', REGISTER_PATH, LOGIN_PATH];
-
-export default function TemplateClient({ Component, path, name }) {
-  const isBreadcrumb = !path || !NOT_BREADCRUMB.includes(path);
+export default function TemplateClient({
+  Component,
+  name,
+  isScrollToTop,
+  isBreadcrumb,
+}) {
   return (
     <div>
       <div>
@@ -19,6 +20,7 @@ export default function TemplateClient({ Component, path, name }) {
         <footer>
           <Footer />
         </footer>
+        {isScrollToTop && <ScrollToTop />}
       </div>
     </div>
   );

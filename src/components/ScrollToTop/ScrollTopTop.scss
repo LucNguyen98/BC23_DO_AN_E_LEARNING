@@ -1,0 +1,21 @@
+.fixed-btm-top {
+    width: 50px !important;
+    height: 50px;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    background-color: #000;
+    z-index: 3;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding:0;
+    .icon{
+        margin: 0;
+    }
+}
+
+
+.fixed-btm-top.reveal a {
+    opacity: 1;
+    visibility: visible;
+}

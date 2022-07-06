@@ -15,6 +15,31 @@ const courseApi = {
       headers,
     });
   },
+  LayKhoaHocTheoDanhMuc: (params, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc';
+    return axiosInstance.get(endPoint, {
+      params,
+      headers,
+    });
+  },
+  layDanhSachKhoaHocPhanTrang: (params, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang';
+    return axiosInstance.get(endPoint, {
+      params,
+      headers,
+    });
+  },
+  layThongTinKhoaHoc: (params, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/LayThongTinKhoaHoc';
+    return axiosInstance.get(endPoint, {
+      params,
+      headers,
+    });
+  },
+  ghiDanhKhoaHoc: (data, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/DangKyKhoaHoc';
+    return axiosInstance.post(endPoint, data, { headers });
+  },
 };
 
 export default courseApi;
