@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import './breadcrumbs.scss';
 function Breadcrumbs({ location, name = '' }) {
   const pathnames = location.pathname.split('/').filter((x) => x);
@@ -34,6 +34,17 @@ function Breadcrumbs({ location, name = '' }) {
       </div>
     </section>
   );
+}
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
+  }
+
+  return ComponentWithRouterProp;
 }
 
 export default withRouter(Breadcrumbs);

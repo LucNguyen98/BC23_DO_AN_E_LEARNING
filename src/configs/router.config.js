@@ -26,6 +26,9 @@ const CoursesSearch = lazy(() =>
   import('src/pages/ClientPages/Courses/CoursesSearch')
 );
 
+/****Layouts*****/
+const FullLayout = lazy(() => import('../layouts/FullLayout'));
+
 import {
   ABOUT_PATH,
   ACCOUNT_PATH,
@@ -142,5 +145,16 @@ export const clientRouter = [
     exact: true,
     Component: Home,
     isScrollToTop: true,
+  },
+];
+
+export const adminClient = [
+  {
+    path: '/admin',
+    exact: true,
+    Component: FullLayout,
+    name: 'Admin Page',
+    isScrollToTop: true,
+    isBreadcrumb: true,
   },
 ];

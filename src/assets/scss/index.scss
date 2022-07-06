@@ -16,3 +16,10 @@
 @import './responsive';
 @import './base/index';
 @import './common/common';
+
+// Admin
+@import "./variable";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.scss";
+@import "./layout/sidebar";
+@import "./layout/container";

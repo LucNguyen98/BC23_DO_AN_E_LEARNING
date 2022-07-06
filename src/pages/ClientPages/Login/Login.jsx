@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Button, ErrorMessage } from 'src/components';
 import { VALIDATION_MESSAGE } from 'src/constants/error';
 import { REGISTER_PATH } from 'src/constants/pathName';
@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import './Login.scss';
 function Login() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const users = React.useRef({
     taiKhoan: '',
     matKhau: '',

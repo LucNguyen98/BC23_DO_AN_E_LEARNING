@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom/cjs/react-router-dom';
+import { useParams } from 'react-router-dom';
 import { author } from 'src/assets/images/blog';
 import { course_author } from 'src/assets/images/course';
 import { LazyLoadImg, NavLinkComponent } from 'src/components';

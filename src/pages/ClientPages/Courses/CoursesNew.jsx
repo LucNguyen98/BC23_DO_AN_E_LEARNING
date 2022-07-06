@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Pagination } from 'src/components';
 import CoursesList from 'src/components/courseList/coursesList';
 import { COURSE_DETAIL_PATH } from 'src/constants/pathName';
@@ -14,7 +14,7 @@ const COUNT_LIMIT = 8;
 
 export default function Courses() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const { maDanhMucKhoahoc: maDanhMuc = '' } = useParams();
   const { currentPage, totalCount } = useSelector((state) => state.course);
   const courses = useSelector(coursesSelector);
