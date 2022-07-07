@@ -8,13 +8,13 @@ import {
 } from './configs/router.config';
 import TemplateClient from './templates/Template/client/TemplateClient';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
-// import { SuspenseComponent } from './components';
 import PrivateRoute from './layouts/PrivateRoute/PrivateRoute';
 
 import './assets/scss/css/responsive.css';
 import './assets/scss/css/woocomerce.css';
 import './assets/scss/index.scss';
 import PrivateAdminRoute from './layouts/PrivateRoute/PrivateAdminRoute';
+import { SuspenseComponent } from './components';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -93,16 +93,15 @@ function App() {
   return (
     <ErrorBoundary FallbackComponent={OurFallbackComponent}>
       <BrowserRouter>
-        {/* <SuspenseComponent
+        <SuspenseComponent
           component={
-
+            <Routes>
+              {renderClientRouter()}
+              {renderAdminRouter()}
+              <Route path="" element={<PageNotFound />} />
+            </Routes>
           }
-        /> */}
-        <Routes>
-          {renderClientRouter()}
-          {renderAdminRouter()}
-          <Route path="" element={<PageNotFound />} />
-        </Routes>
+        />
       </BrowserRouter>
     </ErrorBoundary>
   );
