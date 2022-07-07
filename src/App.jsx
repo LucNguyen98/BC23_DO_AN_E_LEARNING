@@ -14,7 +14,7 @@ import './assets/scss/css/responsive.css';
 import './assets/scss/css/woocomerce.css';
 import './assets/scss/index.scss';
 import PrivateAdminRoute from './layouts/PrivateRoute/PrivateAdminRoute';
-import { SuspenseComponent } from './components';
+import TemplateAdmin from './templates/Template/admin/TemplateAdmin';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -77,14 +77,20 @@ function App() {
         exact={exact}
         path={path}
         element={
-          <PrivateAdminRoute>
-            <Component />
+          <PrivateAdminRoute isRequired={false}>
+            {<TemplateAdmin Component={<Component />} />}
           </PrivateAdminRoute>
         }
       >
         {adminRouter.map((route, index) => {
           const { path, Component } = route;
-          return <Route key={index} path={path} element={<Component />} />;
+          return (
+            <Route
+              key={index}
+              path={path}
+              element={<TemplateAdmin Component={<Component />} />}
+            />
+          );
         })}
       </Route>
     );
@@ -93,15 +99,11 @@ function App() {
   return (
     <ErrorBoundary FallbackComponent={OurFallbackComponent}>
       <BrowserRouter>
-        <SuspenseComponent
-          component={
-            <Routes>
-              {renderClientRouter()}
-              {renderAdminRouter()}
-              <Route path="" element={<PageNotFound />} />
-            </Routes>
-          }
-        />
+        <Routes>
+          {renderClientRouter()}
+          {renderAdminRouter()}
+          <Route path="" element={<PageNotFound />} />
+        </Routes>
       </BrowserRouter>
     </ErrorBoundary>
   );
