@@ -3,7 +3,7 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import { Container } from 'reactstrap';
-
+import '../assets/scss/index_admin.scss';
 const FullLayout = () => {
   return (
     <main>

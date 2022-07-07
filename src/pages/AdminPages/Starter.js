@@ -1,13 +1,13 @@
 import { Col, Row } from 'reactstrap';
-import SalesChart from '../components/dashboard/SalesChart';
-import Feeds from '../components/dashboard/Feeds';
-import ProjectTables from '../components/dashboard/ProjectTable';
+import SalesChart from 'src/components/dashboard/SalesChart';
+import Feeds from 'src/components/dashboard/Feeds';
+import ProjectTables from 'src/components/dashboard/ProjectTable';
 
-import Blog from '../components/dashboard/Blog';
-import bg1 from '../assets/images/bg/bg1.jpg';
-import bg2 from '../assets/images/bg/bg2.jpg';
-import bg3 from '../assets/images/bg/bg3.jpg';
-import bg4 from '../assets/images/bg/bg4.jpg';
+import Blog from 'src/components/dashboard/Blog';
+import bg1 from 'src/assets/images/bg/bg1.jpg';
+import bg2 from 'src/assets/images/bg/bg2.jpg';
+import bg3 from 'src/assets/images/bg/bg3.jpg';
+import bg4 from 'src/assets/images/bg/bg4.jpg';
 import React from 'react';
 
 const BlogData = [

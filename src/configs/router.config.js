@@ -1,4 +1,17 @@
 import { lazy } from 'react';
+import {
+  ABOUT_PATH,
+  ACCOUNT_PATH,
+  BLOG_PATH,
+  CONTACT_PATH,
+  COURSE_DETAIL_PATH,
+  COURSE_PATH,
+  COURSE_REGISTER,
+  COURSE_SEARCH_PATH,
+  INSTRUCTORS_PATH,
+  LOGIN_PATH,
+  REGISTER_PATH,
+} from 'src/constants/pathName';
 
 //
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
@@ -26,22 +39,20 @@ const CoursesSearch = lazy(() =>
   import('src/pages/ClientPages/Courses/CoursesSearch')
 );
 
+//
+
+const Starter = lazy(() => import('src/pages/AdminPages/Starter.js'));
+const Alerts = lazy(() => import('src/pages/AdminPages/ui/Alerts'));
+const Badges = lazy(() => import('src/pages/AdminPages/ui/Badges'));
+const Buttons = lazy(() => import('src/pages/AdminPages/ui/Buttons'));
+const Cards = lazy(() => import('src/pages/AdminPages/ui/Cards'));
+const Grid = lazy(() => import('src/pages/AdminPages/ui/Grid'));
+const Tables = lazy(() => import('src/pages/AdminPages/ui/Tables'));
+const Forms = lazy(() => import('src/pages/AdminPages/ui/Forms'));
+const Breadcrumbs = lazy(() => import('src/pages/AdminPages/ui/Breadcrumbs'));
+
 /****Layouts*****/
 const FullLayout = lazy(() => import('../layouts/FullLayout'));
-
-import {
-  ABOUT_PATH,
-  ACCOUNT_PATH,
-  BLOG_PATH,
-  CONTACT_PATH,
-  COURSE_DETAIL_PATH,
-  COURSE_PATH,
-  COURSE_REGISTER,
-  COURSE_SEARCH_PATH,
-  INSTRUCTORS_PATH,
-  LOGIN_PATH,
-  REGISTER_PATH,
-} from 'src/constants/pathName';
 
 export const clientRouter = [
   {
@@ -148,13 +159,24 @@ export const clientRouter = [
   },
 ];
 
-export const adminClient = [
-  {
-    path: '/admin',
-    exact: true,
-    Component: FullLayout,
-    name: 'Admin Page',
-    isScrollToTop: true,
-    isBreadcrumb: true,
-  },
+export const adminParentRouter = {
+  path: '/admin',
+  exact: true,
+  Component: FullLayout,
+  name: 'Admin Page',
+  isScrollToTop: true,
+  isBreadcrumb: true,
+};
+
+export const adminRouter = [
+  { path: 'starter', exact: true, Component: Starter },
+  { path: 'about', exact: true, Component: About },
+  { path: 'alerts', exact: true, Component: Alerts },
+  { path: 'badges', exact: true, Component: Badges },
+  { path: 'buttons', exact: true, Component: Buttons },
+  { path: 'cards', exact: true, Component: Cards },
+  { path: 'grid', exact: true, Component: Grid },
+  { path: 'table', exact: true, Component: Tables },
+  { path: 'forms', exact: true, Component: Forms },
+  { path: 'breadcrumbs', exact: true, Component: Breadcrumbs },
 ];
