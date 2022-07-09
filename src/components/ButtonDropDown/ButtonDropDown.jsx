@@ -6,7 +6,12 @@ import {
   DropdownToggle,
 } from 'reactstrap';
 
-export default function ButtonDropDown({ title = 'Actions', menus = [] }) {
+export default function ButtonDropDown({
+  title = 'Actions',
+  menus = [],
+  onSelected,
+  item,
+}) {
   const [dropdownOpen, setDropDown] = useState(false);
 
   const toggle = () => {
@@ -20,7 +25,12 @@ export default function ButtonDropDown({ title = 'Actions', menus = [] }) {
       <DropdownMenu>
         {menus.map((menu, index) => {
           return (
-            <DropdownItem key={index}>
+            <DropdownItem
+              key={index}
+              onClick={() => {
+                onSelected(menu, item);
+              }}
+            >
               {menu.icon}
               <span className="pl-2">{menu.name}</span>
             </DropdownItem>
