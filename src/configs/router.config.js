@@ -14,9 +14,11 @@ import {
   REGISTER_PATH,
   USER_CREATE_EDIT_PATH,
   USER_MANAGER_PATH,
+  COURSE_MANAGER_PATH,
   // USER_CREATE_EDIT_PATH,
   // USER_MANAGER_PATH,
 } from 'src/constants/pathName';
+import CourseManager from 'src/pages/AdminPages/CourseManager/CourseManager';
 
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
 const Login = lazy(() => import('src/pages/ClientPages/Login/Login'));
@@ -193,5 +195,13 @@ export const adminRouter = [
     name: 'Tạo/Chỉnh sửa người dùng',
     icon: 'bi bi-speedometer2',
     isHidden: true,
+  },
+  {
+    path: COURSE_MANAGER_PATH,
+    exact: true,
+    Component: CourseManager,
+    name: 'Khoa Hoc',
+    icon: 'bi bi-file-earmark-spreadsheet',
+    isHidden: false,
   },
 ];
