@@ -17,3 +17,14 @@ export const SUBMIT_ERROR = {
     popup: 'animate__animated animate__fadeOutUp',
   },
 };
+
+export const WARNING_REMOVE = {
+  title: 'Bạn có muốn xoá tài khoản này?',
+  text: 'Tài khoản này sẽ bị xoá vĩnh viễn!',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Xoá',
+  cancelButtonText: 'Huỷ',
+};

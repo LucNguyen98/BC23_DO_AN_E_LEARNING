@@ -2,17 +2,7 @@ import { Card, CardBody, Table } from 'reactstrap';
 
 import React from 'react';
 import { ButtonDropDown, Pagination } from '..';
-
-const MENUS = [
-  {
-    name: 'Chỉnh sửa',
-    icon: <i className="fa fa-pencil-alt"></i>,
-  },
-  {
-    name: 'Xoá',
-    icon: <i className="fa fa-trash"></i>,
-  },
-];
+import { useMemo } from 'react';
 
 const UserTables = ({
   data = [],
@@ -21,7 +11,31 @@ const UserTables = ({
   onChangePage,
   totalPages,
   page_limit,
+  removeUser,
+  updateUser,
 }) => {
+  const menus = useMemo(
+    () => [
+      {
+        name: 'Chỉnh sửa',
+        icon: <i className="fa fa-pencil-alt"></i>,
+      },
+      {
+        name: 'Xoá',
+        icon: <i className="fa fa-trash"></i>,
+      },
+    ],
+    []
+  );
+
+  const onAction = (item, user) => {
+    if (item.name === 'Chỉnh sửa') {
+      updateUser();
+    } else {
+      removeUser(user?.taiKhoan);
+    }
+  };
+
   return (
     <Card>
       <CardBody>
@@ -49,7 +63,11 @@ const UserTables = ({
                 </td>
                 <td>{tdata.soDT}</td>
                 <td>
-                  <ButtonDropDown menus={MENUS} />
+                  <ButtonDropDown
+                    menus={menus}
+                    item={tdata}
+                    onSelected={onAction}
+                  />
                 </td>
               </tr>
             ))}

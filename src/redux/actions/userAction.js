@@ -1,10 +1,16 @@
+import { SUBMIT_ERROR } from 'src/constants/error';
+import { SUBMIT_SUCCESS } from 'src/constants/success';
 import { handleResponseApi } from 'src/helpers/parse';
 import authApi from 'src/services/api/authApi';
+import Swal from 'sweetalert2';
 
 import {
   getUserByPaginationSuccess,
   getUserFail,
   getUserSuccess,
+  removeUserFail,
+  removeUserHandle,
+  removeUserSuccess,
 } from '../reducers/userReducer';
 
 export const getUserAction = (params) => async (dispatch) => {
@@ -34,5 +40,31 @@ export const getUserPaginationAction = (params) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getUserFail(error));
+  }
+};
+
+export const deleteUserAction = (taiKhoan) => async (dispatch) => {
+  try {
+    dispatch(removeUserHandle());
+    const result = await authApi.xoadNguoiDung({ taiKhoan });
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      dispatch(removeUserSuccess());
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'Xoá thành công!',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+    }
+    if (error) {
+      dispatch(removeUserFail(error));
+      Swal.fire({ ...SUBMIT_ERROR, text: error });
+    }
+  } catch (error) {
+    dispatch(removeUserFail(error));
   }
 };

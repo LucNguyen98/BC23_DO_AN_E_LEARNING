@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef } from 'react';
+
 import {
   Card,
   CardBody,
@@ -11,35 +11,31 @@ import {
   Row,
 } from 'reactstrap';
 
-import { getUserPaginationAction } from 'src/redux/actions/userAction';
-const COUNT_LIMIT = 10;
-
-export default function UserControls() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(
-      getUserPaginationAction({
-        page: 1,
-        pageSize: COUNT_LIMIT,
-      })
-    );
-  }, [dispatch]);
+function UserControls({ onChange }) {
+  const key = useRef('');
+  const onSearch = (e) => {
+    e.preventDefault();
+    const value = key.current;
+    onChange(value);
+  };
 
   return (
     <Card>
       <CardBody>
         <Row>
           <Col lg="6">
-            <Form>
+            <Form onSubmit={onSearch}>
               <FormGroup>
                 <Label for="exampleSearch">Tìm kiếm</Label>
                 <Input
-                  id="exampleSearch"
                   name="search"
-                  placeholder="Nhập từ khoá"
+                  placeholder="Tìm kiếm theo tài khoản"
                   type="search"
                   bsSize="sm"
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    key.current = value;
+                  }}
                 />
               </FormGroup>
             </Form>
@@ -62,3 +58,5 @@ export default function UserControls() {
     </Card>
   );
 }
+
+export default React.memo(UserControls);
