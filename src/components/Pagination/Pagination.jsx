@@ -3,8 +3,13 @@ import { mapPages } from 'src/helpers/parse';
 import { createClass } from 'src/utils/utils';
 import { Button } from '..';
 import './Pagination.scss';
-function Pagination({ totalPages = 1, currentPage = 1, onChangePage }) {
-  let pages = mapPages(totalPages);
+function Pagination({
+  totalPages = 1,
+  currentPage = 1,
+  onChangePage,
+  page_limit,
+}) {
+  let pages = mapPages(totalPages, page_limit);
 
   const nextPage = () => {
     let page = +currentPage + 1;

@@ -1,4 +1,11 @@
-import { Card, CardBody, CardTitle, CardSubtitle, Table } from 'reactstrap';
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Table,
+  Button,
+} from 'reactstrap';
 import user1 from '../../assets/images/users/user1.jpg';
 import user2 from '../../assets/images/users/user2.jpg';
 import user3 from '../../assets/images/users/user3.jpg';
@@ -59,9 +66,9 @@ const ProjectTables = () => {
     <div>
       <Card>
         <CardBody>
-          <CardTitle tag="h5">Project Listing</CardTitle>
+          <CardTitle tag="h5">Quản lý người dùng</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
-            Overview of the projects
+            Tổng quan về quản lý người dùng
           </CardSubtitle>
 
           <Table className="no-wrap mt-3 align-middle" responsive borderless>
@@ -71,8 +78,7 @@ const ProjectTables = () => {
                 <th>Project</th>
 
                 <th>Status</th>
-                <th>Weeks</th>
-                <th>Budget</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -103,8 +109,16 @@ const ProjectTables = () => {
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
                     )}
                   </td>
-                  <td>{tdata.weeks}</td>
-                  <td>{tdata.budget}</td>
+                  <td>
+                    <div className="button-group">
+                      <Button className="btn" outline color="primary">
+                        chỉnh sửa
+                      </Button>
+                      <Button className="btn" outline color="danger">
+                        xoá
+                      </Button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

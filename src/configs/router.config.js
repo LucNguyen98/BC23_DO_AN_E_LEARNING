@@ -14,7 +14,6 @@ import {
   REGISTER_PATH,
 } from 'src/constants/pathName';
 
-//
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
 const Login = lazy(() => import('src/pages/ClientPages/Login/Login'));
 const Register = lazy(() => import('src/pages/ClientPages/Register/Register'));
@@ -48,7 +47,9 @@ const Badges = lazy(() => import('src/pages/AdminPages/ui/Badges'));
 const Buttons = lazy(() => import('src/pages/AdminPages/ui/Buttons'));
 const Cards = lazy(() => import('src/pages/AdminPages/ui/Cards'));
 const Grid = lazy(() => import('src/pages/AdminPages/ui/Grid'));
-const Tables = lazy(() => import('src/pages/AdminPages/ui/Tables'));
+const UserManager = lazy(() =>
+  import('src/pages/AdminPages/UserManager/UserManager')
+);
 const Forms = lazy(() => import('src/pages/AdminPages/ui/Forms'));
 const Breadcrumbs = lazy(() => import('src/pages/AdminPages/ui/Breadcrumbs'));
 
@@ -177,7 +178,7 @@ export const adminRouter = [
   { path: 'buttons', exact: true, Component: Buttons },
   { path: 'cards', exact: true, Component: Cards },
   { path: 'grid', exact: true, Component: Grid },
-  { path: 'table', exact: true, Component: Tables },
+  { path: 'table', exact: true, Component: UserManager },
   { path: 'forms', exact: true, Component: Forms },
   { path: 'breadcrumbs', exact: true, Component: Breadcrumbs },
 ];
