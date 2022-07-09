@@ -13,8 +13,7 @@ import {
   Dropdown,
   Button,
 } from 'reactstrap';
-import Logo from './Logo';
-import { ReactComponent as LogoWhite } from '../assets/images/logos/adminprowhite.svg';
+import { ADMIN_PARENT } from 'src/constants/pathName';
 import user1 from '../assets/images/users/user4.jpg';
 
 const Header = () => {
@@ -33,10 +32,14 @@ const Header = () => {
     <Navbar color="white" light expand="md" className="fix-header">
       <div className="d-flex align-items-center">
         <div className="d-lg-block d-none me-5 pe-3">
-          <Logo />
+          <img src="/images/logo.png" alt="" className="img-fluid" />
         </div>
-        <NavbarBrand href="/">
-          <LogoWhite className="d-lg-none" />
+        <NavbarBrand href={ADMIN_PARENT} className="site-logo">
+          <img
+            src="/images/logo-white.png"
+            alt=""
+            className="img-fluid d-lg-none"
+          />
         </NavbarBrand>
         <Button
           color="primary"

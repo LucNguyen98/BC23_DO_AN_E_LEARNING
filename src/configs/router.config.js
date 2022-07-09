@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import {
   ABOUT_PATH,
   ACCOUNT_PATH,
+  ADMIN_PARENT,
   BLOG_PATH,
   CONTACT_PATH,
   COURSE_DETAIL_PATH,
@@ -160,7 +161,7 @@ export const clientRouter = [
 ];
 
 export const adminParentRouter = {
-  path: '/admin',
+  path: ADMIN_PARENT,
   exact: true,
   Component: FullLayout,
   name: 'Admin Page',

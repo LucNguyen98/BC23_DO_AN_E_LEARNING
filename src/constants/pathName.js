@@ -9,3 +9,6 @@ export const INSTRUCTORS_PATH = '/giang-vien';
 export const BLOG_PATH = '/blog-list';
 export const COURSE_REGISTER = '/ghi-danh-khoa-hoc';
 export const COURSE_SEARCH_PATH = '/tim-kiem';
+
+// ****** ADMIN ****** //
+export const ADMIN_PARENT = '/admin';
