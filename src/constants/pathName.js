@@ -12,3 +12,5 @@ export const COURSE_SEARCH_PATH = '/tim-kiem';
 
 // ****** ADMIN ****** //
 export const ADMIN_PARENT = '/admin';
+export const USER_MANAGER_PATH = 'quan-ly-nguoi-dung';
+export const USER_CREATE_EDIT_PATH = 'thong-tin-nguoi-dung';

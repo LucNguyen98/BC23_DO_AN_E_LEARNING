@@ -12,6 +12,10 @@ import {
   INSTRUCTORS_PATH,
   LOGIN_PATH,
   REGISTER_PATH,
+  USER_CREATE_EDIT_PATH,
+  USER_MANAGER_PATH,
+  // USER_CREATE_EDIT_PATH,
+  // USER_MANAGER_PATH,
 } from 'src/constants/pathName';
 
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
@@ -39,19 +43,14 @@ const CoursesSearch = lazy(() =>
   import('src/pages/ClientPages/Courses/CoursesSearch')
 );
 
-//
-
-const Starter = lazy(() => import('src/pages/AdminPages/Starter.js'));
-const Alerts = lazy(() => import('src/pages/AdminPages/ui/Alerts'));
-const Badges = lazy(() => import('src/pages/AdminPages/ui/Badges'));
-const Buttons = lazy(() => import('src/pages/AdminPages/ui/Buttons'));
-const Cards = lazy(() => import('src/pages/AdminPages/ui/Cards'));
-const Grid = lazy(() => import('src/pages/AdminPages/ui/Grid'));
 const UserManager = lazy(() =>
   import('src/pages/AdminPages/UserManager/UserManager')
 );
-const Forms = lazy(() => import('src/pages/AdminPages/ui/Forms'));
-const Breadcrumbs = lazy(() => import('src/pages/AdminPages/ui/Breadcrumbs'));
+const UserCreateOrEditForm = lazy(() =>
+  import('src/pages/AdminPages/UserManager/UserCreateOrEditForm')
+);
+
+const Starter = lazy(() => import('src/pages/AdminPages/Starter.js'));
 
 /****Layouts*****/
 const FullLayout = lazy(() => import('../layouts/FullLayout'));
@@ -171,14 +170,28 @@ export const adminParentRouter = {
 };
 
 export const adminRouter = [
-  { path: 'starter', exact: true, Component: Starter },
-  { path: 'about', exact: true, Component: About },
-  { path: 'alerts', exact: true, Component: Alerts },
-  { path: 'badges', exact: true, Component: Badges },
-  { path: 'buttons', exact: true, Component: Buttons },
-  { path: 'cards', exact: true, Component: Cards },
-  { path: 'grid', exact: true, Component: Grid },
-  { path: 'table', exact: true, Component: UserManager },
-  { path: 'forms', exact: true, Component: Forms },
-  { path: 'breadcrumbs', exact: true, Component: Breadcrumbs },
+  {
+    name: 'Dashboard',
+    path: 'starter',
+    icon: 'bi bi-speedometer2',
+    Component: Starter,
+    exact: true,
+    isHidden: false,
+  },
+  {
+    path: USER_MANAGER_PATH,
+    exact: true,
+    Component: UserManager,
+    name: 'Người dùng',
+    icon: 'bi bi-speedometer2',
+    isHidden: false,
+  },
+  {
+    path: USER_CREATE_EDIT_PATH,
+    exact: true,
+    Component: UserCreateOrEditForm,
+    name: 'Tạo/Chỉnh sửa người dùng',
+    icon: 'bi bi-speedometer2',
+    isHidden: true,
+  },
 ];

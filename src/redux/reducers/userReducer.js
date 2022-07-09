@@ -5,6 +5,7 @@ const initialState = {
   users: [],
   currentPage: 1,
   totalCount: 0,
+  loading: false,
 };
 
 const userReducer = createSlice({
@@ -28,10 +29,26 @@ const userReducer = createSlice({
     getUserFail: (state, action) => {
       state.errors = action.payload;
     },
+
+    removeUserHandle: (state) => {
+      state.loading = true;
+    },
+    removeUserSuccess: (state) => {
+      state.loading = false;
+    },
+    removeUserFail: (state) => {
+      state.loading = false;
+    },
   },
 });
 
-export const { getUserSuccess, getUserFail, getUserByPaginationSuccess } =
-  userReducer.actions;
+export const {
+  getUserSuccess,
+  getUserFail,
+  getUserByPaginationSuccess,
+  removeUserHandle,
+  removeUserSuccess,
+  removeUserFail,
+} = userReducer.actions;
 
 export default userReducer.reducer;
