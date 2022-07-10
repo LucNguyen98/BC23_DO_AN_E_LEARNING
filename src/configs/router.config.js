@@ -1,4 +1,5 @@
-import { lazy } from 'react';
+import React, { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 import {
   ABOUT_PATH,
   ACCOUNT_PATH,
@@ -15,9 +16,9 @@ import {
   USER_CREATE_EDIT_PATH,
   USER_MANAGER_PATH,
   COURSE_MANAGER_PATH,
+  ADMIN_LOGIN_PATH,
+  ACCOUNT_ADMIN_PATH,
   COURSE_CREATE_EDIT_PATH,
-  // USER_CREATE_EDIT_PATH,
-  // USER_MANAGER_PATH,
 } from 'src/constants/pathName';
 
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
@@ -60,7 +61,13 @@ const CourseCreateOrEditForm = lazy(() =>
 );
 
 const Starter = lazy(() => import('src/pages/AdminPages/Starter.js'));
+const Admin_Login = lazy(() =>
+  import('src/pages/AdminPages/LoginAdmin/LoginAdmin')
+);
 
+const Admin_Account = lazy(() =>
+  import('src/pages/AdminPages/Account/Account')
+);
 /****Layouts*****/
 const FullLayout = lazy(() => import('../layouts/FullLayout'));
 
@@ -169,14 +176,21 @@ export const clientRouter = [
   },
 ];
 
-export const adminParentRouter = {
-  path: ADMIN_PARENT,
-  exact: true,
-  Component: FullLayout,
-  name: 'Admin Page',
-  isScrollToTop: true,
-  isBreadcrumb: true,
-};
+export const adminParentRouter = [
+  {
+    path: ADMIN_PARENT,
+    exact: true,
+    Component: FullLayout,
+    name: 'Admin',
+    requireLogin: true,
+  },
+  {
+    path: ADMIN_LOGIN_PATH,
+    Component: Admin_Login,
+    name: 'Đăng nhập',
+    requireLogin: false,
+  },
+];
 
 export const adminRouter = [
   {
@@ -186,14 +200,21 @@ export const adminRouter = [
     Component: Starter,
     exact: true,
     isHidden: false,
+    requireLogin: true,
+  },
+  {
+    path: ADMIN_PARENT,
+    Component: () => <Navigate to="/admin/starter" />,
+    isHidden: true,
   },
   {
     path: USER_MANAGER_PATH,
     exact: true,
     Component: UserManager,
     name: 'Người dùng',
-    icon: 'bi bi-speedometer2',
+    icon: 'bi bi-person',
     isHidden: false,
+    requireLogin: true,
   },
   {
     path: USER_CREATE_EDIT_PATH,
@@ -202,14 +223,23 @@ export const adminRouter = [
     name: 'Tạo/Chỉnh sửa người dùng',
     icon: 'bi bi-speedometer2',
     isHidden: true,
+    requireLogin: true,
   },
   {
     path: COURSE_MANAGER_PATH,
     exact: true,
     Component: CourseManager,
-    name: 'Khóa Học',
-    icon: 'bi bi-file-earmark-spreadsheet',
+    name: 'Khoá học',
+    icon: 'bi bi-book',
     isHidden: false,
+    requireLogin: true,
+  },
+  {
+    path: ACCOUNT_ADMIN_PATH,
+    Component: Admin_Account,
+    name: 'Thông tin tài khoản',
+    requireLogin: true,
+    isHidden: true,
   },
   {
     path: COURSE_CREATE_EDIT_PATH,

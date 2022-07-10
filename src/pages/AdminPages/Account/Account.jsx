@@ -10,18 +10,20 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useMemo } from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { VALIDATION_MESSAGE } from 'src/constants/error';
 import { regexPhoneNumber } from 'src/helpers/validation';
 import { useDispatch } from 'react-redux';
-import { updateUserAction } from 'src/redux/actions/authAction';
+import {
+  getProfileAction,
+  updateUserAction,
+} from 'src/redux/actions/authAction';
 import { ErrorMessage } from 'src/components';
 import withLoader from 'src/HOC/withLoader';
-import { addUserAction } from 'src/redux/actions/userAction';
+import { getUser } from 'src/helpers/localStorage';
 
 const options = [
   {
@@ -36,59 +38,44 @@ const options = [
 
 const UserCreateOrEditForm = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const user = getUser();
   const navigate = useNavigate();
-  const {
-    state: { user, isUpdate },
-  } = location || {};
-  const title = useMemo(() => {
-    return isUpdate ? 'Chỉnh sửa thông tin người dùng' : 'Tạo mới người dùng';
-  }, [isUpdate]);
-  const btnTitle = useMemo(() => {
-    return isUpdate ? 'Lưu' : 'Tạo mới';
-  }, [isUpdate]);
+
+  useEffect(() => {
+    dispatch(getProfileAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const schema = yup.object().shape({
-    taiKhoan: yup.string().required(VALIDATION_MESSAGE.required),
     hoTen: yup.string().required(VALIDATION_MESSAGE.required),
-    email: yup
-      .string()
-      .required(VALIDATION_MESSAGE.required)
-      .email(VALIDATION_MESSAGE.email),
     soDT: yup
       .string()
       .required(VALIDATION_MESSAGE.required)
       .matches(regexPhoneNumber, VALIDATION_MESSAGE.phone),
-    matKhau: !isUpdate
-      ? yup
-          .string()
-          .required(VALIDATION_MESSAGE.required)
-          .min(8, VALIDATION_MESSAGE.password)
-      : yup.string().nullable(),
   });
-  const { values, handleChange, handleSubmit, touched, errors, setFieldValue } =
-    useFormik({
-      enableReinitialize: true,
-      initialValues: user,
-      validationSchema: schema,
-      onSubmit: (vals) => {
-        isUpdate
-          ? dispatch(
-              updateUserAction({ ...vals, maNhom: 'GP01' }, () => {
-                navigate(-1);
-              })
-            )
-          : dispatch(
-              addUserAction({ ...vals, maNhom: 'GP01' }, () => navigate(-1))
-            );
-      },
-    });
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    touched,
+    errors,
+    isValid,
+    setFieldValue,
+  } = useFormik({
+    enableReinitialize: true,
+    initialValues: user,
+    validationSchema: schema,
+    onSubmit: (vals) => {
+      dispatch(updateUserAction(vals));
+    },
+  });
+
   return (
     <Row>
       <Col>
         <Card>
           <CardTitle tag="h3" className="border-bottom p-3 mb-0">
-            {title}
+            Thông tin tài khoản
           </CardTitle>
           <CardBody>
             <Form onSubmit={handleSubmit}>
@@ -99,10 +86,9 @@ const UserCreateOrEditForm = () => {
                   type="text"
                   value={values.taiKhoan}
                   onChange={handleChange}
-                  disabled={isUpdate}
+                  disabled={true}
                 />
               </FormGroup>
-
               <FormGroup>
                 <Label for="hoTen">Họ tên</Label>
                 <Input
@@ -116,7 +102,6 @@ const UserCreateOrEditForm = () => {
                   message={errors.hoTen}
                 />
               </FormGroup>
-
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Input
@@ -124,14 +109,13 @@ const UserCreateOrEditForm = () => {
                   type="email"
                   value={values.email}
                   onChange={handleChange}
-                  disabled={isUpdate}
+                  disabled={true}
                 />
                 <ErrorMessage
                   isError={errors.hoTen || touched?.hoTen}
                   message={errors.hoTen}
                 />
               </FormGroup>
-
               <FormGroup>
                 <Label for="soDT">Số điện thoại</Label>
                 <Input
@@ -145,22 +129,6 @@ const UserCreateOrEditForm = () => {
                   message={errors.soDT}
                 />
               </FormGroup>
-
-              {!isUpdate && (
-                <FormGroup>
-                  <Label for="matKhau">Mật khẩu</Label>
-                  <Input
-                    name="matKhau"
-                    type="password"
-                    value={values.matKhau}
-                    onChange={handleChange}
-                  />
-                  <ErrorMessage
-                    isError={errors.matKhau || touched?.matKhau}
-                    message={errors.matKhau}
-                  />
-                </FormGroup>
-              )}
 
               <FormGroup>
                 <Label for="maLoaiNguoiDung">Loại người dùng</Label>
@@ -180,15 +148,8 @@ const UserCreateOrEditForm = () => {
                   ))}
                 </Input>
               </FormGroup>
-
-              <Button
-                color="success"
-                outline
-                className="px-5"
-                type="submit"
-                // disabled={isValid}
-              >
-                {btnTitle}
+              <Button color="success" outline className="px-5" type="submit">
+                Lưu
               </Button>
             </Form>
           </CardBody>

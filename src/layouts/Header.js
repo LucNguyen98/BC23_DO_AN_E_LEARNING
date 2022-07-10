@@ -1,33 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Navbar,
-  Collapse,
-  Nav,
-  NavItem,
   NavbarBrand,
-  UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Dropdown,
   Button,
 } from 'reactstrap';
-import { ADMIN_PARENT } from 'src/constants/pathName';
+import { ACCOUNT_ADMIN_PATH, ADMIN_PARENT } from 'src/constants/pathName';
+import { logOutHandle } from 'src/redux/reducers/authReducer';
 import user1 from '../assets/images/users/user4.jpg';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-  const Handletoggle = () => {
-    setIsOpen(!isOpen);
-  };
   const showMobilemenu = () => {
     document.getElementById('sidebarArea').classList.toggle('showSidebar');
   };
+
+  const logOut = () => {
+    dispatch(logOutHandle());
+    window.location.reload();
+  };
+
   return (
     <Navbar color="white" light expand="md" className="fix-header">
       <div className="d-flex align-items-center">
@@ -41,6 +42,8 @@ const Header = () => {
             className="img-fluid d-lg-none"
           />
         </NavbarBrand>
+      </div>
+      <div className="hstack gap-2">
         <Button
           color="primary"
           className="d-lg-none"
@@ -48,46 +51,6 @@ const Header = () => {
         >
           <i className="bi bi-list"></i>
         </Button>
-      </div>
-      <div className="hstack gap-2">
-        <Button
-          color="primary"
-          size="sm"
-          className="d-sm-block d-md-none"
-          onClick={Handletoggle}
-        >
-          {isOpen ? (
-            <i className="bi bi-x"></i>
-          ) : (
-            <i className="bi bi-three-dots-vertical"></i>
-          )}
-        </Button>
-      </div>
-
-      <Collapse navbar isOpen={isOpen}>
-        <Nav className="me-auto" navbar>
-          <NavItem>
-            <Link to="/starter" className="nav-link">
-              Starter
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </NavItem>
-          <UncontrolledDropdown inNavbar nav>
-            <DropdownToggle caret nav>
-              DD Menu
-            </DropdownToggle>
-            <DropdownMenu end>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </Nav>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="transparent">
             <img
@@ -98,16 +61,14 @@ const Header = () => {
             ></img>
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem header>Info</DropdownItem>
-            <DropdownItem>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
+            <DropdownItem onClick={() => navigate(ACCOUNT_ADMIN_PATH)}>
+              Tài khoản
+            </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
+            <DropdownItem onClick={logOut}>Đăng xuất</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      </Collapse>
+      </div>
     </Navbar>
   );
 };
