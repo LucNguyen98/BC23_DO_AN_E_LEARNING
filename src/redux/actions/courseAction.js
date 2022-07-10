@@ -7,6 +7,8 @@ import {
   courseRegisterFail,
   courseRegisterHandle,
   courseRegisterSuccess,
+  getAddCourseFail,
+  getAddCourseSuccess,
   getCategoriesFail,
   getCategoriesSuccess,
   getCourseByCategoryFail,
@@ -121,5 +123,53 @@ export const courseRegisterAction = (data, onSuccess) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(courseRegisterFail(error));
+  }
+};
+
+export const addCourseAction = (postData) => async (dispatch) => {
+  try {
+    dispatch(courseRegisterHandle());
+    const result = await courseApi.themKhoaHoc(postData);
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getAddCourseSuccess(data));
+    }
+    if (error) {
+      return dispatch(getAddCourseFail(error));
+    }
+  } catch (error) {
+    dispatch(getAddCourseFail(error));
+  }
+};
+
+export const deleteCourseAction = (params) => async (dispatch) => {
+  try {
+    dispatch(courseRegisterHandle());
+    const result = await courseApi.xoaKhoaHoc(params);
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getAddCourseSuccess(data));
+    }
+    if (error) {
+      return dispatch(getAddCourseFail(error));
+    }
+  } catch (error) {
+    dispatch(getAddCourseFail(error));
+  }
+};
+
+export const updateCourseAction = (postData) => async (dispatch) => {
+  try {
+    dispatch(courseRegisterHandle());
+    const result = await courseApi.suaKhoaHoc(postData);
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      return dispatch(getAddCourseSuccess(data));
+    }
+    if (error) {
+      return dispatch(getAddCourseFail(error));
+    }
+  } catch (error) {
+    dispatch(getAddCourseFail(error));
   }
 };

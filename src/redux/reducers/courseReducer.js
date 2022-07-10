@@ -9,6 +9,7 @@ const initialState = {
   error: null,
   currentPage: 1,
   totalCount: 0,
+  success: null,
 };
 
 const courseSlice = createSlice({
@@ -97,6 +98,39 @@ const courseSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    // them khoa hoc
+    getAddCourseSuccess: (state, action) => {
+      return {
+        ...state,
+        success: action.payload,
+      };
+    },
+    getAddCourseFail: (state, action) => {
+      state.error = action.payload;
+    },
+
+    // xoa khoa hoc
+    getDeleteCourseSuccess: (state) => {
+      return {
+        ...state,
+        success: 'Xoa Thanh Cong!',
+      };
+    },
+    getDeleteCourseFail: (state, action) => {
+      state.error = action.payload;
+    },
+
+    // sua khoa hoc
+    getUpdateCourseSuccess: (state) => {
+      return {
+        ...state,
+        success: 'Sua Thanh Cong!',
+      };
+    },
+    getUpdateCourseFail: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -115,6 +149,12 @@ export const {
   courseRegisterHandle,
   courseRegisterSuccess,
   courseRegisterFail,
+  getAddCourseSuccess,
+  getAddCourseFail,
+  getDeleteCourseSuccess,
+  getDeleteCourseFail,
+  getUpdateCourseSuccess,
+  getUpdateCourseFail,
 } = courseSlice.actions;
 
 export default courseSlice.reducer;
