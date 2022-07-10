@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, Table } from 'reactstrap';
 
 import React from 'react';
-import { ButtonDropDown, Pagination } from '..';
+import { Pagination } from '..';
 
 const CourseTable = ({
   data = [],
@@ -10,6 +10,8 @@ const CourseTable = ({
   onChangePage,
   totalPages,
   page_limit,
+  updateCourse,
+  removeCourse,
 }) => {
   return (
     <Card>
@@ -17,10 +19,10 @@ const CourseTable = ({
         <Table className="no-wrap mt-3 align-middle" responsive borderless>
           <thead>
             <tr>
-              <th>Ma Khoa Hoc</th>
-              <th>Ten Khoa Hoc</th>
-              <th>Hinh Anh</th>
-              <th>Ngay Tao</th>
+              <th>Mã Khóa Học</th>
+              <th>Tên Khóa Học</th>
+              <th>Hình Ảnh</th>
+              <th>Ngày Tạo</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -35,10 +37,19 @@ const CourseTable = ({
                 <td>{tdata.ngayTao}</td>
                 <td>
                   <td>
-                    <Button size="sm" className="mr-3" color="primary">
+                    <Button
+                      size="sm"
+                      className="mr-3"
+                      color="primary"
+                      onClick={() => updateCourse(tdata)}
+                    >
                       <i className="fa fa-pencil-alt"></i>
                     </Button>
-                    <Button size="sm" color="danger">
+                    <Button
+                      size="sm"
+                      color="danger"
+                      onClick={() => removeCourse(tdata?.maKhoaHoc)}
+                    >
                       <i className="fa fa-trash"></i>
                     </Button>
                   </td>

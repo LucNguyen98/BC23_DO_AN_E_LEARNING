@@ -17,6 +17,7 @@ import { ButtonDropDown } from '..';
 export default function CourseFilter() {
   const dispatch = useDispatch();
   const categoryList = useSelector((state) => state.course.categories);
+
   useEffect(() => {
     dispatch(getCategoriesAction());
   }, [dispatch]);

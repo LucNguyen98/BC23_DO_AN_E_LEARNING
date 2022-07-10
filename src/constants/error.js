@@ -28,3 +28,14 @@ export const WARNING_REMOVE = {
   confirmButtonText: 'Xoá',
   cancelButtonText: 'Huỷ',
 };
+
+export const WARNING_COURSE_REMOVE = {
+  title: 'Bạn có muốn xoá khóa học này?',
+  text: 'Khóa học này sẽ bị xoá vĩnh viễn!',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Xoá',
+  cancelButtonText: 'Huỷ',
+};

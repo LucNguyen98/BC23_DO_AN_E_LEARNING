@@ -17,3 +17,4 @@ export const USER_CREATE_EDIT_PATH = 'thong-tin-nguoi-dung';
 export const COURSE_MANAGER_PATH = 'quan-ly-khoa-hoc';
 export const ADMIN_LOGIN_PATH = '/admin/dang-nhap';
 export const ACCOUNT_ADMIN_PATH = 'thong-tin-tai-khoan';
+export const COURSE_CREATE_EDIT_PATH = 'thong-tin-khoa-hoc';
