@@ -10,9 +10,8 @@ import {
   getUserPaginationAction,
 } from 'src/redux/actions/userAction';
 import Swal from 'sweetalert2';
-import UserSearch from '../../../components/dashboard/UserControls';
+import UserControls from '../../../components/dashboard/UserControls';
 const COUNT_LIMIT = 10;
-const PAGE_LIMIT = 8;
 const DEFAULT_FILTERS = {
   page: 1,
   pageSize: COUNT_LIMIT,
@@ -44,10 +43,28 @@ export default function UserManager() {
     }
   };
 
-  const updateUser = (user) => {
-    console.log(user);
+  const createUser = () => {
     const link = `${ADMIN_PARENT}/${USER_CREATE_EDIT_PATH}`;
-    navigate(link);
+    navigate(link, {
+      state: {
+        user: {
+          taiKhoan: '',
+          hoTen: '',
+          soDT: '',
+          maLoaiNguoiDung: 'HV',
+          maNhom: '',
+          email: '',
+        },
+        isUpdate: false,
+      },
+    });
+  };
+
+  const updateUser = (user) => {
+    const link = `${ADMIN_PARENT}/${USER_CREATE_EDIT_PATH}`;
+    navigate(link, {
+      state: { user, isUpdate: true },
+    });
   };
 
   const removeUser = (taiKhoan) => {
@@ -61,13 +78,12 @@ export default function UserManager() {
   return (
     <Row>
       <Col lg="12">
-        <UserSearch onChange={onChangeKey} />
+        <UserControls onChange={onChangeKey} createUser={createUser} />
         <UserTables
           data={users}
           isPagination
           currentPage={currentPage}
           totalPages={totalPages}
-          page_limit={PAGE_LIMIT}
           onChangePage={onChangePage}
           removeUser={removeUser}
           updateUser={updateUser}

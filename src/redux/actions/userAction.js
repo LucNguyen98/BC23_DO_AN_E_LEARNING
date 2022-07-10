@@ -5,6 +5,9 @@ import authApi from 'src/services/api/authApi';
 import Swal from 'sweetalert2';
 
 import {
+  addUserFail,
+  addUserHandle,
+  addUserSuccess,
   getUserByPaginationSuccess,
   getUserFail,
   getUserSuccess,
@@ -66,5 +69,31 @@ export const deleteUserAction = (taiKhoan) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(removeUserFail(error));
+  }
+};
+
+export const addUserAction = (data, onSuccess) => async (dispatch) => {
+  try {
+    dispatch(addUserHandle());
+    const result = await authApi.themNguoiDung(data);
+    const { data: dataRes, error } = handleResponseApi(result);
+    if (dataRes) {
+      dispatch(addUserSuccess());
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'Tạo mới thành công!',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onSuccess?.();
+        }
+      });
+    }
+    if (error) {
+      dispatch(addUserFail(error));
+      Swal.fire({ ...SUBMIT_ERROR, text: error });
+    }
+  } catch (error) {
+    dispatch(addUserFail(error));
   }
 };

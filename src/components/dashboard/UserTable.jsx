@@ -10,7 +10,6 @@ const UserTables = ({
   currentPage,
   onChangePage,
   totalPages,
-  page_limit,
   removeUser,
   updateUser,
 }) => {
@@ -30,7 +29,7 @@ const UserTables = ({
 
   const onAction = (item, user) => {
     if (item.name === 'Chỉnh sửa') {
-      updateUser();
+      updateUser(user);
     } else {
       removeUser(user?.taiKhoan);
     }
@@ -79,7 +78,6 @@ const UserTables = ({
             currentPage={currentPage}
             totalPages={totalPages}
             onChangePage={onChangePage}
-            page_limit={page_limit}
           />
         )}
       </CardBody>

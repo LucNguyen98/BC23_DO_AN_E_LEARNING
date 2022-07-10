@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 
 import {
+  Button,
   Card,
   CardBody,
   Col,
@@ -11,7 +12,7 @@ import {
   Row,
 } from 'reactstrap';
 
-function UserControls({ onChange }) {
+function UserControls({ onChange, createUser }) {
   const key = useRef('');
   const onSearch = (e) => {
     e.preventDefault();
@@ -40,18 +41,10 @@ function UserControls({ onChange }) {
               </FormGroup>
             </Form>
           </Col>
-          <Col lg="6">
-            {/* <Form>
-    <FormGroup>
-      <Label for="exampleSearch">Search</Label>
-      <Input
-        id="exampleSearch"
-        name="search"
-        placeholder="search placeholder"
-        type="search"
-      />
-    </FormGroup>
-  </Form> */}
+          <Col lg="12">
+            <Button color="success" onClick={createUser}>
+              <i className="fa fa-plus"></i> Tạo mới
+            </Button>
           </Col>
         </Row>
       </CardBody>

@@ -9,104 +9,171 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
 } from 'reactstrap';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { VALIDATION_MESSAGE } from 'src/constants/error';
+import { regexPhoneNumber } from 'src/helpers/validation';
+import { useDispatch } from 'react-redux';
+import { updateUserAction } from 'src/redux/actions/authAction';
+import { ErrorMessage } from 'src/components';
+import withLoader from 'src/HOC/withLoader';
+import { addUserAction } from 'src/redux/actions/userAction';
+
+const options = [
+  {
+    label: 'Học viên',
+    value: 'HV',
+  },
+  {
+    label: 'Giáo vụ',
+    value: 'GV',
+  },
+];
 
 const UserCreateOrEditForm = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {
+    state: { user, isUpdate },
+  } = location || {};
+  const title = useMemo(() => {
+    return isUpdate ? 'Chỉnh sửa thông tin người dùng' : 'Tạo mới người dùng';
+  }, [isUpdate]);
+  const btnTitle = useMemo(() => {
+    return isUpdate ? 'Lưu' : 'Tạo mới';
+  }, [isUpdate]);
+
+  const schema = yup.object().shape({
+    taiKhoan: yup.string().required(VALIDATION_MESSAGE.required),
+    hoTen: yup.string().required(VALIDATION_MESSAGE.required),
+    email: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .email(VALIDATION_MESSAGE.email),
+    soDT: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .matches(regexPhoneNumber, VALIDATION_MESSAGE.phone),
+    matKhau: isUpdate
+      ? yup
+          .string()
+          .required(VALIDATION_MESSAGE.required)
+          .min(8, VALIDATION_MESSAGE.password)
+      : yup.string().notRequired(),
+  });
+  const { values, handleChange, handleSubmit, touched, errors } = useFormik({
+    initialValues: user,
+    validationSchema: schema,
+    onSubmit: (vals) => {
+      isUpdate
+        ? dispatch(updateUserAction(vals, () => {}))
+        : dispatch(addUserAction(vals, () => navigate(-1)));
+    },
+  });
+
   return (
     <Row>
       <Col>
-        {/* --------------------------------------------------------------------------------*/}
-        {/* Card-1*/}
-        {/* --------------------------------------------------------------------------------*/}
         <Card>
-          <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-            <i className="bi bi-bell me-2"> </i>
-            Form Example
+          <CardTitle tag="h3" className="border-bottom p-3 mb-0">
+            {title}
           </CardTitle>
           <CardBody>
-            <Form>
+            <Form onSubmit={handleSubmit}>
+              <FormGroup>
+                <Label for="exampleEmail">Tài khoản</Label>
+                <Input
+                  name="taiKhoan"
+                  type="text"
+                  value={values.taiKhoan}
+                  onChange={handleChange}
+                  disabled={isUpdate}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="exampleEmail">Họ tên</Label>
+                <Input
+                  name="hoTen"
+                  type="text"
+                  value={values.hoTen}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  isError={errors.hoTen || touched?.hoTen}
+                  message={errors.hoTen}
+                />
+              </FormGroup>
+
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
                 <Input
-                  id="exampleEmail"
                   name="email"
-                  placeholder="with a placeholder"
                   type="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  disabled={isUpdate}
+                />
+                <ErrorMessage
+                  isError={errors.hoTen || touched?.hoTen}
+                  message={errors.hoTen}
                 />
               </FormGroup>
+
               <FormGroup>
-                <Label for="examplePassword">Password</Label>
+                <Label for="exampleEmail">Số điện thoại</Label>
                 <Input
-                  id="examplePassword"
-                  name="password"
-                  placeholder="password placeholder"
-                  type="password"
+                  name="soDT"
+                  type="text"
+                  value={values.soDT}
+                  onChange={handleChange}
+                />
+                <ErrorMessage
+                  isError={errors.soDT || touched?.soDT}
+                  message={errors.soDT}
                 />
               </FormGroup>
+
+              {!isUpdate && (
+                <FormGroup>
+                  <Label for="exampleEmail">Mật khẩu</Label>
+                  <Input
+                    name="matKhau"
+                    type="password"
+                    value={values.matKhau}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    isError={errors.matKhau || touched?.matKhau}
+                    message={errors.matKhau}
+                  />
+                </FormGroup>
+              )}
+
               <FormGroup>
-                <Label for="exampleSelect">Select</Label>
-                <Input id="exampleSelect" name="select" type="select">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleSelectMulti">Select Multiple</Label>
+                <Label for="maLoaiNguoiDung">Loại người dùng</Label>
                 <Input
-                  id="exampleSelectMulti"
-                  multiple
-                  name="selectMulti"
+                  name="maLoaiNguoiDung"
                   type="select"
+                  value={values.maLoaiNguoiDung}
+                  onChange={handleChange}
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  {options.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </Input>
               </FormGroup>
-              <FormGroup>
-                <Label for="exampleText">Text Area</Label>
-                <Input id="exampleText" name="text" type="textarea" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleFile">File</Label>
-                <Input id="exampleFile" name="file" type="file" />
-                <FormText>
-                  This is some placeholder block-level help text for the above
-                  input. It&apos;s a bit lighter and easily wraps to a new line.
-                </FormText>
-              </FormGroup>
-              <FormGroup tag="fieldset">
-                <legend>Radio Buttons</legend>
-                <FormGroup check>
-                  <Input name="radio1" type="radio" />{' '}
-                  <Label check>
-                    Option one is this and that—be sure to include why it&apos;s
-                    great
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Input name="radio1" type="radio" />{' '}
-                  <Label check>
-                    Option two can be something else and selecting it will
-                    deselect option one
-                  </Label>
-                </FormGroup>
-                <FormGroup check disabled>
-                  <Input disabled name="radio1" type="radio" />{' '}
-                  <Label check>Option three is disabled</Label>
-                </FormGroup>
-              </FormGroup>
-              <FormGroup check>
-                <Input type="checkbox" /> <Label check>Check me out</Label>
-              </FormGroup>
-              <Button>Submit</Button>
+
+              <Button color="success" outline type="submit" className="px-5">
+                {btnTitle}
+              </Button>
             </Form>
           </CardBody>
         </Card>
@@ -115,4 +182,4 @@ const UserCreateOrEditForm = () => {
   );
 };
 
-export default UserCreateOrEditForm;
+export default React.memo(withLoader(UserCreateOrEditForm));
