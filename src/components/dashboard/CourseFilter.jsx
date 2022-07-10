@@ -18,6 +18,7 @@ const COUNT_LIMIT = 10;
 export default function CourseFilter() {
   const dispatch = useDispatch();
   const categoryList = useSelector((state) => state.course.categories);
+
   useEffect(() => {
     dispatch(getCategoriesAction());
   }, [dispatch]);
@@ -47,7 +48,7 @@ export default function CourseFilter() {
             </Form>
           </Col>
           <Col lg="6">
-            <ButtonDropDown title="Chon Loc" menus={menuItems} />
+            <ButtonDropDown title="Chọn Lọc" menus={menuItems} />
           </Col>
         </Row>
       </CardBody>

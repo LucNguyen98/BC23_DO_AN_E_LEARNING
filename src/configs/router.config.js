@@ -15,10 +15,10 @@ import {
   USER_CREATE_EDIT_PATH,
   USER_MANAGER_PATH,
   COURSE_MANAGER_PATH,
+  COURSE_CREATE_EDIT_PATH,
   // USER_CREATE_EDIT_PATH,
   // USER_MANAGER_PATH,
 } from 'src/constants/pathName';
-import CourseManager from 'src/pages/AdminPages/CourseManager/CourseManager';
 
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
 const Login = lazy(() => import('src/pages/ClientPages/Login/Login'));
@@ -50,6 +50,13 @@ const UserManager = lazy(() =>
 );
 const UserCreateOrEditForm = lazy(() =>
   import('src/pages/AdminPages/UserManager/UserCreateOrEditForm')
+);
+
+const CourseManager = lazy(() =>
+  import('src/pages/AdminPages/CourseManager/CourseManager')
+);
+const CourseCreateOrEditForm = lazy(() =>
+  import('src/pages/AdminPages/CourseManager/CourseCreateOrEditForm')
 );
 
 const Starter = lazy(() => import('src/pages/AdminPages/Starter.js'));
@@ -200,8 +207,16 @@ export const adminRouter = [
     path: COURSE_MANAGER_PATH,
     exact: true,
     Component: CourseManager,
-    name: 'Khoa Hoc',
+    name: 'Khóa Học',
     icon: 'bi bi-file-earmark-spreadsheet',
     isHidden: false,
+  },
+  {
+    path: COURSE_CREATE_EDIT_PATH,
+    exact: true,
+    Component: CourseCreateOrEditForm,
+    name: 'Tạo/Chỉnh sửa khóa học',
+    icon: 'bi bi-file-earmark-spreadsheet',
+    isHidden: true,
   },
 ];

@@ -1,18 +1,7 @@
 import { Card, CardBody, Table } from 'reactstrap';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ButtonDropDown, Pagination } from '..';
-
-const MENUS = [
-  {
-    name: 'Chỉnh sửa',
-    icon: <i className="fa fa-pencil-alt"></i>,
-  },
-  {
-    name: 'Xoá',
-    icon: <i className="fa fa-trash"></i>,
-  },
-];
 
 const CourseTable = ({
   data = [],
@@ -21,17 +10,40 @@ const CourseTable = ({
   onChangePage,
   totalPages,
   page_limit,
+  updateCourse,
+  removeCourse,
 }) => {
+  const menus = useMemo(
+    () => [
+      {
+        name: 'Chỉnh sửa',
+        icon: <i className="fa fa-pencil-alt"></i>,
+      },
+      {
+        name: 'Xoá',
+        icon: <i className="fa fa-trash"></i>,
+      },
+    ],
+    []
+  );
+  const onAction = (item, user) => {
+    if (item.name === 'Chỉnh sửa') {
+      updateCourse();
+    } else {
+      removeCourse(user?.taiKhoan);
+    }
+  };
+
   return (
     <Card>
       <CardBody>
         <Table className="no-wrap mt-3 align-middle" responsive borderless>
           <thead>
             <tr>
-              <th>Ma Khoa Hoc</th>
-              <th>Ten Khoa Hoc</th>
-              <th>Hinh Anh</th>
-              <th>Ngay Tao</th>
+              <th>Mã Khóa Học</th>
+              <th>Tên Khóa Học</th>
+              <th>Hình Ảnh</th>
+              <th>Ngày Tạo</th>
               <th></th>
             </tr>
           </thead>
@@ -45,7 +57,11 @@ const CourseTable = ({
                 </td>
                 <td>{tdata.ngayTao}</td>
                 <td>
-                  <ButtonDropDown menus={MENUS} />
+                  <ButtonDropDown
+                    menus={menus}
+                    item={tdata}
+                    onSelected={onAction}
+                  />
                 </td>
               </tr>
             ))}
