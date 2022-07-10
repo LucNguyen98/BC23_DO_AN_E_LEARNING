@@ -15,7 +15,6 @@ import {
   registerSuccess,
   updateUserFail,
   updateUserHandle,
-  updateUserSuccess,
 } from '../reducers/authReducer';
 
 export const loginAction = (data, onSuccess) => async (dispatch) => {
@@ -68,7 +67,6 @@ export const updateUserAction = (data, onSuccess) => async (dispatch) => {
     const result = await authApi.capNhatThongTinNguoiDung(data);
     const { data: dataResp, error } = handleResponseApi(result);
     if (dataResp) {
-      updateUserSuccess();
       Swal.fire({
         ...SUBMIT_SUCCESS,
         title: 'Cập nhật thành công',
