@@ -71,6 +71,7 @@ const Sidebar = () => {
             !navi.isHidden ? (
               <NavItem key={index} className="sidenav-bg">
                 <Link
+                  onClick={() => showMobilemenu()}
                   to={`${ADMIN_PARENT}/${navi.path}`}
                   className={
                     location.pathname === `${ADMIN_PARENT}/${navi.path}`

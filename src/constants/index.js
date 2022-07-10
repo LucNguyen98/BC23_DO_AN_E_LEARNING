@@ -5,3 +5,8 @@ export const TOKEN_CYBERSOFT =
 export const REQUEST_TIMEOUT = 30 * 1000;
 
 export const USER = 'user_localstorage';
+
+export const USER_TYPE = {
+  GV: 'GV',
+  HV: 'HV',
+};

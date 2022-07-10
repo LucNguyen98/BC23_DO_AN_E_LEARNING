@@ -1,18 +1,7 @@
-import { Card, CardBody, Table } from 'reactstrap';
+import { Button, Card, CardBody, Table } from 'reactstrap';
 
 import React from 'react';
 import { ButtonDropDown, Pagination } from '..';
-
-const MENUS = [
-  {
-    name: 'Chỉnh sửa',
-    icon: <i className="fa fa-pencil-alt"></i>,
-  },
-  {
-    name: 'Xoá',
-    icon: <i className="fa fa-trash"></i>,
-  },
-];
 
 const CourseTable = ({
   data = [],
@@ -32,7 +21,7 @@ const CourseTable = ({
               <th>Ten Khoa Hoc</th>
               <th>Hinh Anh</th>
               <th>Ngay Tao</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -45,7 +34,14 @@ const CourseTable = ({
                 </td>
                 <td>{tdata.ngayTao}</td>
                 <td>
-                  <ButtonDropDown menus={MENUS} />
+                  <td>
+                    <Button size="sm" className="mr-3" color="primary">
+                      <i className="fa fa-pencil-alt"></i>
+                    </Button>
+                    <Button size="sm" color="danger">
+                      <i className="fa fa-trash"></i>
+                    </Button>
+                  </td>
                 </td>
               </tr>
             ))}

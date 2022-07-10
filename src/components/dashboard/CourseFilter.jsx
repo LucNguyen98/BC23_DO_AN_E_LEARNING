@@ -13,7 +13,6 @@ import {
 
 import { getCategoriesAction } from 'src/redux/actions/courseAction';
 import { ButtonDropDown } from '..';
-const COUNT_LIMIT = 10;
 
 export default function CourseFilter() {
   const dispatch = useDispatch();
@@ -46,8 +45,8 @@ export default function CourseFilter() {
               </FormGroup>
             </Form>
           </Col>
-          <Col lg="6">
-            <ButtonDropDown title="Chon Loc" menus={menuItems} />
+          <Col lg="6" className="d-flex justify-content-end align-items-center">
+            <ButtonDropDown title="Danh mục" menus={menuItems} />
           </Col>
         </Row>
       </CardBody>

@@ -15,6 +15,7 @@ import './assets/scss/css/woocomerce.css';
 import './assets/scss/index.scss';
 import PrivateAdminRoute from './layouts/PrivateRoute/PrivateAdminRoute';
 import TemplateAdmin from './templates/Template/admin/TemplateAdmin';
+import Login from './pages/AdminPages/LoginAdmin/LoginAdmin';
 
 function App() {
   const OurFallbackComponent = ({ error, resetErrorBoundary }) => {
@@ -71,29 +72,32 @@ function App() {
   };
 
   const renderAdminRouter = () => {
-    const { exact, path, Component } = adminParentRouter;
-    return (
-      <Route
-        exact={exact}
-        path={path}
-        element={
-          <PrivateAdminRoute isRequired={false}>
-            {<TemplateAdmin Component={<Component />} />}
-          </PrivateAdminRoute>
-        }
-      >
-        {adminRouter.map((route, index) => {
-          const { path, Component } = route;
-          return (
-            <Route
-              key={index}
-              path={path}
-              element={<TemplateAdmin Component={<Component />} />}
-            />
-          );
-        })}
-      </Route>
-    );
+    return adminParentRouter.map((admin, key) => {
+      const { path, Component, name, requireLogin } = admin;
+      return (
+        <Route
+          key={key}
+          path={path}
+          element={
+            <PrivateAdminRoute isRequired={requireLogin}>
+              {<TemplateAdmin Component={<Component />} />}
+            </PrivateAdminRoute>
+          }
+        >
+          {name === 'Admin' &&
+            adminRouter.map((route, index) => {
+              const { path, Component } = route;
+              return (
+                <Route
+                  key={index}
+                  path={path}
+                  element={<TemplateAdmin Component={<Component />} />}
+                />
+              );
+            })}
+        </Route>
+      );
+    });
   };
 
   return (
@@ -102,6 +106,7 @@ function App() {
         <Routes>
           {renderClientRouter()}
           {renderAdminRouter()}
+          <Route path="" element={<Login />} />
           <Route path="" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

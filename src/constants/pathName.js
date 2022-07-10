@@ -15,3 +15,5 @@ export const ADMIN_PARENT = '/admin';
 export const USER_MANAGER_PATH = 'quan-ly-nguoi-dung';
 export const USER_CREATE_EDIT_PATH = 'thong-tin-nguoi-dung';
 export const COURSE_MANAGER_PATH = 'quan-ly-khoa-hoc';
+export const ADMIN_LOGIN_PATH = '/admin/dang-nhap';
+export const ACCOUNT_ADMIN_PATH = 'thong-tin-tai-khoan';

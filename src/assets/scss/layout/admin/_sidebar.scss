@@ -19,17 +19,17 @@
   }
 }
 
-// @include media-breakpoint-down(lg) {
-//   .sidebarArea {
-//     position: fixed;
-//     height: 100%;
-//     overflow: auto;
-//     top: 0;
-//     z-index: 1;
-//     margin-left: -$sidebarWidth;
-//     transition: 0.2s ease-in;
-//     &.showSidebar {
-//       margin-left: 0px;
-//     }
-//   }
-// }
+@include media-breakpoint-down(lg) {
+  .sidebarArea {
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    top: 0;
+    z-index: 1;
+    margin-left: -$sidebarWidth;
+    transition: 0.2s ease-in;
+    &.showSidebar {
+      margin-left: 0px;
+    }
+  }
+}
