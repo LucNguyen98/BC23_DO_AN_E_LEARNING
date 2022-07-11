@@ -105,6 +105,8 @@ const CourseCreateOrEditForm = () => {
     };
   });
 
+  console.log('value', values);
+
   return (
     <Row>
       <Col>
