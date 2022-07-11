@@ -50,3 +50,13 @@ export const WARNING_COURSE_CANCEL = {
   confirmButtonText: 'Xoá',
   cancelButtonText: 'Huỷ',
 };
+
+export const DELETE_COURSE_ERROR = (error) => {
+  return {
+    title: 'Đã có lỗi xảy ra !',
+    text: error,
+    icon: 'warning',
+    showCancelButton: false,
+    confirmButtonColor: '#d33',
+  };
+};

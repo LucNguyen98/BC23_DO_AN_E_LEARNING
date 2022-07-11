@@ -1,4 +1,4 @@
-import { SUBMIT_ERROR } from 'src/constants/error';
+import { DELETE_COURSE_ERROR, SUBMIT_ERROR } from 'src/constants/error';
 import { SUBMIT_SUCCESS } from 'src/constants/success';
 import { handleResponseApi } from 'src/helpers/parse';
 import courseApi from 'src/services/api/courseApi';
@@ -23,6 +23,10 @@ import {
   getCourseMenuFail,
   getCourseMenuSuccess,
   getCourseSuccess,
+  getDeleteCourseFail,
+  getDeleteCourseSuccess,
+  getUpdateCourseFail,
+  getUpdateCourseSuccess,
 } from '../reducers/courseReducer';
 
 // eslint-disable-next-line no-unused-vars
@@ -75,6 +79,7 @@ export const getCategoriesAction = (params) => async (dispatch) => {
 export const getCourseByCategoryAction = (params) => async (dispatch) => {
   try {
     const result = await courseApi.LayKhoaHocTheoDanhMuc(params);
+    console.log(params);
     const { data, error } = handleResponseApi(result);
     if (data) {
       return dispatch(getCourseByCategorySuccess(data));
@@ -122,58 +127,89 @@ export const courseRegisterAction = (data, onSuccess) => async (dispatch) => {
     }
     if (error) {
       dispatch(courseRegisterFail(error));
-      Swal.fire({ ...SUBMIT_ERROR, text: error });
+      Swal.fire(SUBMIT_ERROR);
     }
   } catch (error) {
     dispatch(courseRegisterFail(error));
   }
 };
 
-export const addCourseAction = (postData) => async (dispatch) => {
+export const addCourseAction = (postData, onSuccess) => async (dispatch) => {
   try {
     dispatch(courseRegisterHandle());
     const result = await courseApi.themKhoaHoc(postData);
-    const { data, error } = handleResponseApi(result);
-    if (data) {
-      return dispatch(getAddCourseSuccess(data));
+    const { data: dataResp, error } = handleResponseApi(result);
+    if (dataResp) {
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'Tạo khóa học thành công',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+          onSuccess?.();
+        }
+      });
     }
     if (error) {
-      return dispatch(getAddCourseFail(error));
+      dispatch(getAddCourseFail(error));
+      Swal.fire({ ...SUBMIT_ERROR, text: error });
     }
   } catch (error) {
     dispatch(getAddCourseFail(error));
   }
 };
 
-export const deleteCourseAction = (params) => async (dispatch) => {
-  try {
-    dispatch(courseRegisterHandle());
-    const result = await courseApi.xoaKhoaHoc(params);
-    const { data, error } = handleResponseApi(result);
-    if (data) {
-      return dispatch(getAddCourseSuccess(data));
+export const deleteCourseAction =
+  (maKhoaHoc, onSuccess) => async (dispatch) => {
+    try {
+      dispatch(courseRegisterHandle());
+      const result = await courseApi.xoaKhoaHoc({ maKhoaHoc });
+      const { data: dataResp, error } = handleResponseApi(result);
+      if (dataResp) {
+        Swal.fire({
+          ...SUBMIT_SUCCESS,
+          title: 'Xóa thành công',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+            onSuccess?.();
+          }
+        });
+      }
+      if (error) {
+        dispatch(getDeleteCourseFail(error));
+        Swal.fire(DELETE_COURSE_ERROR(error));
+      }
+    } catch (error) {
+      dispatch(getDeleteCourseFail(error));
     }
-    if (error) {
-      return dispatch(getAddCourseFail(error));
-    }
-  } catch (error) {
-    dispatch(getAddCourseFail(error));
-  }
-};
+  };
 
-export const updateCourseAction = (postData) => async (dispatch) => {
+export const updateCourseAction = (postData, onSuccess) => async (dispatch) => {
   try {
     dispatch(courseRegisterHandle());
     const result = await courseApi.suaKhoaHoc(postData);
-    const { data, error } = handleResponseApi(result);
-    if (data) {
-      return dispatch(getAddCourseSuccess(data));
+    const { data: dataResp, error } = handleResponseApi(result);
+    if (dataResp) {
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'Cập nhật thành công',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+          onSuccess?.();
+        }
+      });
     }
     if (error) {
-      return dispatch(getAddCourseFail(error));
+      dispatch(getUpdateCourseFail(error));
+      Swal.fire(SUBMIT_ERROR);
     }
   } catch (error) {
-    dispatch(getAddCourseFail(error));
+    dispatch(getUpdateCourseFail(error));
   }
 };
 
@@ -196,7 +232,7 @@ export const courseCancelAction = (data, onSuccess) => async (dispatch) => {
     }
     if (error) {
       dispatch(courseCancelFail(error));
-      Swal.fire({ ...SUBMIT_ERROR, text: error });
+      Swal.fire(SUBMIT_ERROR);
     }
   } catch (error) {
     dispatch(courseRegisterFail(error));
