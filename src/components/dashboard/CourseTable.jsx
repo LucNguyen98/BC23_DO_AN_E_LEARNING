@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, Table } from 'reactstrap';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Pagination } from '..';
 
 const CourseTable = ({
