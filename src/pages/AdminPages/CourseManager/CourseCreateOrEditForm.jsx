@@ -18,18 +18,22 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { VALIDATION_MESSAGE } from 'src/constants/error';
 import { regexPhoneNumber } from 'src/helpers/validation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ErrorMessage } from 'src/components';
 import withLoader from 'src/HOC/withLoader';
 import {
   addCourseAction,
+  getCategoriesAction,
   updateCourseAction,
 } from 'src/redux/actions/courseAction';
+import { useEffect } from 'react';
+import { USER } from 'src/constants';
 
 const CourseCreateOrEditForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const courseList = useSelector((state) => state.course.categories);
   const {
     state: { course, isUpdate },
   } = location || {};
@@ -39,33 +43,46 @@ const CourseCreateOrEditForm = () => {
   const btnTitle = useMemo(() => {
     return isUpdate ? 'Lưu' : 'Tạo mới';
   }, [isUpdate]);
+  const taiKhoanNguoiTao = JSON.parse(localStorage.getItem(USER));
+  const { values, handleChange, handleSubmit, touched, errors, setFieldValue } =
+    useFormik({
+      enableReinitialize: true,
+      initialValues: course,
+      onSubmit: (vals) => {
+        console.log(vals);
+        isUpdate
+          ? dispatch(
+              updateCourseAction(
+                {
+                  ...vals,
+                  maNhom: 'GP01',
+                  taiKhoanNguoiTao: taiKhoanNguoiTao.taiKhoan,
+                },
+                () => navigate(-1)
+              )
+            )
+          : dispatch(
+              addCourseAction(
+                {
+                  ...vals,
+                  maNhom: 'GP01',
+                  taiKhoanNguoiTao: taiKhoanNguoiTao.taiKhoan,
+                },
+                () => navigate(-1)
+              )
+            );
+      },
+    });
 
-  const schema = yup.object().shape({
-    taiKhoan: yup.string().required(VALIDATION_MESSAGE.required),
-    hoTen: yup.string().required(VALIDATION_MESSAGE.required),
-    email: yup
-      .string()
-      .required(VALIDATION_MESSAGE.required)
-      .email(VALIDATION_MESSAGE.email),
-    soDT: yup
-      .string()
-      .required(VALIDATION_MESSAGE.required)
-      .matches(regexPhoneNumber, VALIDATION_MESSAGE.phone),
-    matKhau: isUpdate
-      ? yup
-          .string()
-          .required(VALIDATION_MESSAGE.required)
-          .min(8, VALIDATION_MESSAGE.password)
-      : yup.string().notRequired(),
-  });
-  const { values, handleChange, handleSubmit, touched, errors } = useFormik({
-    initialValues: course,
-    validationSchema: schema,
-    onSubmit: (vals) => {
-      isUpdate
-        ? dispatch(updateCourseAction(vals, () => {}))
-        : dispatch(addCourseAction(vals, () => navigate(-1)));
-    },
+  useEffect(() => {
+    dispatch(getCategoriesAction());
+  }, [dispatch]);
+
+  const options = courseList.map((course) => {
+    return {
+      label: course.tenDanhMuc,
+      value: course.maDanhMuc,
+    };
   });
 
   return (
@@ -95,6 +112,7 @@ const CourseCreateOrEditForm = () => {
                   type="text"
                   value={values.biDanh}
                   onChange={handleChange}
+                  disabled={isUpdate}
                 />
               </FormGroup>
 
@@ -105,7 +123,6 @@ const CourseCreateOrEditForm = () => {
                   type="text"
                   value={values.tenKhoaHoc}
                   onChange={handleChange}
-                  disabled={isUpdate}
                 />
               </FormGroup>
 
@@ -120,7 +137,7 @@ const CourseCreateOrEditForm = () => {
               </FormGroup>
 
               <FormGroup>
-                <Label for="moTa">Lượt xem</Label>
+                <Label for="luotXem">Lượt xem</Label>
                 <Input
                   name="luotXem"
                   type="text"
@@ -130,7 +147,7 @@ const CourseCreateOrEditForm = () => {
               </FormGroup>
 
               <FormGroup>
-                <Label for="moTa">Đánh giá</Label>
+                <Label for="danhGia">Đánh giá</Label>
                 <Input
                   name="danhGia"
                   type="text"
@@ -140,16 +157,63 @@ const CourseCreateOrEditForm = () => {
               </FormGroup>
 
               <FormGroup>
-                <Label for="moTa">Mã Nhóm</Label>
+                <Label for="maNhom">Mã Nhóm</Label>
                 <Input
                   name="maNhom"
                   type="text"
-                  value={values.maNhom}
+                  value={'GP01'}
                   onChange={handleChange}
+                  disabled={true}
                 />
               </FormGroup>
 
-              <Button color="success" outline type="submit" className="px-5">
+              <FormGroup>
+                <Label for="ngayTao">Ngày Tạo</Label>
+                <Input
+                  name="ngayTao"
+                  type="text"
+                  value={values.ngayTao}
+                  onChange={handleChange}
+                  disabled={isUpdate}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="maDanhMucKhoaHoc">Mã Danh Mục Khóa Học</Label>
+                <Input
+                  name="maDanhMucKhoaHoc"
+                  type="select"
+                  value={values.maDanhMucKhoaHoc}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setFieldValue('maDanhMucKhoaHoc', value);
+                  }}
+                >
+                  {options.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </Input>
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="hinhAnh">Hình Ảnh</Label>
+                <Input
+                  name="hinhAnh"
+                  type="file"
+                  onChange={handleChange}
+                  accept="image/*"
+                />
+              </FormGroup>
+
+              <Button
+                color="success"
+                outline
+                className="px-5"
+                type="submit"
+                // disabled={isValid}
+              >
                 {btnTitle}
               </Button>
             </Form>

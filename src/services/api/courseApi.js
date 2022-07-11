@@ -17,6 +17,7 @@ const courseApi = {
   },
   LayKhoaHocTheoDanhMuc: (params, headers) => {
     const endPoint = '/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc';
+    console.log(params);
     return axiosInstance.get(endPoint, {
       params,
       headers,
