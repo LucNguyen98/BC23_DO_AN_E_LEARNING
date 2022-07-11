@@ -131,6 +131,24 @@ const courseSlice = createSlice({
     getUpdateCourseFail: (state, action) => {
       state.error = action.payload;
     },
+
+    courseCancelHandle: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
+    courseCancelSuccess: (state) => {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    },
+    courseCancelFail: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -155,6 +173,9 @@ export const {
   getDeleteCourseFail,
   getUpdateCourseSuccess,
   getUpdateCourseFail,
+  courseCancelHandle,
+  courseCancelSuccess,
+  courseCancelFail,
 } = courseSlice.actions;
 
 export default courseSlice.reducer;

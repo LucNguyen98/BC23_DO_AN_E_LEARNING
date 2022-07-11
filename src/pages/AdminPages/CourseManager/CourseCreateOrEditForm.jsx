@@ -9,7 +9,6 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
 } from 'reactstrap';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -17,7 +16,7 @@ import { useMemo } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { VALIDATION_MESSAGE } from 'src/constants/error';
-import { regexPhoneNumber } from 'src/helpers/validation';
+import { regexNumber, regexPhoneNumber } from 'src/helpers/validation';
 import { useDispatch, useSelector } from 'react-redux';
 import { ErrorMessage } from 'src/components';
 import withLoader from 'src/HOC/withLoader';
@@ -28,6 +27,7 @@ import {
 } from 'src/redux/actions/courseAction';
 import { useEffect } from 'react';
 import { USER } from 'src/constants';
+import moment from 'moment';
 
 const CourseCreateOrEditForm = () => {
   const dispatch = useDispatch();
@@ -44,18 +44,37 @@ const CourseCreateOrEditForm = () => {
     return isUpdate ? 'Lưu' : 'Tạo mới';
   }, [isUpdate]);
   const taiKhoanNguoiTao = JSON.parse(localStorage.getItem(USER));
+
+  const schema = yup.object().shape({
+    maKhoaHoc: yup.string().required(VALIDATION_MESSAGE.required),
+    biDanh: yup.string().required(VALIDATION_MESSAGE.required),
+    tenKhoaHoc: yup.string().required(VALIDATION_MESSAGE.required),
+    moTa: yup.string().required(VALIDATION_MESSAGE.required),
+    hinhAnh: yup.string().required(VALIDATION_MESSAGE.required),
+    maDanhMucKhoaHoc: yup.string().required(VALIDATION_MESSAGE.required),
+    luotXem: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .matches(regexNumber, 'Vui lòng nhập số'),
+    danhGia: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .matches(regexNumber, 'Vui lòng nhập số'),
+  });
+
   const { values, handleChange, handleSubmit, touched, errors, setFieldValue } =
     useFormik({
       enableReinitialize: true,
       initialValues: course,
+      validationSchema: schema,
       onSubmit: (vals) => {
-        console.log(vals);
         isUpdate
           ? dispatch(
               updateCourseAction(
                 {
                   ...vals,
                   maNhom: 'GP01',
+                  ngayTao: moment().format('DD/MM/YYYY'),
                   taiKhoanNguoiTao: taiKhoanNguoiTao.taiKhoan,
                 },
                 () => navigate(-1)
@@ -66,6 +85,7 @@ const CourseCreateOrEditForm = () => {
                 {
                   ...vals,
                   maNhom: 'GP01',
+                  ngayTao: moment().format('DD/MM/YYYY'),
                   taiKhoanNguoiTao: taiKhoanNguoiTao.taiKhoan,
                 },
                 () => navigate(-1)
@@ -85,6 +105,8 @@ const CourseCreateOrEditForm = () => {
     };
   });
 
+  console.log('value', values);
+
   return (
     <Row>
       <Col>
@@ -103,6 +125,10 @@ const CourseCreateOrEditForm = () => {
                   onChange={handleChange}
                   disabled={isUpdate}
                 />
+                <ErrorMessage
+                  isError={errors.maKhoaHoc || touched?.maKhoaHoc}
+                  message={errors.maKhoaHoc}
+                />
               </FormGroup>
 
               <FormGroup>
@@ -114,6 +140,10 @@ const CourseCreateOrEditForm = () => {
                   onChange={handleChange}
                   disabled={isUpdate}
                 />
+                <ErrorMessage
+                  isError={errors.biDanh || touched?.biDanh}
+                  message={errors.biDanh}
+                />
               </FormGroup>
 
               <FormGroup>
@@ -124,15 +154,23 @@ const CourseCreateOrEditForm = () => {
                   value={values.tenKhoaHoc}
                   onChange={handleChange}
                 />
+                <ErrorMessage
+                  isError={errors.tenKhoaHoc || touched?.tenKhoaHoc}
+                  message={errors.tenKhoaHoc}
+                />
               </FormGroup>
 
               <FormGroup>
                 <Label for="moTa">Mô tả</Label>
                 <Input
                   name="moTa"
-                  type="text"
+                  type="textarea"
                   value={values.moTa}
                   onChange={handleChange}
+                />
+                <ErrorMessage
+                  isError={errors.moTa || touched?.moTa}
+                  message={errors.moTa}
                 />
               </FormGroup>
 
@@ -144,6 +182,10 @@ const CourseCreateOrEditForm = () => {
                   value={values.luotXem}
                   onChange={handleChange}
                 />
+                <ErrorMessage
+                  isError={errors.luotXem || touched?.luotXem}
+                  message={errors.luotXem}
+                />
               </FormGroup>
 
               <FormGroup>
@@ -153,6 +195,10 @@ const CourseCreateOrEditForm = () => {
                   type="text"
                   value={values.danhGia}
                   onChange={handleChange}
+                />
+                <ErrorMessage
+                  isError={errors.danhGia || touched?.danhGia}
+                  message={errors.danhGia}
                 />
               </FormGroup>
 
@@ -165,16 +211,9 @@ const CourseCreateOrEditForm = () => {
                   onChange={handleChange}
                   disabled={true}
                 />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="ngayTao">Ngày Tạo</Label>
-                <Input
-                  name="ngayTao"
-                  type="text"
-                  value={values.ngayTao}
-                  onChange={handleChange}
-                  disabled={isUpdate}
+                <ErrorMessage
+                  isError={errors.hoTen || touched?.hoTen}
+                  message={errors.hoTen}
                 />
               </FormGroup>
 
@@ -189,12 +228,17 @@ const CourseCreateOrEditForm = () => {
                     setFieldValue('maDanhMucKhoaHoc', value);
                   }}
                 >
+                  <option value={''}>{'Chọn danh mục'}</option>
                   {options.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}
                     </option>
                   ))}
                 </Input>
+                <ErrorMessage
+                  isError={errors.maDanhMucKhoaHoc || touched?.maDanhMucKhoaHoc}
+                  message={errors.maDanhMucKhoaHoc}
+                />
               </FormGroup>
 
               <FormGroup>
@@ -205,15 +249,13 @@ const CourseCreateOrEditForm = () => {
                   onChange={handleChange}
                   accept="image/*"
                 />
+                <ErrorMessage
+                  isError={errors.hinhAnh || touched?.hinhAnh}
+                  message={errors.hinhAnh}
+                />
               </FormGroup>
 
-              <Button
-                color="success"
-                outline
-                className="px-5"
-                type="submit"
-                // disabled={isValid}
-              >
+              <Button color="success" outline className="px-5" type="submit">
                 {btnTitle}
               </Button>
             </Form>
@@ -224,4 +266,4 @@ const CourseCreateOrEditForm = () => {
   );
 };
 
-export default CourseCreateOrEditForm;
+export default React.memo(withLoader(CourseCreateOrEditForm));

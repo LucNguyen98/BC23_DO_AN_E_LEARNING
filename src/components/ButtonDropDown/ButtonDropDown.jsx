@@ -13,21 +13,23 @@ export default function ButtonDropDown({
   item,
 }) {
   const [dropdownOpen, setDropDown] = useState(false);
-
+  const [active, setActive] = useState(-1);
   const toggle = () => {
     setDropDown(!dropdownOpen);
   };
   return (
     <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret color="primary">
-        {title}
+        {menus[active] ? menus[active].name : title}
       </DropdownToggle>
       <DropdownMenu>
         {menus.map((menu, index) => {
           return (
             <DropdownItem
               key={index}
+              active={index === active}
               onClick={() => {
+                setActive(index);
                 onSelected(menu, item);
               }}
             >

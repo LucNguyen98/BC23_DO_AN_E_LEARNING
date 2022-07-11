@@ -40,6 +40,17 @@ export const WARNING_COURSE_REMOVE = {
   cancelButtonText: 'Huỷ',
 };
 
+export const WARNING_COURSE_CANCEL = {
+  title: 'Bạn có muốn huỷ ghi danh tài khoản này?',
+  text: 'Khoá học này sẽ không còn tồn tại trong tài khoản này',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Xoá',
+  cancelButtonText: 'Huỷ',
+};
+
 export const DELETE_COURSE_ERROR = (error) => {
   return {
     title: 'Đã có lỗi xảy ra !',

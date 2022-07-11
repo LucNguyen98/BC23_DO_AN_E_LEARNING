@@ -4,6 +4,9 @@ import { handleResponseApi } from 'src/helpers/parse';
 import courseApi from 'src/services/api/courseApi';
 import Swal from 'sweetalert2';
 import {
+  courseCancelFail,
+  courseCancelHandle,
+  courseCancelSuccess,
   courseRegisterFail,
   courseRegisterHandle,
   courseRegisterSuccess,
@@ -124,7 +127,7 @@ export const courseRegisterAction = (data, onSuccess) => async (dispatch) => {
     }
     if (error) {
       dispatch(courseRegisterFail(error));
-      Swal.fire({ ...SUBMIT_ERROR, text: error });
+      Swal.fire(SUBMIT_ERROR);
     }
   } catch (error) {
     dispatch(courseRegisterFail(error));
@@ -203,9 +206,35 @@ export const updateCourseAction = (postData, onSuccess) => async (dispatch) => {
     }
     if (error) {
       dispatch(getUpdateCourseFail(error));
-      Swal.fire({ ...SUBMIT_ERROR, text: error });
+      Swal.fire(SUBMIT_ERROR);
     }
   } catch (error) {
     dispatch(getUpdateCourseFail(error));
+  }
+};
+
+export const courseCancelAction = (data, onSuccess) => async (dispatch) => {
+  try {
+    dispatch(courseCancelHandle());
+    const result = await courseApi.huyGhiDanh(data);
+    const { data: dataResp, error } = handleResponseApi(result);
+    if (dataResp) {
+      dispatch(courseCancelSuccess(dataResp));
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'HUỶ GHI DANH THÀNH CÔNG!',
+        confirmButtonText: 'Trở về',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onSuccess?.();
+        }
+      });
+    }
+    if (error) {
+      dispatch(courseCancelFail(error));
+      Swal.fire(SUBMIT_ERROR);
+    }
+  } catch (error) {
+    dispatch(courseRegisterFail(error));
   }
 };

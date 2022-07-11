@@ -63,7 +63,13 @@ export default function CourseManager() {
   const updateCourse = (course) => {
     const link = `${ADMIN_PARENT}/${COURSE_CREATE_EDIT_PATH}`;
     navigate(link, {
-      state: { course, isUpdate: true },
+      state: {
+        course: {
+          ...course,
+          maDanhMucKhoaHoc: course.danhMucKhoaHoc?.maDanhMucKhoahoc,
+        },
+        isUpdate: true,
+      },
     });
   };
 

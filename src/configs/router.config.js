@@ -19,6 +19,7 @@ import {
   ADMIN_LOGIN_PATH,
   ACCOUNT_ADMIN_PATH,
   COURSE_CREATE_EDIT_PATH,
+  REGISTER_MANAGER,
 } from 'src/constants/pathName';
 
 const Home = lazy(() => import('src/pages/ClientPages/Home/Home'));
@@ -58,6 +59,10 @@ const CourseManager = lazy(() =>
 );
 const CourseCreateOrEditForm = lazy(() =>
   import('src/pages/AdminPages/CourseManager/CourseCreateOrEditForm')
+);
+
+const RegisterManager = lazy(() =>
+  import('src/pages/AdminPages/RegisterManager/RegisterManager')
 );
 
 const Starter = lazy(() => import('src/pages/AdminPages/Starter.js'));
@@ -248,5 +253,14 @@ export const adminRouter = [
     name: 'Tạo/Chỉnh sửa khóa học',
     icon: 'bi bi-file-earmark-spreadsheet',
     isHidden: true,
+  },
+
+  {
+    path: REGISTER_MANAGER,
+    exact: true,
+    Component: RegisterManager,
+    name: 'Ghi danh',
+    icon: 'bi bi-file-earmark-spreadsheet',
+    isHidden: false,
   },
 ];

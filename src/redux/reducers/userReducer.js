@@ -6,6 +6,8 @@ const initialState = {
   currentPage: 1,
   totalCount: 0,
   loading: false,
+  userNotRegister: [],
+  members: [],
 };
 
 const userReducer = createSlice({
@@ -49,6 +51,18 @@ const userReducer = createSlice({
     addUserFail: (state) => {
       state.loading = false;
     },
+
+    getStudentSuccess: (state, action) => {
+      const data = action.payload;
+      return {
+        ...state,
+        userNotRegister: data[0],
+        members: data[1] ?? [],
+      };
+    },
+    getStudentFail: (state, action) => {
+      state.errors = action.payload;
+    },
   },
 });
 
@@ -59,10 +73,11 @@ export const {
   removeUserHandle,
   removeUserSuccess,
   removeUserFail,
-
   addUserHandle,
   addUserSuccess,
   addUserFail,
+  getStudentSuccess,
+  getStudentFail,
 } = userReducer.actions;
 
 export default userReducer.reducer;

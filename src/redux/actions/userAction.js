@@ -8,6 +8,8 @@ import {
   addUserFail,
   addUserHandle,
   addUserSuccess,
+  getStudentFail,
+  getStudentSuccess,
   getUserByPaginationSuccess,
   getUserFail,
   getUserSuccess,
@@ -95,5 +97,29 @@ export const addUserAction = (data, onSuccess) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(addUserFail(error));
+  }
+};
+
+export const getStudentAction = (params) => async (dispatch) => {
+  try {
+    const responses = await Promise.all([
+      authApi.LayDanhSachNguoiDungChuaGhiDanh(params),
+      authApi.LayDanhSachHocVienKhoaHoc(params),
+    ]);
+
+    const { data: dataUser, error: errorUser } = handleResponseApi(
+      responses[0]
+    );
+    const { data: dataMember, error: errorMember } = handleResponseApi(
+      responses[1]
+    );
+    if (dataUser || dataMember) {
+      dispatch(getStudentSuccess([dataUser, dataMember]));
+    }
+    if (errorUser || errorMember) {
+      dispatch(getStudentFail({ ...errorMember, ...errorUser }));
+    }
+  } catch (error) {
+    dispatch(getStudentFail(error));
   }
 };
