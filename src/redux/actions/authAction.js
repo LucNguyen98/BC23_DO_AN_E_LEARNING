@@ -21,10 +21,11 @@ export const loginAction = (data, onSuccess) => async (dispatch) => {
   try {
     dispatch(loginHandle());
     const result = await authApi.dangNhap(data);
+
     const { data: dataResp, error } = handleResponseApi(result);
     if (dataResp) {
       dispatch(loginSuccess(dataResp));
-      onSuccess?.();
+      onSuccess?.(dataResp);
     }
     if (error) {
       dispatch(loginFail(error));

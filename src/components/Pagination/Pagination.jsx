@@ -12,10 +12,8 @@ function Pagination({
 }) {
   let pages = mapPages(totalPages);
   const rangePageNumber = 5;
-  // const [passengersData, setData] = useState([]);
   const [maxPageLimit, setMaxPageLimit] = useState(maxPage);
   const [minPageLimit, setMinPageLimit] = useState(minPage);
-  // page ellipses
 
   const nextPage = () => {
     let page = +currentPage + 1;

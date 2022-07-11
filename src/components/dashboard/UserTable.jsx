@@ -1,8 +1,7 @@
-import { Card, CardBody, Table } from 'reactstrap';
+import { Button, Card, CardBody, Table } from 'reactstrap';
 
 import React from 'react';
-import { ButtonDropDown, Pagination } from '..';
-import { useMemo } from 'react';
+import { Pagination } from '..';
 
 const UserTables = ({
   data = [],
@@ -13,28 +12,6 @@ const UserTables = ({
   removeUser,
   updateUser,
 }) => {
-  const menus = useMemo(
-    () => [
-      {
-        name: 'Chỉnh sửa',
-        icon: <i className="fa fa-pencil-alt"></i>,
-      },
-      {
-        name: 'Xoá',
-        icon: <i className="fa fa-trash"></i>,
-      },
-    ],
-    []
-  );
-
-  const onAction = (item, user) => {
-    if (item.name === 'Chỉnh sửa') {
-      updateUser(user);
-    } else {
-      removeUser(user?.taiKhoan);
-    }
-  };
-
   return (
     <Card>
       <CardBody>
@@ -46,7 +23,7 @@ const UserTables = ({
               <th>Họ tên</th>
               <th>Email</th>
               <th>Sdt</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -62,11 +39,21 @@ const UserTables = ({
                 </td>
                 <td>{tdata.soDT}</td>
                 <td>
-                  <ButtonDropDown
-                    menus={menus}
-                    item={tdata}
-                    onSelected={onAction}
-                  />
+                  <Button
+                    size="sm"
+                    className="mr-3"
+                    color="primary"
+                    onClick={() => updateUser(tdata)}
+                  >
+                    <i className="fa fa-pencil-alt"></i>
+                  </Button>
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={() => removeUser(tdata?.taiKhoan)}
+                  >
+                    <i className="fa fa-trash"></i>
+                  </Button>
                 </td>
               </tr>
             ))}

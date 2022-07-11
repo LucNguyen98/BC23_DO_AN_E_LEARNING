@@ -1,7 +1,7 @@
-import { Card, CardBody, Table } from 'reactstrap';
+import { Button, Card, CardBody, Table } from 'reactstrap';
 
-import React, { useMemo } from 'react';
-import { ButtonDropDown, Pagination } from '..';
+import React from 'react';
+import { Pagination } from '..';
 
 const CourseTable = ({
   data = [],
@@ -13,28 +13,6 @@ const CourseTable = ({
   updateCourse,
   removeCourse,
 }) => {
-  const menus = useMemo(
-    () => [
-      {
-        name: 'Chỉnh sửa',
-        icon: <i className="fa fa-pencil-alt"></i>,
-      },
-      {
-        name: 'Xoá',
-        icon: <i className="fa fa-trash"></i>,
-      },
-    ],
-    []
-  );
-  const onAction = (item, course) => {
-    console.log(course);
-    if (item.name === 'Chỉnh sửa') {
-      updateCourse(course);
-    } else {
-      removeCourse(course);
-    }
-  };
-
   return (
     <Card>
       <CardBody>
@@ -45,7 +23,7 @@ const CourseTable = ({
               <th>Tên Khóa Học</th>
               <th>Hình Ảnh</th>
               <th>Ngày Tạo</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -58,11 +36,23 @@ const CourseTable = ({
                 </td>
                 <td>{tdata.ngayTao}</td>
                 <td>
-                  <ButtonDropDown
-                    menus={menus}
-                    item={tdata}
-                    onSelected={onAction}
-                  />
+                  <td>
+                    <Button
+                      size="sm"
+                      className="mr-3"
+                      color="primary"
+                      onClick={() => updateCourse(tdata)}
+                    >
+                      <i className="fa fa-pencil-alt"></i>
+                    </Button>
+                    <Button
+                      size="sm"
+                      color="danger"
+                      onClick={() => removeCourse(tdata?.maKhoaHoc)}
+                    >
+                      <i className="fa fa-trash"></i>
+                    </Button>
+                  </td>
                 </td>
               </tr>
             ))}
