@@ -12,101 +12,146 @@ import {
   FormText,
 } from 'reactstrap';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { VALIDATION_MESSAGE } from 'src/constants/error';
+import { regexPhoneNumber } from 'src/helpers/validation';
+import { useDispatch } from 'react-redux';
+import { ErrorMessage } from 'src/components';
+import withLoader from 'src/HOC/withLoader';
+import {
+  addCourseAction,
+  updateCourseAction,
+} from 'src/redux/actions/courseAction';
 
 const CourseCreateOrEditForm = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {
+    state: { course, isUpdate },
+  } = location || {};
+  const title = useMemo(() => {
+    return isUpdate ? 'Chỉnh sửa thông tin khóa học' : 'Tạo mới khóa học';
+  }, [isUpdate]);
+  const btnTitle = useMemo(() => {
+    return isUpdate ? 'Lưu' : 'Tạo mới';
+  }, [isUpdate]);
+
+  const schema = yup.object().shape({
+    taiKhoan: yup.string().required(VALIDATION_MESSAGE.required),
+    hoTen: yup.string().required(VALIDATION_MESSAGE.required),
+    email: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .email(VALIDATION_MESSAGE.email),
+    soDT: yup
+      .string()
+      .required(VALIDATION_MESSAGE.required)
+      .matches(regexPhoneNumber, VALIDATION_MESSAGE.phone),
+    matKhau: isUpdate
+      ? yup
+          .string()
+          .required(VALIDATION_MESSAGE.required)
+          .min(8, VALIDATION_MESSAGE.password)
+      : yup.string().notRequired(),
+  });
+  const { values, handleChange, handleSubmit, touched, errors } = useFormik({
+    initialValues: course,
+    validationSchema: schema,
+    onSubmit: (vals) => {
+      isUpdate
+        ? dispatch(updateCourseAction(vals, () => {}))
+        : dispatch(addCourseAction(vals, () => navigate(-1)));
+    },
+  });
+
   return (
     <Row>
       <Col>
-        {/* --------------------------------------------------------------------------------*/}
-        {/* Card-1*/}
-        {/* --------------------------------------------------------------------------------*/}
         <Card>
-          <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-            <i className="bi bi-bell me-2"> </i>
-            Form Example
+          <CardTitle tag="h3" className="border-bottom p-3 mb-0">
+            {title}
           </CardTitle>
           <CardBody>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="exampleEmail">Email</Label>
+                <Label for="maKhoaHoc">Mã Khóa Học</Label>
                 <Input
-                  id="exampleEmail"
-                  name="email"
-                  placeholder="with a placeholder"
-                  type="email"
+                  name="maKhoaHoc"
+                  type="text"
+                  value={values.maKhoaHoc}
+                  onChange={handleChange}
+                  disabled={isUpdate}
                 />
               </FormGroup>
+
               <FormGroup>
-                <Label for="examplePassword">Password</Label>
+                <Label for="biDanh">Bí Danh</Label>
                 <Input
-                  id="examplePassword"
-                  name="password"
-                  placeholder="password placeholder"
-                  type="password"
+                  name="biDanh"
+                  type="text"
+                  value={values.biDanh}
+                  onChange={handleChange}
                 />
               </FormGroup>
+
               <FormGroup>
-                <Label for="exampleSelect">Select</Label>
-                <Input id="exampleSelect" name="select" type="select">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleSelectMulti">Select Multiple</Label>
+                <Label for="tenKhoaHoc">Tên Khóa Học</Label>
                 <Input
-                  id="exampleSelectMulti"
-                  multiple
-                  name="selectMulti"
-                  type="select"
-                >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
+                  name="tenKhoaHoc"
+                  type="text"
+                  value={values.tenKhoaHoc}
+                  onChange={handleChange}
+                  disabled={isUpdate}
+                />
               </FormGroup>
+
               <FormGroup>
-                <Label for="exampleText">Text Area</Label>
-                <Input id="exampleText" name="text" type="textarea" />
+                <Label for="moTa">Mô tả</Label>
+                <Input
+                  name="moTa"
+                  type="text"
+                  value={values.moTa}
+                  onChange={handleChange}
+                />
               </FormGroup>
+
               <FormGroup>
-                <Label for="exampleFile">File</Label>
-                <Input id="exampleFile" name="file" type="file" />
-                <FormText>
-                  This is some placeholder block-level help text for the above
-                  input. It&apos;s a bit lighter and easily wraps to a new line.
-                </FormText>
+                <Label for="moTa">Lượt xem</Label>
+                <Input
+                  name="luotXem"
+                  type="text"
+                  value={values.luotXem}
+                  onChange={handleChange}
+                />
               </FormGroup>
-              <FormGroup tag="fieldset">
-                <legend>Radio Buttons</legend>
-                <FormGroup check>
-                  <Input name="radio1" type="radio" />{' '}
-                  <Label check>
-                    Option one is this and that—be sure to include why it&apos;s
-                    great
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Input name="radio1" type="radio" />{' '}
-                  <Label check>
-                    Option two can be something else and selecting it will
-                    deselect option one
-                  </Label>
-                </FormGroup>
-                <FormGroup check disabled>
-                  <Input disabled name="radio1" type="radio" />{' '}
-                  <Label check>Option three is disabled</Label>
-                </FormGroup>
+
+              <FormGroup>
+                <Label for="moTa">Đánh giá</Label>
+                <Input
+                  name="danhGia"
+                  type="text"
+                  value={values.danhGia}
+                  onChange={handleChange}
+                />
               </FormGroup>
-              <FormGroup check>
-                <Input type="checkbox" /> <Label check>Check me out</Label>
+
+              <FormGroup>
+                <Label for="moTa">Mã Nhóm</Label>
+                <Input
+                  name="maNhom"
+                  type="text"
+                  value={values.maNhom}
+                  onChange={handleChange}
+                />
               </FormGroup>
-              <Button>Submit</Button>
+
+              <Button color="success" outline type="submit" className="px-5">
+                {btnTitle}
+              </Button>
             </Form>
           </CardBody>
         </Card>

@@ -44,9 +44,10 @@ export default function CourseManager() {
   };
 
   const updateCourse = (course) => {
-    console.log(course);
     const link = `${ADMIN_PARENT}/${COURSE_CREATE_EDIT_PATH}`;
-    navigate(link);
+    navigate(link, {
+      state: { course, isUpdate: true },
+    });
   };
 
   const removeCourse = (course) => {

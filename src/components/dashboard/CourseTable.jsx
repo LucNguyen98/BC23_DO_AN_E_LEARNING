@@ -26,11 +26,12 @@ const CourseTable = ({
     ],
     []
   );
-  const onAction = (item, user) => {
+  const onAction = (item, course) => {
+    console.log(course);
     if (item.name === 'Chỉnh sửa') {
-      updateCourse();
+      updateCourse(course);
     } else {
-      removeCourse(user?.taiKhoan);
+      removeCourse(course);
     }
   };
 
