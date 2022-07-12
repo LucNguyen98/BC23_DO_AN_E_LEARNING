@@ -1,10 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'src/components';
 import { COURSE_PATH } from 'src/constants/pathName';
 
 export default function Cta() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <section className="cta-5 mb--120 bg-gray">
@@ -33,7 +33,7 @@ export default function Cta() {
                     </h2>
                     <Button
                       title="Đăng ký ngay"
-                      onClick={() => history.push(COURSE_PATH)}
+                      onClick={() => navigate(COURSE_PATH)}
                     />
                   </div>
                 </div>

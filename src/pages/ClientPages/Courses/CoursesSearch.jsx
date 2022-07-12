@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { not_found } from 'src/assets/images/course';
 import { Pagination } from 'src/components';
 import CoursesList from 'src/components/courseList/coursesList';
@@ -12,7 +12,7 @@ const COUNT_LIMIT = 8;
 
 export default function CoursesSearch() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.course.error);
   const { search } = useLocation();
 
@@ -49,7 +49,7 @@ export default function CoursesSearch() {
 
   const goToCourseDetail = (item) => {
     const link = `${COURSE_DETAIL_PATH}/${item?.maKhoaHoc}`;
-    history.push(link);
+    navigate(link);
   };
 
   if (error?.message || error) {

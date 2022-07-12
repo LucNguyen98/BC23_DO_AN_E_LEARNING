@@ -1,7 +1,22 @@
+import { SUBMIT_ERROR } from 'src/constants/error';
+import { SUBMIT_SUCCESS } from 'src/constants/success';
 import { handleResponseApi } from 'src/helpers/parse';
 import authApi from 'src/services/api/authApi';
+import Swal from 'sweetalert2';
 
-import { getUserFail, getUserSuccess } from '../reducers/userReducer';
+import {
+  addUserFail,
+  addUserHandle,
+  addUserSuccess,
+  getStudentFail,
+  getStudentSuccess,
+  getUserByPaginationSuccess,
+  getUserFail,
+  getUserSuccess,
+  removeUserFail,
+  removeUserHandle,
+  removeUserSuccess,
+} from '../reducers/userReducer';
 
 export const getUserAction = (params) => async (dispatch) => {
   try {
@@ -15,5 +30,96 @@ export const getUserAction = (params) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(getUserFail(error));
+  }
+};
+
+export const getUserPaginationAction = (params) => async (dispatch) => {
+  try {
+    const result = await authApi.layDanhSachNguoiDungPhanTrang(params);
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      dispatch(getUserByPaginationSuccess(data));
+    }
+    if (error) {
+      dispatch(getUserFail(error));
+    }
+  } catch (error) {
+    dispatch(getUserFail(error));
+  }
+};
+
+export const deleteUserAction = (taiKhoan) => async (dispatch) => {
+  try {
+    dispatch(removeUserHandle());
+    const result = await authApi.xoadNguoiDung({ taiKhoan });
+    const { data, error } = handleResponseApi(result);
+    if (data) {
+      dispatch(removeUserSuccess());
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'Xoá thành công!',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+    }
+    if (error) {
+      dispatch(removeUserFail(error));
+      Swal.fire({ ...SUBMIT_ERROR, text: error });
+    }
+  } catch (error) {
+    dispatch(removeUserFail(error));
+  }
+};
+
+export const addUserAction = (data, onSuccess) => async (dispatch) => {
+  try {
+    dispatch(addUserHandle());
+    const result = await authApi.themNguoiDung(data);
+    const { data: dataRes, error } = handleResponseApi(result);
+    if (dataRes) {
+      dispatch(addUserSuccess());
+      Swal.fire({
+        ...SUBMIT_SUCCESS,
+        title: 'Tạo mới thành công!',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onSuccess?.();
+        }
+      });
+    }
+    if (error) {
+      dispatch(addUserFail(error));
+      Swal.fire({ ...SUBMIT_ERROR, text: error });
+    }
+  } catch (error) {
+    dispatch(addUserFail(error));
+  }
+};
+
+export const getStudentAction = (params) => async (dispatch) => {
+  try {
+    const responses = await Promise.all([
+      authApi.LayDanhSachNguoiDungChuaGhiDanh(params),
+      authApi.LayDanhSachHocVienKhoaHoc(params),
+    ]);
+
+    const { data: dataUser, error: errorUser } = handleResponseApi(
+      responses[0]
+    );
+    const { data: dataMember, error: errorMember } = handleResponseApi(
+      responses[1]
+    );
+    if (dataUser || dataMember) {
+      dispatch(getStudentSuccess([dataUser, dataMember]));
+    }
+    if (errorUser || errorMember) {
+      dispatch(getStudentFail({ ...errorMember, ...errorUser }));
+    }
+  } catch (error) {
+    dispatch(getStudentFail(error));
   }
 };

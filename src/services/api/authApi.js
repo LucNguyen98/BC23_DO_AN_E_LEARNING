@@ -25,6 +25,28 @@ const authApi = {
     const endPoint = '/api/QuanLyNguoiDung/LayDanhSachNguoiDung_PhanTrang';
     return axiosInstance.get(endPoint, { params });
   },
+  xoadNguoiDung: (params) => {
+    const endPoint = '/api/QuanLyNguoiDung/XoaNguoiDung';
+    return axiosInstance.delete(endPoint, {
+      params,
+    });
+  },
+  themNguoiDung: (data) => {
+    const endPoint = '/api/QuanLyNguoiDung/ThemNguoiDung';
+    return axiosInstance.post(endPoint, data);
+  },
+  LayDanhSachNguoiDungChuaGhiDanh: (data) => {
+    const endPoint = '/api/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh';
+    return axiosInstance.post(endPoint, data);
+  },
+  LayDanhSachHocVienChoXetDuyet: (data) => {
+    const endPoint = '/api/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet';
+    return axiosInstance.post(endPoint, data);
+  },
+  LayDanhSachHocVienKhoaHoc: (data) => {
+    const endPoint = '/api/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc';
+    return axiosInstance.post(endPoint, data);
+  },
 };
 
 export default authApi;
