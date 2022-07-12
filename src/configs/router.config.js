@@ -184,7 +184,7 @@ export const clientRouter = [
 export const adminParentRouter = [
   {
     path: ADMIN_PARENT,
-    exact: true,
+    exact: false,
     Component: FullLayout,
     name: 'Admin',
     requireLogin: true,

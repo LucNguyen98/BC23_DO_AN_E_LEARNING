@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 const Logo = () => {
   return (
-    <Link to="/">
+    <Link to="">
       <LogoDark />
     </Link>
   );
