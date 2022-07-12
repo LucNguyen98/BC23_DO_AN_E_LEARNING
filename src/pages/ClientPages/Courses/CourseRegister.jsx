@@ -8,12 +8,13 @@ import { Button, ErrorMessage } from 'src/components';
 import withLoader from 'src/HOC/withLoader';
 import { courseRegisterAction } from 'src/redux/actions/courseAction';
 import { getUser } from 'src/helpers/localStorage';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function CourseRegister() {
   const dispatch = useDispatch();
   const { maKhoaHoc } = useParams();
   const user = getUser();
+  const navigate = useNavigate();
   const registerInfo = React.useRef({
     hoTen: '',
     taiKhoan: user.taiKhoan,
@@ -44,7 +45,7 @@ function CourseRegister() {
         dispatch(
           courseRegisterAction({ taiKhoan, maKhoaHoc }, () => {
             resetForm();
-            history.push('');
+            navigate('/');
           })
         );
       },

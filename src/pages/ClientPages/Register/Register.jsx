@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Button, Loading } from 'src/components';
 import ErrorMessage from 'src/components/_common/errorMessage/errorMessage';
 import { VALIDATION_MESSAGE } from 'src/constants/error';
@@ -13,7 +13,7 @@ import * as yup from 'yup';
 import './Register.scss';
 function Register() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const users = React.useRef({
     hoTen: '',
     taiKhoan: '',
@@ -57,7 +57,7 @@ function Register() {
         dispatch(
           registerAction(newValues, () => {
             resetForm();
-            history.push(LOGIN_PATH);
+            navigate(LOGIN_PATH);
           })
         );
       },

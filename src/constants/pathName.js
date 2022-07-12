@@ -9,3 +9,13 @@ export const INSTRUCTORS_PATH = '/giang-vien';
 export const BLOG_PATH = '/blog-list';
 export const COURSE_REGISTER = '/ghi-danh-khoa-hoc';
 export const COURSE_SEARCH_PATH = '/tim-kiem';
+
+// ****** ADMIN ****** //
+export const ADMIN_PARENT = '/admin';
+export const USER_MANAGER_PATH = 'quan-ly-nguoi-dung';
+export const USER_CREATE_EDIT_PATH = 'thong-tin-nguoi-dung';
+export const COURSE_MANAGER_PATH = 'quan-ly-khoa-hoc';
+export const ADMIN_LOGIN_PATH = '/admin/dang-nhap';
+export const ACCOUNT_ADMIN_PATH = 'thong-tin-tai-khoan';
+export const COURSE_CREATE_EDIT_PATH = 'thong-tin-khoa-hoc';
+export const REGISTER_MANAGER = 'quan-ky-ghi-danh';

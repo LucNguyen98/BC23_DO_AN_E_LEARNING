@@ -17,6 +17,7 @@ const courseApi = {
   },
   LayKhoaHocTheoDanhMuc: (params, headers) => {
     const endPoint = '/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc';
+    console.log(params);
     return axiosInstance.get(endPoint, {
       params,
       headers,
@@ -38,6 +39,22 @@ const courseApi = {
   },
   ghiDanhKhoaHoc: (data, headers) => {
     const endPoint = '/api/QuanLyKhoaHoc/DangKyKhoaHoc';
+    return axiosInstance.post(endPoint, data, { headers });
+  },
+  themKhoaHoc: (data, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/ThemKhoaHoc';
+    return axiosInstance.post(endPoint, data, { headers });
+  },
+  xoaKhoaHoc: (params, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/XoaKhoaHoc';
+    return axiosInstance.delete(endPoint, { params, headers });
+  },
+  suaKhoaHoc: (data, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/CapNhatKhoaHoc';
+    return axiosInstance.put(endPoint, data, { headers });
+  },
+  huyGhiDanh: (data, headers) => {
+    const endPoint = '/api/QuanLyKhoaHoc/HuyGhiDanh';
     return axiosInstance.post(endPoint, data, { headers });
   },
 };

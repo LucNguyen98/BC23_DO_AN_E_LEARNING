@@ -73,6 +73,7 @@ export const mapDataCourses = (courses) => {
 
 export const mapPages = (totalPages) => {
   let pages = [];
+
   for (let index = 1; index <= totalPages; index++) {
     pages.push(index);
   }

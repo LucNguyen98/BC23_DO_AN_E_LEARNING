@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './breadcrumbs.scss';
-function Breadcrumbs({ location, name = '' }) {
+function Breadcrumbs({ name = '' }) {
+  let location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   return (
     <section className="page-header">
@@ -36,4 +37,4 @@ function Breadcrumbs({ location, name = '' }) {
   );
 }
 
-export default withRouter(Breadcrumbs);
+export default Breadcrumbs;

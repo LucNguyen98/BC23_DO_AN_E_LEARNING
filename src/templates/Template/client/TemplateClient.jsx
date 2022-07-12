@@ -1,5 +1,11 @@
 import React from 'react';
-import { Breadcrumbs, Footer, Header, ScrollToTop } from 'src/components';
+import {
+  Breadcrumbs,
+  Footer,
+  Header,
+  ScrollToTop,
+  SuspenseComponent,
+} from 'src/components';
 
 export default function TemplateClient({
   Component,
@@ -8,20 +14,22 @@ export default function TemplateClient({
   isBreadcrumb,
 }) {
   return (
-    <div>
-      <div>
-        <header>
-          <Header />
-        </header>
-        <main>
-          {isBreadcrumb && <Breadcrumbs name={name} />}
-          <Component />
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-        {isScrollToTop && <ScrollToTop />}
-      </div>
-    </div>
+    <SuspenseComponent
+      component={
+        <div>
+          <header>
+            <Header />
+          </header>
+          <main>
+            {isBreadcrumb && <Breadcrumbs name={name} />}
+            <Component />
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+          {isScrollToTop && <ScrollToTop />}
+        </div>
+      }
+    />
   );
 }
