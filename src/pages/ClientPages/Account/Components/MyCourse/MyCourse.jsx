@@ -1,45 +1,46 @@
+import moment from 'moment';
 import React from 'react';
-import { LazyLoadImg, NavLinkComponent } from 'src/components';
+import { Button } from 'reactstrap';
+import { NavLinkComponent } from 'src/components';
 import { COURSE_PATH } from 'src/constants/pathName';
 
-function MyCourse({ data }) {
+function MyCourse({ data, cancelCourse }) {
   const renderCourse = (course, index) => {
-    const desConvert =
-      course?.moTa?.length > 50
-        ? `${course?.moTa?.slice(0, 50)}...`
-        : course?.moTa;
     return (
-      <div className="col-xl-4 col-lg-4 col-md-6" key={index}>
-        <div className="course-grid bg-shadow tooltip-style">
-          <div className="course-header">
-            <div className="course-thumb">
-              <LazyLoadImg
-                src={course?.hinhAnh}
-                alt=""
-                height={200}
-                style={{
-                  width: '100%',
-                  objectFit: 'fill',
-                }}
-              />
-            </div>
-          </div>
-          <div className="course-content">
-            <div className="rating mb-10">
-              <i className="fa fa-star" />
-              <i className="fa fa-star" />
-              <i className="fa fa-star" />
-              <i className="fa fa-star" />
-              <i className="fa fa-star" />
-              <span>
-                {5} ({course.luotXem} đánh giá)
-              </span>
-            </div>
-            <h3 className="course-title mb-20">{course?.tenKhoaHoc}</h3>
-            <p className="mb-20">{desConvert}</p>
-          </div>
-        </div>
-      </div>
+      <tr key={index} className="woocommerce-cart-form__cart-item cart_item">
+        <td>
+          <p>{course.maKhoaHoc}</p>
+        </td>
+        <td>
+          <p>{course.tenKhoaHoc}</p>
+        </td>
+        <td className="product-thumbnail">
+          <img
+            width={324}
+            height={324}
+            src={course?.hinhAnh}
+            className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+            alt=""
+          />
+        </td>
+        <td>
+          <p>{moment(course.ngayTao).format('DD/MM/YYYY')}</p>
+        </td>
+        <td className="px-3">
+          <Button
+            title="Huỷ ghi danh"
+            size="sm"
+            color="danger"
+            style={{
+              backgroundColor: 'transparent',
+              border: 0,
+            }}
+            onClick={() => cancelCourse(course.maKhoaHoc)}
+          >
+            <i className="fa fa-trash text-danger"></i>
+          </Button>
+        </td>
+      </tr>
     );
   };
 
@@ -61,14 +62,37 @@ function MyCourse({ data }) {
   };
 
   return (
-    <div className="p-3 py-5">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4 className="text-right">Khoá học của tôi</h4>
+    <section className="woocommerce single py-3">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 col-xl-12 mb-3">
+            <h4>Khoá học của tôi</h4>
+          </div>
+          <div className="col-lg-12 col-xl-12">
+            <div className="woocommerce-cart">
+              <div className="woocommerce-notices-wrapper" />
+              <form className="woocommerce-cart-form" action method>
+                <table
+                  className="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
+                  cellSpacing={0}
+                >
+                  <thead>
+                    <tr>
+                      <th>Mã Khóa Học</th>
+                      <th>Tên Khóa Học</th>
+                      <th>Hình Ảnh</th>
+                      <th>Ngày Tạo</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>{renderPages()}</tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="row·justify-content-lg-center">
-        <div className="row">{renderPages()}</div>
-      </div>
-    </div>
+    </section>
   );
 }
 

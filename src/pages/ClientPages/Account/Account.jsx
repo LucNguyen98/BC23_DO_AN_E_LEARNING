@@ -8,6 +8,10 @@ import withLoader from 'src/HOC/withLoader';
 import './Account.scss';
 import Profile from './Components/Profile/Profile';
 import MyCourse from './Components/MyCourse/MyCourse';
+import Swal from 'sweetalert2';
+import { WARNING_COURSE_CANCEL } from 'src/constants/error';
+import { courseCancelAction } from 'src/redux/actions/courseAction';
+import { getStudentAction } from 'src/redux/actions/userAction';
 function Account() {
   const dispatch = useDispatch();
   const user = getUser();
@@ -16,6 +20,24 @@ function Account() {
   useEffect(() => {
     dispatch(getProfileAction());
   }, [dispatch]);
+
+  const cancelCourse = (maKhoaHoc) => {
+    Swal.fire(WARNING_COURSE_CANCEL).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(
+          courseCancelAction(
+            {
+              taiKhoan: user.taiKhoan,
+              maKhoaHoc,
+            },
+            () => {
+              window.location.reload();
+            }
+          )
+        );
+      }
+    });
+  };
 
   return (
     <div className="container rounded bg-white mt-5 mb-5">
@@ -76,7 +98,10 @@ function Account() {
               role="tabpanel"
               aria-labelledby="pills-profile-tab"
             >
-              <MyCourse data={chiTietKhoaHocGhiDanh} />
+              <MyCourse
+                data={chiTietKhoaHocGhiDanh}
+                cancelCourse={cancelCourse}
+              />
             </div>
             <div
               className="tab-pane fade"

@@ -2,6 +2,7 @@ import { Button, Card, CardBody, Table } from 'reactstrap';
 
 import React, { useMemo } from 'react';
 import { Pagination } from '..';
+import moment from 'moment';
 
 const CourseTable = ({
   data = [],
@@ -34,7 +35,7 @@ const CourseTable = ({
                 <td>
                   <img src={tdata.hinhAnh} alt="..." width={40} height={40} />
                 </td>
-                <td>{tdata.ngayTao}</td>
+                <td>{moment(tdata.ngayTao).format('DD/MM/YYYY')}</td>
                 <td>
                   <td>
                     <Button
