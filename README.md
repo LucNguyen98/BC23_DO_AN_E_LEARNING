@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Các chức năng web client:
+- Đăng kí / đăng nhập / đăng xuất
+- Lấy danh sách danh mục
+- Lấy danh sách khoá học
+- Lấy danh sách khoá học theo danh mục
+- Lấy danh sách khoá học phân trang
+- Tìm kiếm khoá học
+- Lấy thông tin khoá học
+- Lấy thông tin người dùng
+- Cập nhật thông tin người dùng
+- Ghi / huỷ danh khoá học
+- Lấy danh sách người dùng có role là giáo vụ
+
+
+### Các chức năng web admin:
+***NOTE: Truy cập vào admin page với cú pháp: "/admin"***
+- Đăng nhập / đăng xuất
+- Cập nhật thông tin người dùng
+- Quản lý khoá học :
+    + Tìm kiếm khoá học
+    + Lấy danh sách khoá học phân trang
+    + Lấy danh sách khoá học theo danh mục
+    + Thêm xoá sửa khoá học
+- Quản lý người dùng :
+    + Tìm kiếm  người dùng
+    + Lấy danh sách người dùng phân trang
+    + Thêm xoá sửa người dùng 
+- Quản lý ghi danh :
+    + Lấy danh sách người dùng chưa ghi danh
+    + Lấy danh sách người dùng theo khoá học
