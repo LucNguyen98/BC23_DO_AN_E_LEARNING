@@ -46,7 +46,7 @@ function App() {
             key={index}
             element={
               <PrivateRoute>
-                <TemplateClient Component={<Component />} />
+                <TemplateClient Component={Component} />
               </PrivateRoute>
             }
           />
